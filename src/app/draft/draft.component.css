@@ -1,0 +1,245 @@
+header {
+  width: 100%;
+  height: 300px;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  background: url("./../../assets/draft.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position-y: 50%;
+  color: white;
+  background-color: black;
+}
+#logo {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 50px;
+}
+img {
+  width: 150px;
+  height: 150px;
+}
+#buttons {
+  display: flex;
+}
+button {
+  margin: 5px;
+  height: 40px;
+  width: 80px;
+  color: white;
+  font-size: 15px;
+  border-radius: 10px;
+}
+#red {
+  background: red;
+}
+#green {
+  background: green;
+}
+#blue {
+  background: rgb(0, 195, 255);
+}
+#orange {
+  background: orange;
+}
+#purple {
+  background: purple;
+}
+.directions {
+  padding: 10px;
+  width: 40%;
+  margin-top: 30px;
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.directions p {
+  width: 100%;
+  align-content: center;
+}
+#rosters {
+  display: flex;
+  width: 100%;
+  justify-content: space-around;
+}
+.arrow {
+  width: 80px;
+  height: 80px;
+}
+.coin {
+  width: 200px;
+  background: orange;
+}
+#computer {
+  border: 1px solid black;
+  padding: 5px;
+  width: 33%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#player {
+  border: 1px solid black;
+  padding: 5px;
+  width: 33%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+#availablePlayers {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+/* section {
+  background: url("./../../assets/audience.jpg");
+  background-repeat: no-repeat;
+} */
+#clockContainer {
+  display: flex;
+  height: 50px;
+  width: 600px;
+  justify-content: space-evenly;
+  align-items: center;
+  font-size: 40px;
+  margin: 10px;
+}
+#clock {
+  height: 50px;
+  width: 150px;
+  border: 6px solid black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 40px;
+  color: red;
+}
+#cards {
+  width: 95%;
+}
+.cards {
+  margin: 10px;
+  width: 20%;
+  height: 300px;
+}
+#start {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  width: 40%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
+}
+#commentary {
+  font-size: 20px;
+  padding: 10px;
+}
+#flipButton {
+  margin: 0;
+}
+.red {
+  background: red;
+}
+.green {
+  background: green;
+}
+.blue {
+  background: rgb(0, 195, 255);
+}
+.orange {
+  background: orange;
+}
+.purple {
+  background: purple;
+}
+.card {
+  width: 200px;
+  height: 250px;
+  margin: 10px;
+  padding: 4px;
+  border: 8px solid rgb(192, 190, 190);
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+.card:hover {
+  transform: scale(1.03);
+}
+.cardContainer {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.draft {
+  background: orange;
+}
+.stats {
+  display: flex;
+}
+h3 {
+  font-size: 25px;
+}
+.number {
+  font-size: 25px;
+}
+span {
+  margin-top: 2px;
+}
+.draftedCards {
+  padding: 2px 25px 2px 25px;
+  border: 1px solid black;
+  margin: 2px;
+  border-radius: 5px;
+}
+#endDraft {
+  position: absolute;
+  z-index: 1;
+  width: 60%;
+  height: 500px;
+  background: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  border: 15px solid black;
+  border-radius: 20px;
+  left: 50%;
+  top: 65%;
+  transform: translateX(-50%);
+}
+.teams {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+}
+.bothteams {
+  width: 100%;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
+#gotoGame {
+  background: orange;
+  width: 200px;
+}
+a {
+  color: white;
+  text-decoration: none;
+}

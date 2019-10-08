@@ -1,0 +1,275 @@
+<header>
+  <div id="logo">
+    <h1>Welcome to the Draft!</h1>
+    <img src="./../../assets/math-hoops logo.png" alt="Math Hoops Logo" />
+  </div>
+</header>
+
+<section>
+  <div class="directions">
+    <h3>How the Draft works!</h3>
+    <ol>
+      <li>
+        Click the <em>Flip for the First Pick!</em> Button to decided if you go
+        first or the computer picks first!
+      </li>
+      <li>
+        You must select one player from each color (red, green, orange, green,
+        and purple), and after you pick, the computer picks.
+      </li>
+      <li>
+        Once you have all five players, the draft will end and you will be able
+        to go to the game!
+      </li>
+    </ol>
+  </div>
+  <div id="start">
+    <button id="flipButton" *ngIf="!start" class="coin" (click)="flipCoin()">
+      Flip for First Pick
+    </button>
+    <p id="commentary" *ngIf="start">{{ whoseTurn }}</p>
+  </div>
+  <div id="rosters" class="roster">
+    <div id="player">
+      <h2>Player's Roster</h2>
+      <div class="playerCards">
+        <div
+          *ngFor="let player of playersTeam; index as i"
+          class="draftedCards"
+          [ngClass]="{
+            blue: player.color == 'blue',
+            red: player.color == 'red',
+            orange: player.color == 'orange',
+            green: player.color == 'green',
+            purple: player.color == 'purple'
+          }"
+        >
+          <p>
+            {{ player.name }}
+          </p>
+        </div>
+      </div>
+    </div>
+    <div id="arrow">
+      <img
+        *ngIf="!turn"
+        class="arrow"
+        src="./../../assets/rightArrow.jpeg"
+        alt="player's turn"
+      />
+      <img
+        *ngIf="turn"
+        class="arrow"
+        src="./../../assets/leftArrow.png"
+        alt="computer's turn"
+      />
+    </div>
+    <div id="computer" class="roster">
+      <h2>Computer's Roster</h2>
+      <div class="playerCards">
+        <div
+          *ngFor="let player of computersTeam; index as i"
+          class="draftedCards"
+          [ngClass]="{
+            blue: player.color == 'blue',
+            red: player.color == 'red',
+            orange: player.color == 'orange',
+            green: player.color == 'green',
+            purple: player.color == 'purple'
+          }"
+        >
+          <p>
+            {{ player.name }}
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div id="availablePlayers">
+    <div id="clockContainer">
+      <p>Time left to get pick in!:</p>
+      <div id="clock">
+        <countdown
+          *ngIf="turn == true"
+          #draftClock
+          [config]="{ leftTime: 60, format: 'm:ss' }"
+        ></countdown>
+        <countdown
+          *ngIf="turn == !true"
+          #draftClockTwo
+          [config]="{ leftTime: 60, format: 'm:ss' }"
+        ></countdown>
+      </div>
+    </div>
+    <div id="buttons">
+      <button id="blue" (click)="handleBlue()">
+        Blue
+      </button>
+      <button id="purple" (click)="handlePurple()">Purple</button>
+      <button id="orange" (click)="handleOrange()">Orange</button>
+      <button id="red" (click)="handleRed()">Red</button>
+      <button id="green" (click)="handleGreen()">Green</button>
+    </div>
+    <div id="cards">
+      <div *ngIf="showBlue" class="cardContainer">
+        <div class="blue card" *ngFor="let player of bluePlayers; index as i">
+          <h3>{{ player.playername }}</h3>
+          <p class="number">{{ player.number }}</p>
+          <p class="team">{{ player.team }}</p>
+          <h4>Stats</h4>
+          <div class="stats">
+            <p>
+              FG % <span>{{ player.fieldgoal }}</span>
+            </p>
+            <p>
+              3pt % <span>{{ player.threepoint }}</span>
+            </p>
+            <p>
+              FT % <span>{{ player.freethrow }}</span>
+            </p>
+          </div>
+          <button class="draft" *ngIf="!yesBlue" (click)="draftBlue(i)">
+            Draft
+          </button>
+        </div>
+      </div>
+      <div *ngIf="showPurple" class="cardContainer">
+        <div
+          class="purple card"
+          *ngFor="let player of purplePlayers; index as i"
+        >
+          <h3>{{ player.playername }}</h3>
+          <p class="number">{{ player.number }}</p>
+          <p class="team">{{ player.team }}</p>
+          <h4>Stats</h4>
+          <div class="stats">
+            <p>
+              FG % <span>{{ player.fieldgoal }}</span>
+            </p>
+            <p>
+              3pt % <span>{{ player.threepoint }}</span>
+            </p>
+            <p>
+              FT % <span>{{ player.freethrow }}</span>
+            </p>
+          </div>
+          <button class="draft" *ngIf="!yesPurple" (click)="draftPurple(i)">
+            Draft
+          </button>
+        </div>
+      </div>
+      <div *ngIf="showOrange" class="cardContainer">
+        <div
+          class="orange card"
+          *ngFor="let player of orangePlayers; index as i"
+        >
+          <h3>{{ player.playername }}</h3>
+          <p class="number">{{ player.number }}</p>
+          <p class="team">{{ player.team }}</p>
+          <h4>Stats</h4>
+          <div class="stats">
+            <p>
+              FG % <span>{{ player.fieldgoal }}</span>
+            </p>
+            <p>
+              3pt % <span>{{ player.threepoint }}</span>
+            </p>
+            <p>
+              FT % <span>{{ player.freethrow }}</span>
+            </p>
+          </div>
+          <button class="draft" *ngIf="!yesOrange" (click)="draftOrange(i)">
+            Draft
+          </button>
+        </div>
+      </div>
+      <div *ngIf="showRed" class="cardContainer">
+        <div class="red card" *ngFor="let player of redPlayers; index as i">
+          <h3>{{ player.playername }}</h3>
+          <p class="number">{{ player.number }}</p>
+          <p class="team">{{ player.team }}</p>
+          <h4>Stats</h4>
+          <div class="stats">
+            <p>
+              FG % <span>{{ player.fieldgoal }}</span>
+            </p>
+            <p>
+              3pt % <span>{{ player.threepoint }}</span>
+            </p>
+            <p>
+              FT % <span>{{ player.freethrow }}</span>
+            </p>
+          </div>
+          <button class="draft" *ngIf="!yesRed" (click)="draftRed(i)">
+            Draft
+          </button>
+        </div>
+      </div>
+      <div *ngIf="showGreen" class="cardContainer">
+        <div class="green card" *ngFor="let player of greenPlayers; index as i">
+          <h3>{{ player.playername }}</h3>
+          <p class="number">{{ player.number }}</p>
+          <p class="team">{{ player.team }}</p>
+          <h4>Stats</h4>
+          <div class="stats">
+            <p>
+              FG % <span>{{ player.fieldgoal }}</span>
+            </p>
+            <p>
+              3pt % <span>{{ player.threepoint }}</span>
+            </p>
+            <p>
+              FT % <span>{{ player.freethrow }}</span>
+            </p>
+          </div>
+          <button class="draft" *ngIf="!yesGreen" (click)="draftGreen(i)">
+            Draft
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div id="endDraft" *ngIf="end">
+    <h1>The Draft has ended!</h1>
+    <h3>Congrats on completing the Draft!</h3>
+    <div class="bothteams">
+      <div class="teams">
+        <p>Your Team</p>
+        <div
+          *ngFor="let player of playersTeam; index as i"
+          class="draftedCards"
+          [ngClass]="{
+            blue: player.color == 'blue',
+            red: player.color == 'red',
+            orange: player.color == 'orange',
+            green: player.color == 'green',
+            purple: player.color == 'purple'
+          }"
+        >
+          <p>
+            {{ player.name }}
+          </p>
+        </div>
+      </div>
+      <div class="teams">
+        <p>The Computer's Team</p>
+        <div
+          *ngFor="let player of computersTeam; index as i"
+          class="draftedCards"
+          [ngClass]="{
+            blue: player.color == 'blue',
+            red: player.color == 'red',
+            orange: player.color == 'orange',
+            green: player.color == 'green',
+            purple: player.color == 'purple'
+          }"
+        >
+          <p>
+            {{ player.name }}
+          </p>
+        </div>
+      </div>
+    </div>
+    <button id="gotoGame"><a routerLink="/game">Start the Game!</a></button>
+  </div>
+</section>

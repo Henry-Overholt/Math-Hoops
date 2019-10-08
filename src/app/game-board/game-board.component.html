@@ -1,0 +1,317 @@
+<header>
+  <div class="shotClock">
+    <countdown
+      *ngIf="turn == true && start == true && end == false"
+      #shotClock
+      [config]="{ leftTime: 30, format: ':ss' }"
+    ></countdown>
+  </div>
+  <div class="scoreboard">
+    <h3 [ngClass]="{ turn: playerTurn == true }">Player 1</h3>
+    <div class="score">
+      <h2>{{ playerScore }}</h2>
+    </div>
+  </div>
+  <div class="gameClock">
+    <countdown
+      #gameClock
+      *ngIf="start"
+      [config]="{ leftTime: 900, format: 'm:ss' }"
+    ></countdown>
+  </div>
+  <div class="scoreboard">
+    <h3 [ngClass]="{ turn: playerTurn == false }">Computer</h3>
+    <div class="score">
+      <h2>{{ computerScore }}</h2>
+    </div>
+  </div>
+  <div class="shotClock">
+    <countdown
+      *ngIf="turn == false && start == true && end == false"
+      #shotClock
+      [config]="{ leftTime: 30, format: ':ss' }"
+    ></countdown>
+  </div>
+</header>
+<div class="gameDirections" *ngIf="!start">
+  <h1>How to play...</h1>
+  <ol>
+    <li>
+      When you hit <em>Start Game</em> the game clock will start as well as your
+      play clock. The game lasts 15 minutes, and you have 30 seconds per turn.
+    </li>
+    <li>
+      During your turn, you roll the dice. Then with the two numbers, you add
+      them, subtract them (always the bigger number first), you multiply them,
+      and you divide them if they are even.
+    </li>
+    <li>
+      Once you submit the answers, you look at where you on your side of the
+      board you can shoot from. Meaning what "even" or "odd" numbers you
+      calculated are available to shot from.
+    </li>
+    <li>
+      Select your shot and see if your player of that color made the shot or
+      not!
+    </li>
+  </ol>
+  <button (click)="startGame()">Start Game</button>
+</div>
+<div class="gameDirections" *ngIf="end">
+  <h1>The game has ended and ...</h1>
+  <h3>{{ final }}</h3>
+  <button><a routerLink="/home">Start a new game!</a></button>
+</div>
+<div id="commentary">
+  <p>{{ commentary }}</p>
+</div>
+<section>
+  <div id="dice-container">
+    <div class="dice">
+      <div class="red-dice">{{ redDice }}</div>
+      <div class="blue-dice">{{ blueDice }}</div>
+    </div>
+    <button (click)="rollDice()">Roll Dice!</button>
+  </div>
+  <form #calculateForm="ngForm" (ngSubmit)="findShot(calculateForm)">
+    <div>
+      <input type="number" name="added" placeholder="+" ngModel />
+      <input type="number" name="subtacted" placeholder="-" ngModel />
+      <input type="number" name="multiplied" placeholder="x" ngModel />
+      <input type="number" name="divided" placeholder="/" ngModel />
+    </div>
+    <button>Find Open Shot!</button>
+  </form>
+
+  <img id="ball" src="./../../assets/basketball.ico" alt="basketball" />
+  <div id="even-Container">
+    <div id="eight" class="gamePiece purple " (click)="takeShot('purple', 3)">
+      8
+    </div>
+    <div id="two" class="gamePiece orange " (click)="takeShot('orange', 3)">
+      2
+    </div>
+    <div id="eighteen" class="gamePiece red " (click)="takeShot('red', 3)">
+      18
+    </div>
+    <div
+      id="fortyEight"
+      class="gamePiece orange "
+      (click)="takeShot('orange', 3)"
+    >
+      48
+    </div>
+    <div id="sixteen" class="gamePiece red " (click)="takeShot('red', 3)">
+      16
+    </div>
+    <div id="twentyFour" class="gamePiece blue " (click)="takeShot('blue', 3)">
+      24
+    </div>
+    <div id="forty" class="gamePiece purple" (click)="takeShot('purple', 2)">
+      40
+    </div>
+    <div
+      id="sixtyFour"
+      class="gamePiece orange"
+      (click)="takeShot('orange', 2)"
+    >
+      64
+    </div>
+    <div id="fiftySix" class="gamePiece red" (click)="takeShot('red', 2)">
+      56
+    </div>
+    <div
+      id="twentyEight"
+      class="gamePiece green"
+      (click)="takeShot('green', 2)"
+    >
+      28
+    </div>
+    <div id="twelve" class="gamePiece orange" (click)="takeShot('orange', 2)">
+      12
+    </div>
+    <div id="four" class="gamePiece red" (click)="takeShot('red', 2)">4</div>
+    <div id="thirtySix" class="gamePiece blue" (click)="takeShot('blue', 2)">
+      36
+    </div>
+    <div id="twenty" class="gamePiece purple" (click)="takeShot('purple', 2)">
+      20
+    </div>
+    <div id="fourteen" class="gamePiece green" (click)="takeShot('green', 2)">
+      14
+    </div>
+    <div id="six" class="gamePiece green" (click)="takeShot('green', 2)">6</div>
+    <div id="ten" class="gamePiece blue" (click)="takeShot('blue', 2)">10</div>
+    <div id="thirty" class="gamePiece purple" (click)="takeShot('purple', 2)">
+      30
+    </div>
+    <div id="fortyTwo" class="gamePiece blue" (click)="takeShot('blue', 2)">
+      42
+    </div>
+    <div id="thirtyTwo" class="gamePiece green" (click)="takeShot('green', 2)">
+      32
+    </div>
+  </div>
+  <div id="odd-container">
+    <div id="seven" class="gamePiece purple " (click)="takeShot('purple', 3)">
+      7
+    </div>
+    <div id="one" class="gamePiece orange " (click)="takeShot('orange', 3)">
+      1
+    </div>
+    <div id="fifteen" class="gamePiece red " (click)="takeShot('red', 3)">
+      15
+    </div>
+    <div
+      id="fortyNine"
+      class="gamePiece orange "
+      (click)="takeShot('orange', 3)"
+    >
+      49
+    </div>
+    <div id="thirtyFive" class="gamePiece red " (click)="takeShot('red', 3)">
+      35
+    </div>
+    <div id="sixtyThree" class="gamePiece blue " (click)="takeShot('blue', 3)">
+      63
+    </div>
+    <div
+      id="seventeen"
+      class="gamePiece purple"
+      (click)="takeShot('purple', 2)"
+    >
+      17
+    </div>
+    <div
+      id="twentyFive"
+      class="gamePiece orange"
+      (click)="takeShot('orange', 2)"
+    >
+      25
+    </div>
+    <div id="twentySeven" class="gamePiece red" (click)="takeShot('red', 2)">
+      27
+    </div>
+    <div
+      id="greenSixtyThree"
+      class="gamePiece green"
+      (click)="takeShot('green', 2)"
+    >
+      63
+    </div>
+    <div id="eleven" class="gamePiece orange" (click)="takeShot('orange', 2)">
+      11
+    </div>
+    <div id="three" class="gamePiece red" (click)="takeShot('red', 2)">3</div>
+    <div id="twentyOne" class="gamePiece blue" (click)="takeShot('blue', 2)">
+      21
+    </div>
+    <div
+      id="eightyOne"
+      class="gamePiece purple"
+      (click)="takeShot('purple', 2)"
+    >
+      81
+    </div>
+    <div id="five" class="gamePiece green" (click)="takeShot('green', 2)">
+      5
+    </div>
+    <div id="thirteen" class="gamePiece green" (click)="takeShot('green', 2)">
+      13
+    </div>
+    <div id="blueFifteen" class="gamePiece blue" (click)="takeShot('blue', 2)">
+      15
+    </div>
+    <div id="nine" class="gamePiece blue" (click)="takeShot('blue', 2)">9</div>
+    <div
+      id="fortyFive"
+      class="gamePiece purple"
+      (click)="takeShot('purple', 2)"
+    >
+      45
+    </div>
+    <div
+      id="greenThirtyFive"
+      class="gamePiece green"
+      (click)="takeShot('green', 2)"
+    >
+      35
+    </div>
+  </div>
+</section>
+<div id="cardHolder">
+  <div class="cards">
+    <div class="card orange">
+      <h3>
+        {{ orangeP.name }}
+      </h3>
+      <p>FG% - {{ orangeP.fieldgoal }}</p>
+      <p>3pt% - {{ orangeP.threepoint }}</p>
+    </div>
+    <div class="card red">
+      <h3>
+        {{ redP.name }}
+      </h3>
+      <p>FG% - {{ redP.fieldgoal }}</p>
+      <p>3pt% - {{ redP.threepoint }}</p>
+    </div>
+    <div class="card blue">
+      <h3>
+        {{ blueP.name }}
+      </h3>
+      <p>FG% - {{ blueP.fieldgoal }}</p>
+      <p>3pt% - {{ blueP.threepoint }}</p>
+    </div>
+    <div class="card purple">
+      <h3>
+        {{ purpleP.name }}
+      </h3>
+      <p>FG% - {{ purpleP.fieldgoal }}</p>
+      <p>3pt% - {{ purpleP.threepoint }}</p>
+    </div>
+    <div class="card green">
+      <h3>
+        {{ greenP.name }}
+      </h3>
+      <p>FG% - {{ greenP.fieldgoal }}</p>
+      <p>3pt% - {{ greenP.threepoint }}</p>
+    </div>
+  </div>
+  <div class="cards">
+    <div class="card orange">
+      <h3>
+        {{ orangeC.name }}
+      </h3>
+      <p>FG% - {{ orangeC.fieldgoal }}</p>
+      <p>3pt% - {{ orangeC.threepoint }}</p>
+    </div>
+    <div class="card red">
+      <h3>
+        {{ redC.name }}
+      </h3>
+      <p>FG% - {{ redC.fieldgoal }}</p>
+      <p>3pt% - {{ redC.threepoint }}</p>
+    </div>
+    <div class="card blue">
+      <h3>
+        {{ blueC.name }}
+      </h3>
+      <p>FG% - {{ blueC.fieldgoal }}</p>
+      <p>3pt% - {{ blueC.threepoint }}</p>
+    </div>
+    <div class="card purple">
+      <h3>
+        {{ purpleC.name }}
+      </h3>
+      <p>FG% - {{ purpleC.fieldgoal }}</p>
+      <p>3pt% - {{ purpleC.threepoint }}</p>
+    </div>
+    <div class="card green">
+      <h3>
+        {{ greenC.name }}
+      </h3>
+      <p>FG% - {{ greenC.fieldgoal }}</p>
+      <p>3pt% - {{ greenC.threepoint }}</p>
+    </div>
+  </div>
+</div>
