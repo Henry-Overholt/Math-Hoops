@@ -183,11 +183,11 @@ section {
   transform: translateX(-50%);
   border: 1px solid black;
 }
-#even-container {
+#evenContainer {
   width: 50%;
   position: relative;
 }
-#odd-container {
+#oddContainer {
   width: 50%;
   position: relative;
 }
