@@ -11,6 +11,12 @@ header {
   color: white;
   background-color: black;
 }
+h1 {
+  background: rgba(83, 83, 83, 0.733);
+  border-radius: 10px;
+  padding: 5px;
+  margin-top: 15px;
+}
 #logo {
   height: 100%;
   display: flex;
