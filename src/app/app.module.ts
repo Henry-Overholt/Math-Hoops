@@ -8,11 +8,13 @@ import { CountdownModule } from "ngx-countdown";
 import { HomeComponent } from "./home/home.component";
 import { DraftComponent } from "./draft/draft.component";
 import { HttpClientModule } from "@angular/common/http";
+import { AboutComponent } from "./about/about.component";
 
 const appRoutes: Routes = [
   { path: "game", component: GameBoardComponent },
   { path: "draft", component: DraftComponent },
   { path: "home", component: HomeComponent },
+  { path: "about", component: AboutComponent },
   { path: "", redirectTo: "/home", pathMatch: "full" },
   { path: "**", component: HomeComponent }
 ];
@@ -21,7 +23,8 @@ const appRoutes: Routes = [
     AppComponent,
     GameBoardComponent,
     HomeComponent,
-    DraftComponent
+    DraftComponent,
+    AboutComponent
   ],
   imports: [
     BrowserModule,
