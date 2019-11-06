@@ -27,11 +27,24 @@ a {
   text-decoration: none;
   color: white;
 }
+#buttons {
+  display: flex;
+  flex-direction: row;
+  background: none;
+}
 button {
   margin-top: 10px;
-  background: orange;
   width: 200px;
   height: 50px;
   font-size: 30px;
   border-radius: 10px;
+  margin: 5px;
+  background: blue;
+  color: white;
+}
+#start {
+  background: orange;
+  width: 290px;
+  height: 75px;
+  font-size: 40px;
 }
