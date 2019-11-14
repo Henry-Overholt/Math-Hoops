@@ -126,6 +126,7 @@ button {
   border: 6px solid black;
   display: flex;
   justify-content: center;
+  border-radius: 15px;
   align-items: center;
   font-size: 40px;
   color: red;
