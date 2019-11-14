@@ -6,6 +6,9 @@ main {
   width: 100%;
   height: 100%;
   margin-top: 50px;
+  /* background-image: url("../../assets/SA13-Basketball_revG.jpg");
+  background-repeat: no-repeat;
+  background-size: cover; */
 }
 .section {
   display: flex;
