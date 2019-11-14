@@ -8,6 +8,9 @@ main {
   justify-content: center;
   align-items: center;
 }
+#main {
+  width: 50%;
+}
 div {
   background: rgba(187, 187, 187, 0.445);
   padding: 25px;
@@ -36,9 +39,10 @@ button {
   margin-top: 10px;
   width: 200px;
   height: 50px;
-  font-size: 30px;
+  font-size: 25px;
   border-radius: 10px;
   margin: 5px;
+  margin-top: 0px;
   background: blue;
   color: white;
 }
@@ -47,4 +51,10 @@ button {
   width: 290px;
   height: 75px;
   font-size: 40px;
+  margin-bottom: 0px;
+}
+p {
+  color: white;
+  width: 75%;
+  margin: 15px;
 }
