@@ -1,185 +1,192 @@
-<header>
-  <div class="shotClock">
-    <countdown
-      *ngIf="turn == true && start == true && end == false"
-      #shotClock
-      [config]="{ leftTime: 30, format: ':ss' }"
-    ></countdown>
-  </div>
-  <div class="scoreboard">
-    <h3 [ngClass]="{ turn: playerTurn == true }">Player 1</h3>
-    <div class="score">
-      <h2>{{ playerScore }}</h2>
+<div id="whole">
+  <header>
+    <div id="scoreboard">
+      <div class="shotClock">
+        <countdown
+          *ngIf="turn == true && start == true && end == false"
+          #shotClock
+          [config]="{ leftTime: 30, format: ':ss' }"
+        ></countdown>
+      </div>
+      <div class="scoreboard">
+        <h3 [ngClass]="{ turn: playerTurn == true }">Player 1</h3>
+        <div class="score">
+          <h2>{{ playerScore }}</h2>
+        </div>
+      </div>
+      <div class="gameClock">
+        <countdown
+          #gameClock
+          *ngIf="start"
+          [config]="{ leftTime: 900, format: 'm:ss' }"
+        ></countdown>
+      </div>
+      <div class="scoreboard">
+        <h3 [ngClass]="{ turn: playerTurn == false }">Computer</h3>
+        <div class="score">
+          <h2>{{ computerScore }}</h2>
+        </div>
+      </div>
+      <div class="shotClock">
+        <countdown
+          *ngIf="turn == false && start == true && end == false"
+          #shotClock
+          [config]="{ leftTime: 30, format: ':ss' }"
+        ></countdown>
+      </div>
     </div>
-  </div>
-  <div class="gameClock">
-    <countdown
-      #gameClock
-      *ngIf="start"
-      [config]="{ leftTime: 900, format: 'm:ss' }"
-    ></countdown>
-  </div>
-  <div class="scoreboard">
-    <h3 [ngClass]="{ turn: playerTurn == false }">Computer</h3>
-    <div class="score">
-      <h2>{{ computerScore }}</h2>
+    <div id="commentary">
+      <p>{{ commentary }}</p>
     </div>
+  </header>
+  <div class="gameDirections" *ngIf="start">
+    <h1>How to play...</h1>
+    <ol>
+      <li>
+        When you hit <em>Start Game</em> the game clock will start as well as
+        your play clock. The game lasts 15 minutes, and you have 30 seconds per
+        turn.
+      </li>
+      <li>
+        During your turn, you roll the dice. Then with the two numbers, you add
+        them, subtract them (always the bigger number first), you multiply them,
+        and you divide them if they are even.
+      </li>
+      <li>
+        Once you submit the answers, you look at where you on your side of the
+        board you can shoot from. Meaning what "even" or "odd" numbers you
+        calculated are available to shot from.
+      </li>
+      <li>
+        Select your shot and see if your player of that color made the shot or
+        not!
+      </li>
+    </ol>
+    <button (click)="startGame()">Start Game</button>
   </div>
-  <div class="shotClock">
-    <countdown
-      *ngIf="turn == false && start == true && end == false"
-      #shotClock
-      [config]="{ leftTime: 30, format: ':ss' }"
-    ></countdown>
+  <div class="gameDirections" *ngIf="end">
+    <h1>The game has ended and ...</h1>
+    <h3>{{ final }}</h3>
+    <button><a routerLink="/home">Start a new game!</a></button>
   </div>
-</header>
-<div class="gameDirections" *ngIf="!start">
-  <h1>How to play...</h1>
-  <ol>
-    <li>
-      When you hit <em>Start Game</em> the game clock will start as well as your
-      play clock. The game lasts 15 minutes, and you have 30 seconds per turn.
-    </li>
-    <li>
-      During your turn, you roll the dice. Then with the two numbers, you add
-      them, subtract them (always the bigger number first), you multiply them,
-      and you divide them if they are even.
-    </li>
-    <li>
-      Once you submit the answers, you look at where you on your side of the
-      board you can shoot from. Meaning what "even" or "odd" numbers you
-      calculated are available to shot from.
-    </li>
-    <li>
-      Select your shot and see if your player of that color made the shot or
-      not!
-    </li>
-  </ol>
-  <button (click)="startGame()">Start Game</button>
-</div>
-<div class="gameDirections" *ngIf="end">
-  <h1>The game has ended and ...</h1>
-  <h3>{{ final }}</h3>
-  <button><a routerLink="/home">Start a new game!</a></button>
-</div>
-<div id="commentary">
-  <p>{{ commentary }}</p>
-</div>
-<section>
-  <div id="dice-container">
-    <div class="dice">
-      <div class="red-dice">{{ redDice }}</div>
-      <div class="blue-dice">{{ blueDice }}</div>
-    </div>
-    <button (click)="rollDice()">Roll Dice!</button>
-  </div>
-  <form #calculateForm="ngForm" (ngSubmit)="findShot(calculateForm)">
-    <div>
-      <input type="number" name="added" placeholder="+" ngModel />
-      <input type="number" name="subtacted" placeholder="-" ngModel />
-      <input type="number" name="multiplied" placeholder="x" ngModel />
-      <input type="number" name="divided" placeholder="/" ngModel />
-    </div>
-    <button>Find Open Shot!</button>
-  </form>
 
-  <img id="ball" src="./../../assets/basketball.ico" alt="basketball" />
-  <div class="evenContainer">
-    <div *ngFor="let number of evenNumbers; index as i">
-      <div
-        class="gamePiece {{ number.color }}"
-        id="{{ number.id }}"
-        (click)="takeEvenShot(i)"
-      >
-        {{ number.number }}
+  <section>
+    <div id="dice-container">
+      <div class="dice">
+        <div class="red-dice">{{ redDice }}</div>
+        <div class="blue-dice">{{ blueDice }}</div>
+      </div>
+      <button (click)="rollDice()">Roll Dice!</button>
+    </div>
+    <form #calculateForm="ngForm" (ngSubmit)="findShot(calculateForm)">
+      <div>
+        <input type="number" name="added" placeholder="+" ngModel />
+        <input type="number" name="subtacted" placeholder="-" ngModel />
+        <input type="number" name="multiplied" placeholder="x" ngModel />
+        <input type="number" name="divided" placeholder="/" ngModel />
+      </div>
+      <button>Find Open Shot!</button>
+    </form>
+    <div id="gameboard">
+      <div id="evenContainer">
+        <img id="ball" src="./../../assets/basketball.ico" alt="basketball" />
+        <div *ngFor="let number of evenNumbers; index as i">
+          <div
+            class="gamePiece {{ number.color }}"
+            id="{{ number.id }}"
+            (click)="takeEvenShot(i)"
+          >
+            {{ number.number }}
+          </div>
+        </div>
+      </div>
+      <div id="oddContainer">
+        <div *ngFor="let number of oddNumbers; index as i">
+          <div
+            class="gamePiece {{ number.color }}"
+            id="{{ number.id }}"
+            (click)="takeOddShot(i)"
+          >
+            {{ number.number }}
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <div id="cardHolder">
+    <div class="cards">
+      <div class="card orange">
+        <h3>
+          {{ orangeP.name }}
+        </h3>
+        <p>FG% - {{ orangeP.fieldgoal }}</p>
+        <p>3pt% - {{ orangeP.threepoint }}</p>
+      </div>
+      <div class="card red">
+        <h3>
+          {{ redP.name }}
+        </h3>
+        <p>FG% - {{ redP.fieldgoal }}</p>
+        <p>3pt% - {{ redP.threepoint }}</p>
+      </div>
+      <div class="card blue">
+        <h3>
+          {{ blueP.name }}
+        </h3>
+        <p>FG% - {{ blueP.fieldgoal }}</p>
+        <p>3pt% - {{ blueP.threepoint }}</p>
+      </div>
+      <div class="card purple">
+        <h3>
+          {{ purpleP.name }}
+        </h3>
+        <p>FG% - {{ purpleP.fieldgoal }}</p>
+        <p>3pt% - {{ purpleP.threepoint }}</p>
+      </div>
+      <div class="card green">
+        <h3>
+          {{ greenP.name }}
+        </h3>
+        <p>FG% - {{ greenP.fieldgoal }}</p>
+        <p>3pt% - {{ greenP.threepoint }}</p>
+      </div>
+    </div>
+    <div class="cards">
+      <div class="card orange">
+        <h3>
+          {{ orangeC.name }}
+        </h3>
+        <p>FG% - {{ orangeC.fieldgoal }}</p>
+        <p>3pt% - {{ orangeC.threepoint }}</p>
+      </div>
+      <div class="card red">
+        <h3>
+          {{ redC.name }}
+        </h3>
+        <p>FG% - {{ redC.fieldgoal }}</p>
+        <p>3pt% - {{ redC.threepoint }}</p>
+      </div>
+      <div class="card blue">
+        <h3>
+          {{ blueC.name }}
+        </h3>
+        <p>FG% - {{ blueC.fieldgoal }}</p>
+        <p>3pt% - {{ blueC.threepoint }}</p>
+      </div>
+      <div class="card purple">
+        <h3>
+          {{ purpleC.name }}
+        </h3>
+        <p>FG% - {{ purpleC.fieldgoal }}</p>
+        <p>3pt% - {{ purpleC.threepoint }}</p>
+      </div>
+      <div class="card green">
+        <h3>
+          {{ greenC.name }}
+        </h3>
+        <p>FG% - {{ greenC.fieldgoal }}</p>
+        <p>3pt% - {{ greenC.threepoint }}</p>
       </div>
     </div>
   </div>
-  <div class="oddContainer">
-    <div *ngFor="let number of oddNumbers; index as i">
-      <div
-        class="gamePiece {{ number.color }}"
-        id="{{ number.id }}"
-        (click)="takeOddShot(i)"
-      >
-        {{ number.number }}
-      </div>
-    </div>
-  </div>
-</section>
-<!-- <div id="cardHolder">
-  <div class="cards">
-    <div class="card orange">
-      <h3>
-        {{ orangeP.name }}
-      </h3>
-      <p>FG% - {{ orangeP.fieldgoal }}</p>
-      <p>3pt% - {{ orangeP.threepoint }}</p>
-    </div>
-    <div class="card red">
-      <h3>
-        {{ redP.name }}
-      </h3>
-      <p>FG% - {{ redP.fieldgoal }}</p>
-      <p>3pt% - {{ redP.threepoint }}</p>
-    </div>
-    <div class="card blue">
-      <h3>
-        {{ blueP.name }}
-      </h3>
-      <p>FG% - {{ blueP.fieldgoal }}</p>
-      <p>3pt% - {{ blueP.threepoint }}</p>
-    </div>
-    <div class="card purple">
-      <h3>
-        {{ purpleP.name }}
-      </h3>
-      <p>FG% - {{ purpleP.fieldgoal }}</p>
-      <p>3pt% - {{ purpleP.threepoint }}</p>
-    </div>
-    <div class="card green">
-      <h3>
-        {{ greenP.name }}
-      </h3>
-      <p>FG% - {{ greenP.fieldgoal }}</p>
-      <p>3pt% - {{ greenP.threepoint }}</p>
-    </div>
-  </div>
-  <div class="cards">
-    <div class="card orange">
-      <h3>
-        {{ orangeC.name }}
-      </h3>
-      <p>FG% - {{ orangeC.fieldgoal }}</p>
-      <p>3pt% - {{ orangeC.threepoint }}</p>
-    </div>
-    <div class="card red">
-      <h3>
-        {{ redC.name }}
-      </h3>
-      <p>FG% - {{ redC.fieldgoal }}</p>
-      <p>3pt% - {{ redC.threepoint }}</p>
-    </div>
-    <div class="card blue">
-      <h3>
-        {{ blueC.name }}
-      </h3>
-      <p>FG% - {{ blueC.fieldgoal }}</p>
-      <p>3pt% - {{ blueC.threepoint }}</p>
-    </div>
-    <div class="card purple">
-      <h3>
-        {{ purpleC.name }}
-      </h3>
-      <p>FG% - {{ purpleC.fieldgoal }}</p>
-      <p>3pt% - {{ purpleC.threepoint }}</p>
-    </div>
-    <div class="card green">
-      <h3>
-        {{ greenC.name }}
-      </h3>
-      <p>FG% - {{ greenC.fieldgoal }}</p>
-      <p>3pt% - {{ greenC.threepoint }}</p>
-    </div>
-  </div>
-</div> -->
+</div>

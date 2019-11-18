@@ -23,7 +23,7 @@
 }
 #dice-container {
   position: absolute;
-  top: 5%;
+  top: 25%;
   left: 50.5%;
   transform: translateX(-50%);
   display: flex;
@@ -43,11 +43,20 @@
 }
 header {
   position: relative;
-  left: 50%;
-  transform: translateX(-50%);
+  height: 15%;
+  display: flex;
+  flex-direction: column;
+  background: black;
+  width: 100vw;
+  color: white;
+}
+#scoreboard {
   display: flex;
   justify-content: space-evenly;
   align-items: center;
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
   background: black;
   width: 90%;
   height: 100px;
@@ -104,14 +113,14 @@ h2 {
   background: rgb(247, 162, 4);
 }
 .gamePiece {
-  width: 40px;
-  height: 40px;
-  border-radius: 40px;
-  border: 8px solid black;
+  width: 35px;
+  height: 35px;
+  border-radius: 35px;
+  border: 4px solid black;
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 25px;
+  font-size: 20px;
   color: white;
 }
 form {
@@ -121,7 +130,7 @@ form {
   position: absolute;
   width: 26%;
   left: 50.5%;
-  top: 19%;
+  bottom: 22%;
   transform: translateX(-50%);
   z-index: 1;
 }
@@ -136,8 +145,8 @@ button {
   color: white;
 }
 input {
-  height: 100px;
-  width: 70px;
+  height: 80px;
+  width: 60px;
   font-size: 40px;
   margin: 3px;
   align-content: center;
@@ -168,224 +177,231 @@ input {
   width: 100%;
   display: flex;
   justify-content: center;
+  color: white;
 }
 section {
-  display: flex;
   justify-content: space-between;
-  width: 90%;
-  height: 700px;
-  background-image: url("./../../assets/76ers-court.jpeg");
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: center;
+  width: 100%;
+  height: 70%;
+  background: linear-gradient(black, #04184a);
+  border: 1px solid red;
   position: relative;
-  left: 50%;
-  transform: translateX(-50%);
-  border: 1px solid black;
+}
+#gameboard {
+  border: 1px solid green;
+  width: 100vw;
+  height: 100%;
+  background-image: url("../../assets/gameboard.jpeg");
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+  display: flex;
 }
 #evenContainer {
   width: 50%;
-  position: relative;
+  height: 100%;
+  /* border: 1px solid red; */
 }
 #oddContainer {
   width: 50%;
-  position: relative;
+  height: 100%;
+  /* border: 1px solid yellow; */
 }
 #eight {
-  position: absolute;
+  position: relative;
   left: 5%;
 }
 #two {
-  position: absolute;
+  position: relative;
   left: 20%;
   top: 4%;
 }
 #eighteen {
-  position: absolute;
+  position: relative;
   left: 29%;
   top: 20%;
 }
 #fortyEight {
-  position: absolute;
+  position: relative;
   left: 29%;
   top: 74%;
 }
 #sixteen {
-  position: absolute;
+  position: relative;
   left: 19%;
   top: 89%;
 }
 #twentyFour {
-  position: absolute;
+  position: relative;
   left: 4%;
   top: 93%;
 }
 #forty {
-  position: absolute;
+  position: relative;
   left: 3%;
   top: 80%;
 }
 #sixtyFour {
-  position: absolute;
+  position: relative;
   left: 10%;
   top: 82%;
 }
 #fiftySix {
-  position: absolute;
+  position: relative;
   left: 17%;
   top: 74%;
 }
 #twentyEight {
-  position: absolute;
+  position: relative;
   left: 23%;
   top: 62%;
 }
 #twelve {
-  position: absolute;
+  position: relative;
   left: 23%;
   top: 39%;
 }
 #four {
-  position: absolute;
+  position: relative;
   left: 20%;
   top: 20%;
 }
 #thirtySix {
-  position: absolute;
+  position: relative;
   left: 10%;
   top: 8%;
 }
 #twenty {
-  position: absolute;
+  position: relative;
   left: 4%;
   top: 15%;
 }
 #fourteen {
-  position: absolute;
+  position: relative;
   left: 7%;
   top: 32%;
 }
 #thirtyTwo {
-  position: absolute;
+  position: relative;
   left: 6%;
   top: 60%;
 }
 #six {
-  position: absolute;
+  position: relative;
   left: 13%;
   top: 19%;
 }
 #ten {
-  position: absolute;
+  position: relative;
   left: 13%;
   top: 38%;
 }
 #thirty {
-  position: absolute;
+  position: relative;
   left: 19%;
   top: 52%;
 }
 #fortyTwo {
-  position: absolute;
+  position: relative;
   left: 12%;
   top: 59%;
 }
 #seven {
-  position: absolute;
+  position: relative;
   top: 93%;
   right: 5%;
 }
 #one {
-  position: absolute;
+  position: relative;
   top: 85%;
   right: 45%;
 }
 #fifteen {
-  position: absolute;
+  position: relative;
   top: 65%;
   right: 60%;
 }
 #blueFifteen {
-  position: absolute;
+  position: relative;
   top: 68%;
   right: 20%;
 }
 #fortyNine {
-  position: absolute;
+  position: relative;
   top: 25%;
   right: 60%;
 }
 #thirtyFive {
-  position: absolute;
+  position: relative;
   top: 4%;
   right: 40%;
 }
 #greenThirtyFive {
-  position: absolute;
+  position: relative;
   right: 15%;
   top: 35%;
 }
 #sixtyThree {
-  position: absolute;
+  position: relative;
   right: 7%;
 }
 #greenSixtyThree {
-  position: absolute;
+  position: relative;
   top: 19%;
   right: 21%;
 }
 #seventeen {
-  position: absolute;
+  position: relative;
   top: 83%;
   right: 4%;
 }
 #twentyFive {
-  position: absolute;
+  position: relative;
   right: 10%;
   top: 10%;
 }
 #eightyOne {
-  position: absolute;
+  position: relative;
   right: 43%;
   top: 39%;
 }
 #twentySeven {
-  position: absolute;
+  position: relative;
   right: 41%;
   top: 23%;
 }
 #eleven {
-  position: absolute;
+  position: relative;
   right: 41%;
   top: 57%;
 }
 #three {
-  position: absolute;
+  position: relative;
   right: 36%;
   top: 73%;
 }
 #twentyOne {
-  position: absolute;
+  position: relative;
   right: 33%;
   top: 15%;
 }
 #five {
-  position: absolute;
+  position: relative;
   right: 20%;
   top: 83%;
 }
 #thirteen {
-  position: absolute;
+  position: relative;
   right: 7%;
   top: 59%;
 }
 #nine {
-  position: absolute;
+  position: relative;
   right: 25%;
   top: 46%;
 }
 #fortyFive {
-  position: absolute;
+  position: relative;
   right: 4%;
   top: 25%;
 }
@@ -394,10 +410,12 @@ section {
   justify-content: space-evenly;
   width: 100%;
   margin-top: 5px;
+  padding-top: 5px;
 }
 .cards {
   display: flex;
   justify-content: space-evenly;
+  align-items: center;
   width: 50%;
 }
 .card {
@@ -405,8 +423,8 @@ section {
   flex-direction: column;
   justify-content: space-evenly;
   align-items: center;
-  width: 125px;
-  height: 150px;
+  width: 100px;
+  height: 125px;
   border-radius: 10px;
   border: 3px solid rgb(192, 190, 190);
 }
@@ -428,4 +446,11 @@ section {
 }
 ol {
   width: 50%;
+}
+#whole {
+  background: linear-gradient(black, #04184a);
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
 }
