@@ -89,7 +89,14 @@
     </form>
     <div id="gameboard">
       <div id="evenContainer">
-        <img id="ball" src="./../../assets/basketball.ico" alt="basketball" />
+        <p id="evenTitle">EVEN</p>
+        <img
+          id="evenBall"
+          class="ball"
+          src="./../../assets/basketball.ico"
+          alt="basketball"
+        />
+        <div id="evenHoop" class="hoop"></div>
         <div *ngFor="let number of evenNumbers; index as i">
           <div
             class="gamePiece {{ number.color }}"
@@ -101,6 +108,14 @@
         </div>
       </div>
       <div id="oddContainer">
+        <p id="oddTitle">ODD</p>
+        <img
+          id="oddBall"
+          class="ball"
+          src="./../../assets/basketball.ico"
+          alt="basketball"
+        />
+        <div id="oddHoop" class="hoop"></div>
         <div *ngFor="let number of oddNumbers; index as i">
           <div
             class="gamePiece {{ number.color }}"
