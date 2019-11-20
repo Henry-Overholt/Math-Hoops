@@ -113,14 +113,14 @@ h2 {
   background: rgb(247, 162, 4);
 }
 .gamePiece {
-  width: 35px;
-  height: 35px;
-  border-radius: 35px;
+  width: 5%;
+  height: 5%;
+  border-radius: 100%;
   border: 4px solid black;
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 20px;
+  font-size: 100%;
   color: white;
 }
 form {
@@ -193,7 +193,7 @@ section {
   height: 100%;
   background-image: url("../../assets/gameboard.jpeg");
   background-repeat: no-repeat;
-  background-size: contain;
+  background-size: 100% 100%;
   background-position: center;
   display: flex;
 }
@@ -211,102 +211,102 @@ section {
 }
 #eight {
   position: absolute;
-  left: 25%;
+  left: 15%;
   top: 10%;
 }
 #two {
   position: absolute;
-  left: 50%;
+  left: 42%;
   top: 12%;
 }
 #eighteen {
   position: absolute;
-  left: 70%;
+  left: 63%;
   top: 30%;
 }
 #fortyEight {
   position: absolute;
-  left: 70%;
+  left: 63%;
   top: 65%;
 }
 #sixteen {
   position: absolute;
-  left: 50%;
+  left: 42%;
   top: 83%;
 }
 #twentyFour {
   position: absolute;
-  left: 25%;
+  left: 15%;
   top: 85%;
 }
 #forty {
   position: absolute;
-  left: 24%;
+  left: 14%;
   top: 75%;
 }
 #sixtyFour {
   position: absolute;
-  left: 40%;
+  left: 30%;
   top: 76%;
 }
 #fiftySix {
   position: absolute;
-  left: 49%;
+  left: 39%;
   top: 70%;
 }
 #twentyEight {
   position: absolute;
-  top: 60%;
-  left: 55%;
+  top: 62%;
+  left: 50%;
 }
 #twelve {
   position: absolute;
-  left: 59%;
+  left: 53%;
   top: 41%;
 }
 #four {
   position: absolute;
-  left: 53%;
+  left: 46%;
   top: 26%;
 }
 #thirtySix {
   position: absolute;
   top: 20%;
-  left: 35%;
+  left: 25%;
 }
 #twenty {
   position: absolute;
-  top: 25%;
-  left: 24%;
+  top: 23%;
+  left: 14%;
 }
 #fourteen {
   position: absolute;
   top: 37%;
-  left: 30%;
+  left: 20%;
 }
 #thirtyTwo {
   position: absolute;
-  left: 28%;
+  left: 18%;
   top: 60%;
 }
 #six {
   position: absolute;
-  left: 43%;
+  left: 35%;
   top: 30%;
 }
 #ten {
   position: absolute;
-  left: 43%;
-  top: 40%;
+  left: 33%;
+  top: 43%;
 }
 #thirty {
   position: absolute;
-  left: 51%;
+  left: 46%;
   top: 52%;
 }
 #fortyTwo {
   position: absolute;
-  left: 41%;
+  left: 31%;
   top: 58%;
 }
 .hoop {
@@ -319,11 +319,11 @@ section {
   top: 49%;
 }
 #evenBall {
-  left: 24%;
+  left: 14%;
   top: 50%;
 }
 #evenHoop {
-  left: 24%;
+  left: 14%;
 }
 #oddTitle {
   position: absolute;
@@ -344,10 +344,10 @@ section {
   background: grey;
 }
 #oddHoop {
-  right: 24%;
+  right: 14%;
 }
 #oddBall {
-  right: 24%;
+  right: 14%;
   top: 50%;
 }
 #seven {
