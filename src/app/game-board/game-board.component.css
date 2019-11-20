@@ -182,14 +182,14 @@ input {
 section {
   justify-content: space-between;
   width: 100%;
-  height: 70%;
+  height: 80%;
   background: linear-gradient(black, #04184a);
   /* border: 1px solid red; */
   position: relative;
 }
 #gameboard {
   /* border: 1px solid green; */
-  width: 100vw;
+  width: 100%;
   height: 100%;
   background-image: url("../../assets/gameboard.jpeg");
   background-repeat: no-repeat;
@@ -310,9 +310,9 @@ section {
   top: 58%;
 }
 .hoop {
-  width: 35px;
-  width: 25px;
-  height: 25px;
+  width: 5%;
+  width: 5%;
+  height: 5%;
   border: 2px solid white;
   position: absolute;
   border-radius: 100%;
@@ -325,19 +325,19 @@ section {
 #evenHoop {
   left: 14%;
 }
-#oddTitle {
+#evenTitle {
   position: absolute;
   top: 49%;
-  right: 75%;
+  left: 75%;
   color: white;
   padding: 3px 5px 3px 5px;
   border-radius: 10px;
   background: grey;
 }
-#evenTitle {
+#oddTitle {
   position: absolute;
   top: 49%;
-  left: 75%;
+  right: 75%;
   color: white;
   padding: 3px 5px 3px 5px;
   border-radius: 10px;
@@ -352,102 +352,102 @@ section {
 }
 #seven {
   position: absolute;
-  right: 25%;
+  right: 15%;
   top: 85%;
 }
 #one {
   position: absolute;
-  right: 55%;
-  top: 80%;
+  right: 41%;
+  top: 83%;
 }
 #fifteen {
   position: absolute;
-  right: 68%;
+  right: 62%;
   top: 65%;
 }
 #blueFifteen {
   position: absolute;
-  right: 38%;
+  right: 32%;
   top: 65%;
 }
 #fortyNine {
   position: absolute;
-  right: 68%;
+  right: 62%;
   top: 30%;
 }
 #thirtyFive {
   position: absolute;
-  right: 55%;
-  top: 15%;
+  right: 41%;
+  top: 12%;
 }
 #greenThirtyFive {
   position: absolute;
   top: 38%;
-  right: 31%;
+  right: 25%;
 }
 #sixtyThree {
   position: absolute;
   top: 10%;
-  right: 25%;
+  right: 15%;
 }
 #greenSixtyThree {
   position: absolute;
   top: 27%;
-  right: 35%;
+  right: 27%;
 }
 #seventeen {
   position: absolute;
   top: 73%;
-  right: 24%;
+  right: 14%;
 }
 #twentyFive {
   position: absolute;
-  right: 28%;
+  right: 18%;
   top: 20%;
 }
 #eightyOne {
   position: absolute;
-  right: 58%;
-  top: 45%;
+  right: 53%;
+  top: 42%;
 }
 #twentySeven {
   position: absolute;
-  right: 52%;
+  right: 47%;
   top: 30%;
 }
 #eleven {
   position: absolute;
-  right: 55%;
-  top: 55%;
+  right: 48%;
+  top: 57%;
 }
 #three {
   position: absolute;
-  right: 48%;
+  right: 45%;
   top: 70%;
 }
 #twentyOne {
   position: absolute;
-  right: 45%;
+  right: 35%;
   top: 20%;
 }
 #five {
   position: absolute;
-  right: 35%;
+  right: 25%;
   top: 75%;
 }
 #thirteen {
   position: absolute;
-  right: 27%;
+  right: 20%;
   top: 60%;
 }
 #nine {
   position: absolute;
-  right: 43%;
+  right: 35%;
   top: 48%;
 }
 #fortyFive {
   position: absolute;
-  right: 23%;
+  right: 13%;
   top: 30%;
 }
 #cardHolder {
