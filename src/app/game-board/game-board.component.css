@@ -74,8 +74,8 @@ header {
   font-family: "Turret Road", cursive;
   color: red;
 }
-#ball {
-  position: relative;
+.ball {
+  position: absolute;
   width: 20px;
   height: 20px;
 }
@@ -184,11 +184,11 @@ section {
   width: 100%;
   height: 70%;
   background: linear-gradient(black, #04184a);
-  border: 1px solid red;
+  /* border: 1px solid red; */
   position: relative;
 }
 #gameboard {
-  border: 1px solid green;
+  /* border: 1px solid green; */
   width: 100vw;
   height: 100%;
   background-image: url("../../assets/gameboard.jpeg");
@@ -198,212 +198,200 @@ section {
   display: flex;
 }
 #evenContainer {
+  position: relative;
   width: 50%;
   height: 100%;
-  /* border: 1px solid red; */
+  border: 1px solid red;
 }
 #oddContainer {
+  position: relative;
   width: 50%;
   height: 100%;
-  /* border: 1px solid yellow; */
+  border: 1px solid yellow;
 }
 #eight {
-  position: relative;
-  left: 5%;
+  position: absolute;
+  left: 25%;
+  top: 10%;
 }
 #two {
-  position: relative;
-  left: 20%;
-  top: 4%;
+  position: absolute;
+  left: 50%;
+  top: 12%;
 }
 #eighteen {
-  position: relative;
-  left: 29%;
-  top: 20%;
+  position: absolute;
+  left: 70%;
+  top: 30%;
 }
 #fortyEight {
-  position: relative;
-  left: 29%;
-  top: 74%;
+  position: absolute;
+  left: 70%;
+  top: 65%;
 }
 #sixteen {
-  position: relative;
-  left: 19%;
-  top: 89%;
+  position: absolute;
+  left: 50%;
+  top: 83%;
 }
 #twentyFour {
-  position: relative;
-  left: 4%;
-  top: 93%;
+  position: absolute;
+  left: 25%;
+  top: 85%;
 }
 #forty {
-  position: relative;
-  left: 3%;
-  top: 80%;
+  position: absolute;
+  left: 24%;
+  top: 75%;
 }
 #sixtyFour {
-  position: relative;
-  left: 10%;
-  top: 82%;
+  position: absolute;
+  left: 40%;
+  top: 76%;
 }
 #fiftySix {
-  position: relative;
-  left: 17%;
-  top: 74%;
+  position: absolute;
+  left: 49%;
+  top: 70%;
 }
 #twentyEight {
-  position: relative;
-  left: 23%;
-  top: 62%;
+  position: absolute;
+  top: 60%;
+  left: 55%;
 }
 #twelve {
-  position: relative;
-  left: 23%;
-  top: 39%;
+  position: absolute;
+  left: 59%;
+  top: 41%;
 }
 #four {
-  position: relative;
-  left: 20%;
-  top: 20%;
+  position: absolute;
+  left: 53%;
+  top: 26%;
 }
 #thirtySix {
-  position: relative;
-  left: 10%;
-  top: 8%;
+  position: absolute;
+  top: 20%;
+  left: 35%;
 }
 #twenty {
-  position: relative;
-  left: 4%;
-  top: 15%;
+  position: absolute;
+  top: 25%;
+  left: 24%;
 }
 #fourteen {
-  position: relative;
-  left: 7%;
-  top: 32%;
+  position: absolute;
+  top: 37%;
+  left: 30%;
 }
 #thirtyTwo {
-  position: relative;
-  left: 6%;
+  position: absolute;
+  left: 28%;
   top: 60%;
 }
 #six {
-  position: relative;
-  left: 13%;
-  top: 19%;
+  position: absolute;
+  left: 43%;
+  top: 30%;
 }
 #ten {
-  position: relative;
-  left: 13%;
-  top: 38%;
+  position: absolute;
+  left: 43%;
+  top: 40%;
 }
 #thirty {
-  position: relative;
-  left: 19%;
+  position: absolute;
+  left: 51%;
   top: 52%;
 }
 #fortyTwo {
-  position: relative;
-  left: 12%;
-  top: 59%;
+  position: absolute;
+  left: 41%;
+  top: 58%;
 }
+.hoop {
+  width: 35px;
+  width: 25px;
+  height: 25px;
+  border: 2px solid white;
+  position: absolute;
+  border-radius: 100%;
+  top: 49%;
+}
+#evenBall {
+  left: 24%;
+  top: 50%;
+}
+#evenHoop {
+  left: 24%;
+}
+#oddHoop {
+  right: 24%;
+}
+#oddBall {
+  right: 24%;
+  top: 50%;
+}
+
 #seven {
-  position: relative;
-  top: 93%;
-  right: 5%;
+  position: absolute;
 }
 #one {
-  position: relative;
-  top: 85%;
-  right: 45%;
+  position: absolute;
 }
 #fifteen {
-  position: relative;
-  top: 65%;
-  right: 60%;
+  position: absolute;
 }
 #blueFifteen {
-  position: relative;
-  top: 68%;
-  right: 20%;
+  position: absolute;
 }
 #fortyNine {
-  position: relative;
-  top: 25%;
-  right: 60%;
+  position: absolute;
 }
 #thirtyFive {
-  position: relative;
-  top: 4%;
-  right: 40%;
+  position: absolute;
 }
 #greenThirtyFive {
-  position: relative;
-  right: 15%;
-  top: 35%;
+  position: absolute;
 }
 #sixtyThree {
-  position: relative;
-  right: 7%;
+  position: absolute;
 }
 #greenSixtyThree {
-  position: relative;
-  top: 19%;
-  right: 21%;
+  position: absolute;
 }
 #seventeen {
-  position: relative;
-  top: 83%;
-  right: 4%;
+  position: absolute;
 }
 #twentyFive {
-  position: relative;
-  right: 10%;
-  top: 10%;
+  position: absolute;
 }
 #eightyOne {
-  position: relative;
-  right: 43%;
-  top: 39%;
+  position: absolute;
 }
 #twentySeven {
-  position: relative;
-  right: 41%;
-  top: 23%;
+  position: absolute;
 }
 #eleven {
-  position: relative;
-  right: 41%;
-  top: 57%;
+  position: absolute;
 }
 #three {
-  position: relative;
-  right: 36%;
-  top: 73%;
+  position: absolute;
 }
 #twentyOne {
-  position: relative;
-  right: 33%;
-  top: 15%;
+  position: absolute;
 }
 #five {
-  position: relative;
-  right: 20%;
-  top: 83%;
+  position: absolute;
 }
 #thirteen {
-  position: relative;
-  right: 7%;
-  top: 59%;
+  position: absolute;
 }
 #nine {
-  position: relative;
-  right: 25%;
-  top: 46%;
+  position: absolute;
 }
 #fortyFive {
-  position: relative;
-  right: 4%;
-  top: 25%;
+  position: absolute;
 }
 #cardHolder {
   display: flex;
