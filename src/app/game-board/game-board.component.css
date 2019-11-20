@@ -23,7 +23,7 @@
 }
 #dice-container {
   position: absolute;
-  top: 25%;
+  top: 15%;
   left: 50.5%;
   transform: translateX(-50%);
   display: flex;
@@ -130,7 +130,7 @@ form {
   position: absolute;
   width: 26%;
   left: 50.5%;
-  bottom: 22%;
+  bottom: 10%;
   transform: translateX(-50%);
   z-index: 1;
 }
@@ -325,6 +325,24 @@ section {
 #evenHoop {
   left: 24%;
 }
+#oddTitle {
+  position: absolute;
+  top: 49%;
+  right: 75%;
+  color: white;
+  padding: 3px 5px 3px 5px;
+  border-radius: 10px;
+  background: grey;
+}
+#evenTitle {
+  position: absolute;
+  top: 49%;
+  left: 75%;
+  color: white;
+  padding: 3px 5px 3px 5px;
+  border-radius: 10px;
+  background: grey;
+}
 #oddHoop {
   right: 24%;
 }
@@ -332,66 +350,105 @@ section {
   right: 24%;
   top: 50%;
 }
-
 #seven {
   position: absolute;
+  right: 25%;
+  top: 85%;
 }
 #one {
   position: absolute;
+  right: 55%;
+  top: 80%;
 }
 #fifteen {
   position: absolute;
+  right: 68%;
+  top: 65%;
 }
 #blueFifteen {
   position: absolute;
+  right: 38%;
+  top: 65%;
 }
 #fortyNine {
   position: absolute;
+  right: 68%;
+  top: 30%;
 }
 #thirtyFive {
   position: absolute;
+  right: 55%;
+  top: 15%;
 }
 #greenThirtyFive {
   position: absolute;
+  top: 38%;
+  right: 31%;
 }
 #sixtyThree {
   position: absolute;
+  top: 10%;
+  right: 25%;
 }
 #greenSixtyThree {
   position: absolute;
+  top: 27%;
+  right: 35%;
 }
 #seventeen {
   position: absolute;
+  top: 73%;
+  right: 24%;
 }
 #twentyFive {
   position: absolute;
+  right: 28%;
+  top: 20%;
 }
 #eightyOne {
   position: absolute;
+  right: 58%;
+  top: 45%;
 }
 #twentySeven {
   position: absolute;
+  right: 52%;
+  top: 30%;
 }
 #eleven {
   position: absolute;
+  right: 55%;
+  top: 55%;
 }
 #three {
   position: absolute;
+  right: 48%;
+  top: 70%;
 }
 #twentyOne {
   position: absolute;
+  right: 45%;
+  top: 20%;
 }
 #five {
   position: absolute;
+  right: 35%;
+  top: 75%;
 }
 #thirteen {
   position: absolute;
+  right: 27%;
+  top: 60%;
 }
 #nine {
   position: absolute;
+  right: 43%;
+  top: 48%;
 }
 #fortyFive {
   position: absolute;
+  right: 23%;
+  top: 30%;
 }
 #cardHolder {
   display: flex;
@@ -441,4 +498,8 @@ ol {
   width: 100vw;
   display: flex;
   flex-direction: column;
+}
+.openShot {
+  box-shadow: 1px 1px 1px 1px gold;
+  transform: scale(1.03);
 }
