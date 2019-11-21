@@ -3,13 +3,13 @@
     <div id="scoreboard">
       <div class="shotClock">
         <countdown
-          *ngIf="turn == true && start == true && end == false"
+          *ngIf="turn == false && start == true && end == false"
           #shotClock
           [config]="{ leftTime: 30, format: ':ss' }"
         ></countdown>
       </div>
       <div class="scoreboard">
-        <h3 [ngClass]="{ turn: playerTurn == true }">Player 1</h3>
+        <h3 [ngClass]="{ turn: playerTurn == false }">Player 1</h3>
         <div class="score">
           <h2>{{ playerScore }}</h2>
         </div>
@@ -22,14 +22,14 @@
         ></countdown>
       </div>
       <div class="scoreboard">
-        <h3 [ngClass]="{ turn: playerTurn == false }">Computer</h3>
+        <h3 [ngClass]="{ turn: playerTurn == true }">Computer</h3>
         <div class="score">
           <h2>{{ computerScore }}</h2>
         </div>
       </div>
       <div class="shotClock">
         <countdown
-          *ngIf="turn == false && start == true && end == false"
+          *ngIf="turn == true && start == true && end == false"
           #shotClock
           [config]="{ leftTime: 30, format: ':ss' }"
         ></countdown>
@@ -39,7 +39,7 @@
       <p>{{ commentary }}</p>
     </div>
   </header>
-  <div class="gameDirections" *ngIf="start">
+  <div class="gameDirections" *ngIf="!start">
     <h1>How to play...</h1>
     <ol>
       <li>
@@ -78,12 +78,18 @@
       </div>
       <button (click)="rollDice()">Roll Dice!</button>
     </div>
-    <form #calculateForm="ngForm" (ngSubmit)="findShot(calculateForm)">
+    <form #calculateForm="ngForm" (ngSubmit)="findShot(calculateForm.value)">
       <div>
         <input type="number" name="added" placeholder="+" ngModel />
         <input type="number" name="subtacted" placeholder="-" ngModel />
         <input type="number" name="multiplied" placeholder="x" ngModel />
-        <input type="number" name="divided" placeholder="/" ngModel />
+        <input
+          type="number"
+          name="divided"
+          placeholder="/"
+          *ngIf="isDivisible"
+          ngModel
+        />
       </div>
       <button>Find Open Shot!</button>
     </form>
@@ -99,6 +105,7 @@
         <div id="evenHoop" class="hoop"></div>
         <div *ngFor="let number of evenNumbers; index as i">
           <div
+            [ngClass]="number.select == true ? 'correct' : 'incorrect'"
             class="gamePiece {{ number.color }}"
             id="{{ number.id }}"
             (click)="takeEvenShot(i)"
@@ -118,6 +125,7 @@
         <div id="oddHoop" class="hoop"></div>
         <div *ngFor="let number of oddNumbers; index as i">
           <div
+            [ngClass]="number.select == true ? 'correct' : 'incorrect'"
             class="gamePiece {{ number.color }}"
             id="{{ number.id }}"
             (click)="takeOddShot(i)"
@@ -128,7 +136,7 @@
       </div>
     </div>
   </section>
-  <div id="cardHolder">
+  <!-- <div id="cardHolder">
     <div class="cards">
       <div class="card orange">
         <h3>
@@ -203,5 +211,5 @@
         <p>3pt% - {{ greenC.threepoint }}</p>
       </div>
     </div>
-  </div>
+  </div> -->
 </div>

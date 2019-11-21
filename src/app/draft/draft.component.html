@@ -14,8 +14,11 @@
         first or the computer picks first!
       </li>
       <li>
-        You must select one player from each color (red, green, orange, green,
-        and purple), and after you pick, the computer picks.
+        You must select one player from each color (
+        <span id="red">red</span> , <span id="green">green</span>,
+        <span id="orange">orange</span>, <span id="blue">blue</span>, and
+        <span id="purple">purple</span>), and after you pick, the computer picks
+        makes its selection.
       </li>
       <li>
         Once you have all five players, the draft will end and you will be able
@@ -87,7 +90,7 @@
   </div>
   <div id="availablePlayers">
     <div id="clockContainer">
-      <p>Time left to get pick in!:</p>
+      <p>Time Left in Round {{ computersTeam.length + 1 }} :</p>
       <div id="clock">
         <countdown
           *ngIf="turn == true"
@@ -102,13 +105,13 @@
       </div>
     </div>
     <div id="buttons">
-      <button id="blue" (click)="handleBlue()">
+      <button class="blue" (click)="handleBlue()">
         Blue
       </button>
-      <button id="purple" (click)="handlePurple()">Purple</button>
-      <button id="orange" (click)="handleOrange()">Orange</button>
-      <button id="red" (click)="handleRed()">Red</button>
-      <button id="green" (click)="handleGreen()">Green</button>
+      <button class="purple" (click)="handlePurple()">Purple</button>
+      <button class="orange" (click)="handleOrange()">Orange</button>
+      <button class="red" (click)="handleRed()">Red</button>
+      <button class="green" (click)="handleGreen()">Green</button>
     </div>
     <div id="cards">
       <div *ngIf="showBlue" class="cardContainer">

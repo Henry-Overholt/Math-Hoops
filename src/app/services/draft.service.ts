@@ -16,11 +16,18 @@ export class DraftService {
   orangeC: object; //computer's orange player
   purpleC: object; //computer's purple player
   greenC: object; //computer's green player
+  turn: boolean;
   constructor(private http: HttpClient) {}
   //return all the players with a param of the different colors;
   getPlayers(color: string): Observable<any> {
     const params = new HttpParams().set("color", color);
     return this.http.get("http://localhost:7000/players", { params });
+  }
+  setTurn(turn: boolean): void {
+    this.turn = turn;
+  }
+  passTurnDown(): boolean {
+    return this.turn;
   }
   //gets players from draft component
   setRedP(player: object): void {

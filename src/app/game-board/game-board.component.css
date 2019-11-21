@@ -24,7 +24,7 @@
 #dice-container {
   position: absolute;
   top: 15%;
-  left: 50.5%;
+  left: 50%;
   transform: translateX(-50%);
   display: flex;
   flex-direction: column;
@@ -129,7 +129,7 @@ form {
   align-items: center;
   position: absolute;
   width: 26%;
-  left: 50.5%;
+  left: 50%;
   bottom: 10%;
   transform: translateX(-50%);
   z-index: 1;
@@ -152,8 +152,10 @@ input {
   align-content: center;
 }
 .gamePiece:hover {
-  box-shadow: 2px 2px 2px 2px rgba(240, 240, 240, 0.918);
-  margin: 0;
+  transform: scale(1.04);
+}
+button:hover {
+  transform: scale(1.04);
 }
 .orange {
   background: orange;
@@ -201,13 +203,13 @@ section {
   position: relative;
   width: 50%;
   height: 100%;
-  border: 1px solid red;
+  /* border: 1px solid red; */
 }
 #oddContainer {
   position: relative;
   width: 50%;
   height: 100%;
-  border: 1px solid yellow;
+  /* border: 1px solid yellow; */
 }
 #eight {
   position: absolute;
@@ -501,5 +503,12 @@ ol {
 }
 .openShot {
   box-shadow: 1px 1px 1px 1px gold;
-  transform: scale(1.03);
+  transform: scale(1.05);
+}
+.correct {
+  box-shadow: 2px 2px 2px 2px gold;
+  transform: scale(1.1);
+}
+.incorrect {
+  box-shadow: 0px 0px 0px 0px;
 }
