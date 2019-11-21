@@ -55,15 +55,15 @@
     </div>
     <div id="arrow">
       <img
-        *ngIf="!turn"
+        *ngIf="turn"
         class="arrow"
-        src="./../../assets/rightArrow.jpeg"
+        src="./../../assets/possArrowRight.png"
         alt="player's turn"
       />
       <img
-        *ngIf="turn"
+        *ngIf="!turn"
         class="arrow"
-        src="./../../assets/leftArrow.png"
+        src="./../../assets/possArrowLeft.png"
         alt="computer's turn"
       />
     </div>

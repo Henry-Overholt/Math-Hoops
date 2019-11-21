@@ -1,8 +1,7 @@
 import { Component, OnInit, ɵConsole } from "@angular/core";
 import { NgForm } from "@angular/forms";
-import { GameService } from "./../services/game.service";
+// import { GameService } from "./../services/game.service";
 import { DraftService } from "./../services/draft.service";
-import { stringify } from "querystring";
 
 @Component({
   selector: "app-game-board",
@@ -11,7 +10,7 @@ import { stringify } from "querystring";
 })
 export class GameBoardComponent implements OnInit {
   spin: number;
-  turn: boolean;
+  turn: boolean = true;
   start: boolean = false;
   end: boolean = false;
   redDice: number;
@@ -96,10 +95,7 @@ export class GameBoardComponent implements OnInit {
     }
   ];
   select: boolean;
-  constructor(
-    private gameService: GameService,
-    private draftService: DraftService
-  ) {}
+  constructor(private draftService: DraftService) {}
 
   ngOnInit() {
     this.redP = this.draftService.getRedP();
@@ -190,9 +186,11 @@ export class GameBoardComponent implements OnInit {
 
   rollDice(): void {
     document.querySelector("form").reset();
-    this.gameService.rollDice();
-    this.redDice = this.gameService.getRed();
-    this.blueDice = this.gameService.getBlue();
+    this.redDice = Math.floor(Math.random() * 10);
+    this.blueDice = Math.floor(Math.random() * 10);
+    // this.gameService.rollDice();
+    // this.redDice = this.gameService.getRed();
+    // this.blueDice = this.gameService.getBlue();
     this.correctAdd = this.redDice + this.blueDice;
     this.correctSub = Math.abs(this.redDice - this.blueDice);
     this.correctTimes = this.redDice * this.blueDice;
@@ -238,48 +236,166 @@ export class GameBoardComponent implements OnInit {
           }
         }
       }, 1000);
-      // } else if (spot.color == "blue") {
-      //   this.commentary = `${this.blueP.name} shoots for ${points}!`;
-      //   setTimeout(() => {
-      //     if (this.blueP.fieldgoal <= this.spin) {
-      //       this.commentary = `${this.blueP.name} scored ${points}! It's the computer's turn!`;
-      //     } else {
-      //       this.commentary = `${this.blueP.name} missed! It's the computer's turn!`;
-      //     }
-      //   }, 1000);
-      // } else if (spot.color == "red") {
-      //   this.commentary = `${this.redP.name} shoots for ${points}!`;
-      //   setTimeout(() => {
-      //     if (this.redP.fieldgoal <= this.spin) {
-      //       this.commentary = `${this.redP.name} scored ${points}! It's the computer's turn!`;
-      //     } else {
-      //       this.commentary = `${this.redP.name} missed! It's the computer's turn!`;
-      //     }
-      //   }, 1000);
-      // } else if (spot.color == "green") {
-      //   this.commentary = `${this.greenP.name} shoots for ${points}!`;
-      //   setTimeout(() => {
-      //     if (this.greenP.fieldgoal <= this.spin) {
-      //       this.commentary = `${this.greenP.name} scored ${points}! It's the computer's turn!`;
-      //     } else {
-      //       this.commentary = `${this.greenP.name} missed! It's the computer's turn!`;
-      //     }
-      //   }, 1000);
-      // } else if (spot.color == "purple") {
-      //   this.commentary = `${this.purpleP.name} shoots for ${points}!`;
-      //   setTimeout(() => {
-      //     if (this.purpleP.fieldgoal <= this.spin) {
-      //       this.commentary = `${this.purpleP.name} scored ${points}! It's the computer's turn!`;
-      //     } else {
-      //       this.commentary = `${this.purpleP.name} missed! It's the computer's turn!`;
-      //     }
-      //   }, 1000);
-      // }
-      this.turn = !this.turn;
+    } else if (spot.color == "blue") {
+      this.commentary = `${this.blueP.name} shoots for ${spot.value}!`;
+      setTimeout(() => {
+        if (spot.value === 3) {
+          if (this.blueP.threepoint <= this.spin) {
+            this.makeShot(this.blueP.name, spot.value, this.turn);
+          } else {
+            this.missShot(this.blueP.name);
+          }
+        } else {
+          if (this.blueP.fieldgoal <= this.spin) {
+            this.makeShot(this.blueP.name, spot.value, this.turn);
+          } else {
+            this.missShot(this.blueP.name);
+          }
+        }
+      }, 1000);
+    } else if (spot.color == "green") {
+      this.commentary = `${this.greenP.name} shoots for ${spot.value}!`;
+      setTimeout(() => {
+        if (spot.value === 3) {
+          if (this.greenP.threepoint <= this.spin) {
+            this.makeShot(this.greenP.name, spot.value, this.turn);
+          } else {
+            this.missShot(this.greenP.name);
+          }
+        } else {
+          if (this.greenP.fieldgoal <= this.spin) {
+            this.makeShot(this.greenP.name, spot.value, this.turn);
+          } else {
+            this.missShot(this.greenP.name);
+          }
+        }
+      }, 1000);
+    } else if (spot.color == "purple") {
+      this.commentary = `${this.purpleP.name} shoots for ${spot.value}!`;
+      setTimeout(() => {
+        if (spot.value === 3) {
+          if (this.purpleP.threepoint <= this.spin) {
+            this.makeShot(this.purpleP.name, spot.value, this.turn);
+          } else {
+            this.missShot(this.purpleP.name);
+          }
+        } else {
+          if (this.purpleP.fieldgoal <= this.spin) {
+            this.makeShot(this.purpleP.name, spot.value, this.turn);
+          } else {
+            this.missShot(this.purpleP.name);
+          }
+        }
+      }, 1000);
+    } else {
+      this.commentary = `${this.redP.name} shoots for ${spot.value}!`;
+      setTimeout(() => {
+        if (spot.value === 3) {
+          if (this.redP.threepoint <= this.spin) {
+            this.makeShot(this.redP.name, spot.value, this.turn);
+          } else {
+            this.missShot(this.redP.name);
+          }
+        } else {
+          if (this.redP.fieldgoal <= this.spin) {
+            this.makeShot(this.redP.name, spot.value, this.turn);
+          } else {
+            this.missShot(this.redP.name);
+          }
+        }
+      }, 1000);
     }
   }
+
   takeOddShot(i: number): void {
-    console.log(this.oddNumbers[i]);
+    let spot = this.evenNumbers[i];
+    this.spin = Math.random() * 1;
+    if (spot.color == "orange") {
+      this.commentary = `${this.orangeC.name} shoots for ${spot.value}!`;
+      setTimeout(() => {
+        if (spot.value === 3) {
+          if (this.orangeC.threepoint <= this.spin) {
+            this.makeShot(this.orangeC.name, spot.value, this.turn);
+          } else {
+            this.missShot(this.orangeC.name);
+          }
+        } else {
+          if (this.orangeC.fieldgoal <= this.spin) {
+            this.makeShot(this.orangeC.name, spot.value, this.turn);
+          } else {
+            this.missShot(this.orangeC.name);
+          }
+        }
+      }, 1000);
+    } else if (spot.color == "blue") {
+      this.commentary = `${this.blueC.name} shoots for ${spot.value}!`;
+      setTimeout(() => {
+        if (spot.value === 3) {
+          if (this.blueC.threepoint <= this.spin) {
+            this.makeShot(this.blueC.name, spot.value, this.turn);
+          } else {
+            this.missShot(this.blueC.name);
+          }
+        } else {
+          if (this.blueC.fieldgoal <= this.spin) {
+            this.makeShot(this.blueC.name, spot.value, this.turn);
+          } else {
+            this.missShot(this.blueC.name);
+          }
+        }
+      }, 1000);
+    } else if (spot.color == "green") {
+      this.commentary = `${this.greenC.name} shoots for ${spot.value}!`;
+      setTimeout(() => {
+        if (spot.value === 3) {
+          if (this.greenC.threepoint <= this.spin) {
+            this.makeShot(this.greenC.name, spot.value, this.turn);
+          } else {
+            this.missShot(this.greenC.name);
+          }
+        } else {
+          if (this.greenC.fieldgoal <= this.spin) {
+            this.makeShot(this.greenC.name, spot.value, this.turn);
+          } else {
+            this.missShot(this.greenC.name);
+          }
+        }
+      }, 1000);
+    } else if (spot.color == "purple") {
+      this.commentary = `${this.purpleC.name} shoots for ${spot.value}!`;
+      setTimeout(() => {
+        if (spot.value === 3) {
+          if (this.purpleC.threepoint <= this.spin) {
+            this.makeShot(this.purpleC.name, spot.value, this.turn);
+          } else {
+            this.missShot(this.purpleC.name);
+          }
+        } else {
+          if (this.purpleC.fieldgoal <= this.spin) {
+            this.makeShot(this.purpleC.name, spot.value, this.turn);
+          } else {
+            this.missShot(this.purpleC.name);
+          }
+        }
+      }, 1000);
+    } else {
+      this.commentary = `${this.redC.name} shoots for ${spot.value}!`;
+      setTimeout(() => {
+        if (spot.value === 3) {
+          if (this.redC.threepoint <= this.spin) {
+            this.makeShot(this.redC.name, spot.value, this.turn);
+          } else {
+            this.missShot(this.redC.name);
+          }
+        } else {
+          if (this.redC.fieldgoal <= this.spin) {
+            this.makeShot(this.redC.name, spot.value, this.turn);
+          } else {
+            this.missShot(this.redC.name);
+          }
+        }
+      }, 1000);
+    }
   }
   makeShot(name: string, points: number, turn: boolean) {
     let stories: string[] = [
@@ -297,7 +413,7 @@ export class GameBoardComponent implements OnInit {
       this.commentary = stories[randomInt];
       this.playerScore += points;
     }
-    this.turn = !this.turn;
+    this.changeTurn();
   }
   missShot(name: string) {
     let stories: string[] = [
@@ -309,6 +425,6 @@ export class GameBoardComponent implements OnInit {
     ];
     let randomInt: number = Math.floor(Math.random() * stories.length);
     this.commentary = stories[randomInt];
-    this.turn = !this.turn;
+    this.changeTurn();
   }
 }
