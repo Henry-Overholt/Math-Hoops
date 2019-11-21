@@ -116,6 +116,7 @@ export class DraftComponent implements OnInit {
       this.whoseTurn = "You pick First!";
     }
     this.start = true;
+    this.draftService.setTurn(!this.turn);
   }
   changeTurn(): void {
     this.turn = !this.turn;
@@ -165,6 +166,7 @@ export class DraftComponent implements OnInit {
       this.draftService.setBlueP(this.bluePlayers[i]);
       this.bluePlayers.splice(i, 1);
       this.computerTurn();
+      document.querySelector("countdown").reset();
     }
     //only on player's turn the button will show;
   }
