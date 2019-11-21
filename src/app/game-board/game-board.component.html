@@ -39,7 +39,7 @@
       <p>{{ commentary }}</p>
     </div>
   </header>
-  <div class="gameDirections" *ngIf="!start">
+  <div class="gameDirections" *ngIf="start">
     <h1>How to play...</h1>
     <ol>
       <li>
@@ -79,9 +79,9 @@
       <button (click)="rollDice()">Roll Dice!</button>
     </div>
     <form #calculateForm="ngForm" (ngSubmit)="findShot(calculateForm.value)">
-      <div>
+      <div id="inputs">
         <input type="number" name="added" placeholder="+" ngModel />
-        <input type="number" name="subtacted" placeholder="-" ngModel />
+        <input type="number" name="subtracted" placeholder="-" ngModel />
         <input type="number" name="multiplied" placeholder="x" ngModel />
         <input
           type="number"

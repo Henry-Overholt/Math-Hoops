@@ -1,7 +1,8 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, ɵConsole } from "@angular/core";
 import { NgForm } from "@angular/forms";
 import { GameService } from "./../services/game.service";
 import { DraftService } from "./../services/draft.service";
+import { stringify } from "querystring";
 
 @Component({
   selector: "app-game-board",
@@ -156,24 +157,35 @@ export class GameBoardComponent implements OnInit {
     );
   }
   highlightShots(added, subtracted, multiplied, divided?) {
-    this.evenNumbers.forEach(number => {
-      if (
-        number.number === added
-        // number.number === subtracted ||
-        // number.number === multiplied ||
-        // number.number === divided
-      ) {
-        number.select = true;
-      } else if (number.number === subtracted) {
-        number.select = true;
-      } else if (number.number === multiplied) {
-        number.select = true;
-      } else if (number.number === divided) {
-        number.select = true;
-      } else {
-        number.select = false;
-      }
-    });
+    if (this.turn === false) {
+      this.evenNumbers.forEach(number => {
+        if (number.number === added) {
+          number.select = true;
+        } else if (number.number === subtracted) {
+          number.select = true;
+        } else if (number.number === multiplied) {
+          number.select = true;
+        } else if (number.number === divided) {
+          number.select = true;
+        } else {
+          number.select = false;
+        }
+      });
+    } else {
+      this.oddNumbers.forEach(number => {
+        if (number.number === added) {
+          number.select = true;
+        } else if (number.number === subtracted) {
+          number.select = true;
+        } else if (number.number === multiplied) {
+          number.select = true;
+        } else if (number.number === divided) {
+          number.select = true;
+        } else {
+          number.select = false;
+        }
+      });
+    }
   }
 
   rollDice(): void {
@@ -206,85 +218,97 @@ export class GameBoardComponent implements OnInit {
     });
   }
 
-  // takeShot(color, points: number): void {
-  //   this.spin = Math.random() * 1;
-  //   if (color == "orange") {
-  //     this.commentary = `${this.orangeP.name} shoots for ${points}!`;
-  //     setTimeout(() => {
-  //       if (this.orangeP.fieldgoal <= this.spin) {
-  //         if ((this.turn = true)) {
-  //           this.playerScore += points;
-  //         } else {
-  //           this.computerScore += points;
-  //         }
-  //         this.commentary = `${this.orangeP.name} scored ${points}! It's the computer's turn!`;
-  //       } else {
-  //         this.commentary = `${this.orangeP.name} missed! It's the computer's turn!`;
-  //       }
-  //     }, 1000);
-  //   } else if (color == "blue") {
-  //     this.commentary = `${this.blueP.name} shoots for ${points}!`;
-  //     setTimeout(() => {
-  //       if (this.blueP.fieldgoal <= this.spin) {
-  //         if ((this.turn = true)) {
-  //           this.playerScore += points;
-  //         } else {
-  //           this.computerScore += points;
-  //         }
-  //         this.commentary = `${this.blueP.name} scored ${points}! It's the computer's turn!`;
-  //       } else {
-  //         this.commentary = `${this.blueP.name} missed! It's the computer's turn!`;
-  //       }
-  //     }, 1000);
-  //   } else if (color == "red") {
-  //     this.commentary = `${this.redP.name} shoots for ${points}!`;
-  //     setTimeout(() => {
-  //       if (this.redP.fieldgoal <= this.spin) {
-  //         if ((this.turn = true)) {
-  //           this.playerScore += points;
-  //         } else {
-  //           this.computerScore += points;
-  //         }
-  //         this.commentary = `${this.redP.name} scored ${points}! It's the computer's turn!`;
-  //       } else {
-  //         this.commentary = `${this.redP.name} missed! It's the computer's turn!`;
-  //       }
-  //     }, 1000);
-  //   } else if (color == "green") {
-  //     this.commentary = `${this.greenP.name} shoots for ${points}!`;
-  //     setTimeout(() => {
-  //       if (this.greenP.fieldgoal <= this.spin) {
-  //         if ((this.turn = true)) {
-  //           this.playerScore += points;
-  //         } else {
-  //           this.computerScore += points;
-  //         }
-  //         this.commentary = `${this.greenP.name} scored ${points}! It's the computer's turn!`;
-  //       } else {
-  //         this.commentary = `${this.greenP.name} missed! It's the computer's turn!`;
-  //       }
-  //     }, 1000);
-  //   } else if (color == "purple") {
-  //     this.commentary = `${this.purpleP.name} shoots for ${points}!`;
-  //     setTimeout(() => {
-  //       if (this.purpleP.fieldgoal <= this.spin) {
-  //         if ((this.turn = true)) {
-  //           this.playerScore += points;
-  //         } else {
-  //           this.computerScore += points;
-  //         }
-  //         this.commentary = `${this.purpleP.name} scored ${points}! It's the computer's turn!`;
-  //       } else {
-  //         this.commentary = `${this.purpleP.name} missed! It's the computer's turn!`;
-  //       }
-  //     }, 1000);
-  //   }
-  //   this.turn = !this.turn;
-  // }
   takeEvenShot(i: number): void {
-    console.log(this.evenNumbers[i]);
+    let spot = this.evenNumbers[i];
+    this.spin = Math.random() * 1;
+    if (spot.color == "orange") {
+      this.commentary = `${this.orangeP.name} shoots for ${spot.value}!`;
+      setTimeout(() => {
+        if (spot.value === 3) {
+          if (this.orangeP.threepoint <= this.spin) {
+            this.makeShot(this.orangeP.name, spot.value, this.turn);
+          } else {
+            this.missShot(this.orangeP.name);
+          }
+        } else {
+          if (this.orangeP.fieldgoal <= this.spin) {
+            this.makeShot(this.orangeP.name, spot.value, this.turn);
+          } else {
+            this.missShot(this.orangeP.name);
+          }
+        }
+      }, 1000);
+      // } else if (spot.color == "blue") {
+      //   this.commentary = `${this.blueP.name} shoots for ${points}!`;
+      //   setTimeout(() => {
+      //     if (this.blueP.fieldgoal <= this.spin) {
+      //       this.commentary = `${this.blueP.name} scored ${points}! It's the computer's turn!`;
+      //     } else {
+      //       this.commentary = `${this.blueP.name} missed! It's the computer's turn!`;
+      //     }
+      //   }, 1000);
+      // } else if (spot.color == "red") {
+      //   this.commentary = `${this.redP.name} shoots for ${points}!`;
+      //   setTimeout(() => {
+      //     if (this.redP.fieldgoal <= this.spin) {
+      //       this.commentary = `${this.redP.name} scored ${points}! It's the computer's turn!`;
+      //     } else {
+      //       this.commentary = `${this.redP.name} missed! It's the computer's turn!`;
+      //     }
+      //   }, 1000);
+      // } else if (spot.color == "green") {
+      //   this.commentary = `${this.greenP.name} shoots for ${points}!`;
+      //   setTimeout(() => {
+      //     if (this.greenP.fieldgoal <= this.spin) {
+      //       this.commentary = `${this.greenP.name} scored ${points}! It's the computer's turn!`;
+      //     } else {
+      //       this.commentary = `${this.greenP.name} missed! It's the computer's turn!`;
+      //     }
+      //   }, 1000);
+      // } else if (spot.color == "purple") {
+      //   this.commentary = `${this.purpleP.name} shoots for ${points}!`;
+      //   setTimeout(() => {
+      //     if (this.purpleP.fieldgoal <= this.spin) {
+      //       this.commentary = `${this.purpleP.name} scored ${points}! It's the computer's turn!`;
+      //     } else {
+      //       this.commentary = `${this.purpleP.name} missed! It's the computer's turn!`;
+      //     }
+      //   }, 1000);
+      // }
+      this.turn = !this.turn;
+    }
   }
   takeOddShot(i: number): void {
     console.log(this.oddNumbers[i]);
+  }
+  makeShot(name: string, points: number, turn: boolean) {
+    let stories: string[] = [
+      `What a basket by ${name}! That's #SCTop10!`,
+      `${name} makes the deep ${points}! I didn't think he was going to make that!`,
+      `${name} hits the ${points}, and crowd goes wild!`,
+      `${name} gets a couple a lucky bounces before it falls for ${points}!`,
+      `His ankles are going to be sore tomorrow after that move by ${name} to get the clean look for ${points}!`
+    ];
+    let randomInt: number = Math.floor(Math.random() * stories.length);
+    if (turn === true) {
+      this.commentary = stories[randomInt];
+      this.computerScore += points;
+    } else {
+      this.commentary = stories[randomInt];
+      this.playerScore += points;
+    }
+    this.turn = !this.turn;
+  }
+  missShot(name: string) {
+    let stories: string[] = [
+      `That was a terrible miss by ${name}! Just truly terrible!`,
+      `${name} with the miss! You can hear the crowd chanting "Air-Ball, Air-Ball"! Not a nice place to play!`,
+      `${name} with the miss, and the ball is going the other way!`,
+      `Really tough miss there for ${name}, unlucky.`,
+      `Strong defense there to prevent the shot from ${name}`
+    ];
+    let randomInt: number = Math.floor(Math.random() * stories.length);
+    this.commentary = stories[randomInt];
+    this.turn = !this.turn;
   }
 }
