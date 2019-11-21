@@ -16,7 +16,7 @@ export class DraftService {
   orangeC: object; //computer's orange player
   purpleC: object; //computer's purple player
   greenC: object; //computer's green player
-  turn: boolean;
+  turn: boolean = false;
   constructor(private http: HttpClient) {}
   //return all the players with a param of the different colors;
   getPlayers(color: string): Observable<any> {
