@@ -152,17 +152,27 @@ export class GameBoardComponent implements OnInit {
       this.divided
     );
   }
-  highlightShots(added, subtracted, multiplied, divided?) {
+  highlightShots(
+    added: number,
+    subtracted: number,
+    multiplied: number,
+    divided?: number
+  ) {
+    let openCounter: number = 0;
     if (this.turn === false) {
       this.evenNumbers.forEach(number => {
         if (number.number === added) {
           number.select = true;
+          openCounter++;
         } else if (number.number === subtracted) {
           number.select = true;
+          openCounter++;
         } else if (number.number === multiplied) {
           number.select = true;
+          openCounter++;
         } else if (number.number === divided) {
           number.select = true;
+          openCounter++;
         } else {
           number.select = false;
         }
@@ -171,16 +181,26 @@ export class GameBoardComponent implements OnInit {
       this.oddNumbers.forEach(number => {
         if (number.number === added) {
           number.select = true;
+          openCounter++;
         } else if (number.number === subtracted) {
           number.select = true;
+          openCounter++;
         } else if (number.number === multiplied) {
           number.select = true;
+          openCounter++;
         } else if (number.number === divided) {
           number.select = true;
+          openCounter++;
         } else {
           number.select = false;
         }
       });
+    }
+    if (openCounter === 0) {
+      this.commentary = "Turnover! The ball goes back down the court!";
+      setTimeout(() => {
+        this.changeTurn();
+      }, 500);
     }
   }
 
