@@ -134,7 +134,6 @@ form {
   bottom: 15%;
   transform: translateX(-50%);
   z-index: 1;
-  border: 1px solid blue;
 }
 button {
   height: 40px;
@@ -509,11 +508,11 @@ ol {
   flex-direction: column;
 }
 .openShot {
-  box-shadow: 1px 1px 1px 1px gold;
+  box-shadow: 0px 0px 20px gold;
   transform: scale(1.05);
 }
 .correct {
-  box-shadow: 2px 2px 2px 2px gold;
+  box-shadow: 1px 1px 20px gold;
   transform: scale(1.2);
 }
 .correct:hover {
@@ -539,4 +538,13 @@ ol {
 .possArrow {
   width: 100px;
   height: 75px;
+}
+.continue {
+  box-shadow: 0px 0px 20px green;
+}
+.stop {
+  box-shadow: 0px 0px 20px red;
+}
+.undefined {
+  box-shadow: 0px;
 }

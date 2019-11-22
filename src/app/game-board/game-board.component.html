@@ -9,7 +9,7 @@
         ></countdown>
       </div>
       <div class="scoreboard">
-        <h3 [ngClass]="{ turn: playerTurn === false }">Player 1</h3>
+        <h3 [ngClass]="{ turn: turn === false }">Player 1</h3>
         <div class="score">
           <h2>{{ playerScore }}</h2>
         </div>
@@ -22,7 +22,7 @@
         ></countdown>
       </div>
       <div class="scoreboard">
-        <h3 [ngClass]="{ turn: playerTurn === true }">Computer</h3>
+        <h3 [ngClass]="{ turn: turn === true }">Computer</h3>
         <div class="score">
           <h2>{{ computerScore }}</h2>
         </div>
@@ -94,7 +94,14 @@
       <button (click)="rollDice()">Roll Dice!</button>
     </div>
     <form #calculateForm="ngForm" (ngSubmit)="findShot(calculateForm.value)">
-      <div id="inputs">
+      <div
+        id="inputs"
+        [ngClass]="{
+          continue: correct == true,
+          stop: correct == false,
+          undefined: correct === undefined
+        }"
+      >
         <input type="number" name="added" placeholder="+" ngModel />
         <input type="number" name="subtracted" placeholder="-" ngModel />
         <input type="number" name="multiplied" placeholder="x" ngModel />
@@ -106,7 +113,15 @@
           ngModel
         />
       </div>
-      <button>Find Open Shot!</button>
+      <button
+        [ngClass]="{
+          continue: correct == true,
+          stop: correct == false,
+          undefined: correct === undefined
+        }"
+      >
+        Find Open Shot!
+      </button>
     </form>
     <div id="gameboard">
       <div id="evenContainer">
