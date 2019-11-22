@@ -29,6 +29,7 @@ export class GameBoardComponent implements OnInit {
   purpleC: any; //computer's purple player
   greenC: any; //computer's green player
   final: string;
+  correct: boolean;
   added: number;
   correctAdd: number;
   subtracted: number;
@@ -133,11 +134,6 @@ export class GameBoardComponent implements OnInit {
   }
   changeTurn(): void {
     this.turn = !this.turn;
-    // if (this.playerTurn === false) {
-    //   this.commentary = "It's Player One's Turn!";
-    // } else {
-    //   this.commentary = "It's Player Two's Turn!";
-    // }
   }
   findShot(form): void {
     // console.log(form);
@@ -145,12 +141,32 @@ export class GameBoardComponent implements OnInit {
     this.subtracted = form.subtracted;
     this.multiplied = form.multiplied;
     this.divided = form.divided;
-    this.highlightShots(
-      this.added,
-      this.subtracted,
-      this.multiplied,
-      this.divided
-    );
+    if (
+      this.added === this.correctAdd &&
+      this.subtracted === this.correctSub &&
+      this.multiplied === this.correctTimes
+    ) {
+      this.highlightShots(
+        this.added,
+        this.subtracted,
+        this.multiplied,
+        this.divided
+      );
+      this.correct = true;
+    } else {
+      this.correct = false;
+      this.commentary =
+        "Nice try, but your answers weren't quite right. It's the other teams ball.";
+    }
+    setTimeout(() => {
+      this.changeTurn();
+    }, 2000);
+    // this.highlightShots(
+    //   this.added,
+    //   this.subtracted,
+    //   this.multiplied,
+    //   this.divided
+    // );
   }
   highlightShots(
     added: number,
@@ -205,19 +221,17 @@ export class GameBoardComponent implements OnInit {
   }
 
   rollDice(): void {
+    this.correct = undefined;
     document.querySelector("form").reset();
     this.redDice = Math.floor(Math.random() * 10);
     this.blueDice = Math.floor(Math.random() * 10);
-    // this.gameService.rollDice();
-    // this.redDice = this.gameService.getRed();
-    // this.blueDice = this.gameService.getBlue();
     this.correctAdd = this.redDice + this.blueDice;
     this.correctSub = Math.abs(this.redDice - this.blueDice);
     this.correctTimes = this.redDice * this.blueDice;
     if (this.redDice >= this.blueDice) {
       if (this.redDice % this.blueDice === 0) {
         this.isDivisible = true;
-        this.divided = this.redDice / this.blueDice;
+        this.correctDivide = this.redDice / this.blueDice;
       } else {
         this.isDivisible = false;
       }
@@ -228,6 +242,10 @@ export class GameBoardComponent implements OnInit {
         this.isDivisible = false;
       }
     }
+    console.log(`added = ${this.correctAdd}`);
+    console.log(`subtracted = ${this.correctSub}`);
+    console.log(`divided = ${this.correctDivide}`);
+    console.log(`multiplied= ${this.correctTimes}`);
     this.evenNumbers.forEach(number => {
       number.select = false;
     });
