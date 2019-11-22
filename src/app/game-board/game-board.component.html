@@ -9,7 +9,7 @@
         ></countdown>
       </div>
       <div class="scoreboard">
-        <h3 [ngClass]="{ turn: playerTurn == false }">Player 1</h3>
+        <h3 [ngClass]="{ turn: playerTurn === false }">Player 1</h3>
         <div class="score">
           <h2>{{ playerScore }}</h2>
         </div>
@@ -22,7 +22,7 @@
         ></countdown>
       </div>
       <div class="scoreboard">
-        <h3 [ngClass]="{ turn: playerTurn == true }">Computer</h3>
+        <h3 [ngClass]="{ turn: playerTurn === true }">Computer</h3>
         <div class="score">
           <h2>{{ computerScore }}</h2>
         </div>
@@ -39,7 +39,7 @@
       <p>{{ commentary }}</p>
     </div>
   </header>
-  <div class="gameDirections" *ngIf="start">
+  <div class="gameDirections" *ngIf="!start">
     <h1>How to play...</h1>
     <ol>
       <li>
@@ -71,6 +71,21 @@
   </div>
 
   <section>
+    <div id="possArrow">
+      <img
+        class="possArrow"
+        *ngIf="turn"
+        src="../../assets/possArrowRight.png"
+        alt="possession arrow to Computer"
+      />
+
+      <img
+        class="possArrow"
+        *ngIf="!turn"
+        src="../../assets/possArrowLeft.png"
+        alt="possession arrow to player"
+      />
+    </div>
     <div id="dice-container">
       <div class="dice">
         <div class="red-dice">{{ redDice }}</div>
@@ -136,7 +151,7 @@
       </div>
     </div>
   </section>
-  <!-- <div id="cardHolder">
+  <div id="cardHolder">
     <div class="cards">
       <div class="card orange">
         <h3>
@@ -211,5 +226,5 @@
         <p>3pt% - {{ greenC.threepoint }}</p>
       </div>
     </div>
-  </div> -->
+  </div>
 </div>

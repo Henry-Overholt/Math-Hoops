@@ -525,3 +525,18 @@ ol {
   pointer-events: none;
   box-shadow: 0px 0px 0px 0px;
 }
+#possArrow {
+  position: absolute;
+  height: 50px;
+  width: 100px;
+  top: 0px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.possArrow {
+  width: 100px;
+  height: 75px;
+}

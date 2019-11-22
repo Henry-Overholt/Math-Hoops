@@ -94,15 +94,22 @@ export class DraftComponent implements OnInit {
         this.draftService.setPurpleC(this.purplePlayers[this.randomInt]);
         this.whoseTurn = `The computer drafted ${this.purplePlayers[this.randomInt].playername}! You are on the clock!`;
         this.purplePlayers.splice(this.randomInt, 1);
-        this.changeTurn();
+        this.endGame();
       }, 5000);
     } else {
       this.end = true;
     }
-    if (this.playersTeam.length >= 5) {
+    // if (this.playersTeam.length >= 5 && this.computersTeam.length >= 5) {
+    //   this.end = true;
+    // }
+    // this.turn = !this.turn;
+  }
+  endGame(): void {
+    if (this.playersTeam.length >= 5 && this.computersTeam.length >= 5) {
       this.end = true;
+    } else {
+      this.changeTurn();
     }
-    this.turn = !this.turn;
   }
   flipCoin(): void {
     //randomly picks between 0 and 1; 1 equals computer; 0 equals player;
@@ -160,40 +167,39 @@ export class DraftComponent implements OnInit {
   draftBlue(i: number): void {
     if (this.start === true) {
       this.yesBlue = true;
-      this.changeTurn();
+      this.endGame();
       this.playersTeam.unshift(this.bluePlayers[i]);
       this.whoseTurn = `You drafted ${this.bluePlayers[i].playername}! The computer is on the clock!`;
       this.draftService.setBlueP(this.bluePlayers[i]);
       this.bluePlayers.splice(i, 1);
       this.computerTurn();
-      document.querySelector("countdown").reset();
-    }
-    //only on player's turn the button will show;
+    } //only on player's turn the button will show;
   }
   draftGreen(i: number): void {
     if (this.start === true) {
       this.yesGreen = true;
+      this.endGame();
       this.playersTeam.unshift(this.greenPlayers[i]);
       this.whoseTurn = `You drafted ${this.greenPlayers[i].playername}! The computer is on the clock!`;
       this.draftService.setGreenP(this.greenPlayers[i]);
       this.greenPlayers.splice(i, 1);
       this.computerTurn();
     }
-    this.changeTurn();
   }
   draftRed(i: number): void {
     if (this.start === true) {
       this.yesRed = true;
+      this.endGame();
       this.playersTeam.unshift(this.redPlayers[i]);
       this.whoseTurn = `You drafted ${this.redPlayers[i].playername}! The computer is on the clock!`;
       this.draftService.setRedP(this.redPlayers[i]);
       this.redPlayers.splice(i, 1);
       this.computerTurn();
     }
-    this.changeTurn();
   }
   draftOrange(i: number): void {
     if (this.start === true) {
+      this.endGame();
       this.yesOrange = true;
       this.playersTeam.unshift(this.orangePlayers[i]);
       this.whoseTurn = `You drafted ${this.orangePlayers[i].playername}! The computer is on the clock!`;
@@ -201,17 +207,16 @@ export class DraftComponent implements OnInit {
       this.orangePlayers.splice(i, 1);
       this.computerTurn();
     }
-    this.changeTurn();
   }
   draftPurple(i: number): void {
     if (this.start === true) {
       this.yesPurple = true;
+      this.endGame();
       this.playersTeam.unshift(this.purplePlayers[i]);
       this.whoseTurn = `You drafted ${this.purplePlayers[i].playername}! The computer is on the clock!`;
       this.draftService.setPurpleP(this.purplePlayers[i]);
       this.purplePlayers.splice(i, 1);
       this.computerTurn();
     }
-    this.changeTurn();
   }
 }

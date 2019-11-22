@@ -77,8 +77,8 @@ button {
   justify-content: space-around;
 }
 .arrow {
-  width: 80px;
-  height: 80px;
+  width: 100px;
+  height: 100px;
   background: black;
 }
 .coin {
@@ -153,6 +153,7 @@ section {
   left: 50%;
   transform: translateX(-50%);
 }
+
 #commentary {
   font-size: 20px;
   padding: 10px;

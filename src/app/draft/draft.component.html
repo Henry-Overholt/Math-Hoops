@@ -55,15 +55,15 @@
     </div>
     <div id="arrow">
       <img
-        *ngIf="!turn"
+        *ngIf="turn"
         class="arrow"
-        src="./../../assets/rightArrow.jpeg"
+        src="./../../assets/possArrowRight.png"
         alt="player's turn"
       />
       <img
-        *ngIf="turn"
+        *ngIf="!turn"
         class="arrow"
-        src="./../../assets/leftArrow.png"
+        src="./../../assets/possArrowLeft.png"
         alt="computer's turn"
       />
     </div>
@@ -131,7 +131,11 @@
               FT % <span>{{ player.freethrow }}</span>
             </p>
           </div>
-          <button class="draft" *ngIf="!yesBlue" (click)="draftBlue(i)">
+          <button
+            class="draft"
+            *ngIf="!yesBlue && !turn"
+            (click)="draftBlue(i)"
+          >
             Draft
           </button>
         </div>
@@ -156,7 +160,11 @@
               FT % <span>{{ player.freethrow }}</span>
             </p>
           </div>
-          <button class="draft" *ngIf="!yesPurple" (click)="draftPurple(i)">
+          <button
+            class="draft"
+            *ngIf="!yesPurple && !turn"
+            (click)="draftPurple(i)"
+          >
             Draft
           </button>
         </div>
@@ -181,7 +189,11 @@
               FT % <span>{{ player.freethrow }}</span>
             </p>
           </div>
-          <button class="draft" *ngIf="!yesOrange" (click)="draftOrange(i)">
+          <button
+            class="draft"
+            *ngIf="!yesOrange && !turn"
+            (click)="draftOrange(i)"
+          >
             Draft
           </button>
         </div>
@@ -203,7 +215,7 @@
               FT % <span>{{ player.freethrow }}</span>
             </p>
           </div>
-          <button class="draft" *ngIf="!yesRed" (click)="draftRed(i)">
+          <button class="draft" *ngIf="!yesRed && !turn" (click)="draftRed(i)">
             Draft
           </button>
         </div>
@@ -225,7 +237,11 @@
               FT % <span>{{ player.freethrow }}</span>
             </p>
           </div>
-          <button class="draft" *ngIf="!yesGreen" (click)="draftGreen(i)">
+          <button
+            class="draft"
+            *ngIf="!yesGreen && !turn"
+            (click)="draftGreen(i)"
+          >
             Draft
           </button>
         </div>
