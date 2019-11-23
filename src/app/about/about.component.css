@@ -44,3 +44,28 @@ h2 {
   justify-content: center;
   align-items: center;
 }
+a {
+  text-decoration: none;
+  color: white;
+}
+#start {
+  background: orange;
+  height: 45px;
+}
+button {
+  background: blue;
+  font-size: 20px;
+  width: 150px;
+  height: 40px;
+  border-radius: 10px;
+  margin: 5px 5px 15px 5px;
+}
+#buttons {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+}
+button:hover {
+  transform: scale(1.05);
+}

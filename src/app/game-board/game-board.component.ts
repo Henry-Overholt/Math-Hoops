@@ -1,7 +1,13 @@
-import { Component, OnInit, ɵConsole } from "@angular/core";
+import { Component, OnInit, ViewChild } from "@angular/core";
 import { NgForm } from "@angular/forms";
-// import { GameService } from "./../services/game.service";
 import { DraftService } from "./../services/draft.service";
+import {
+  CountdownComponent,
+  CountdownConfig,
+  CountdownEvent
+} from "ngx-countdown";
+import { ENGINE_METHOD_DIGESTS } from "constants";
+import { NumberSymbol } from "@angular/common";
 
 @Component({
   selector: "app-game-board",
@@ -9,6 +15,8 @@ import { DraftService } from "./../services/draft.service";
   styleUrls: ["./game-board.component.css"]
 })
 export class GameBoardComponent implements OnInit {
+  @ViewChild("gameClock", { static: false })
+  private counter: CountdownComponent;
   spin: number;
   turn: boolean = true;
   start: boolean = false;
@@ -62,40 +70,169 @@ export class GameBoardComponent implements OnInit {
     { number: 32, color: "green", value: 2, select: false, id: "thirtyTwo" }
   ];
   oddNumbers: any[] = [
-    { number: 7, color: "purple", value: 3, select: false, id: "seven" },
-    { number: 1, color: "orange", value: 3, select: false, id: "one" },
-    { number: 15, color: "red", value: 3, select: false, id: "fifteen" },
-    { number: 49, color: "orange", value: 3, select: false, id: "fortyNine" },
-    { number: 35, color: "red", value: 3, select: false, id: "thirtyFive" },
-    { number: 63, color: "blue", value: 3, select: false, id: "sixtyThree" },
-    { number: 17, color: "purple", value: 2, select: false, id: "seventeen" },
-    { number: 25, color: "orange", value: 2, select: false, id: "twentyFive" },
-    { number: 27, color: "red", value: 2, select: false, id: "twentySeven" },
+    {
+      number: 7,
+      color: "purple",
+      value: 3,
+      select: false,
+      id: "seven",
+      index: 0
+    },
+    {
+      number: 1,
+      color: "orange",
+      value: 3,
+      select: false,
+      id: "one",
+      index: 1
+    },
+    {
+      number: 15,
+      color: "red",
+      value: 3,
+      select: false,
+      id: "fifteen",
+      index: 2
+    },
+    {
+      number: 49,
+      color: "orange",
+      value: 3,
+      select: false,
+      id: "fortyNine",
+      index: 3
+    },
+    {
+      number: 35,
+      color: "red",
+      value: 3,
+      select: false,
+      id: "thirtyFive",
+      index: 4
+    },
+    {
+      number: 63,
+      color: "blue",
+      value: 3,
+      select: false,
+      id: "sixtyThree",
+      index: 5
+    },
+    {
+      number: 17,
+      color: "purple",
+      value: 2,
+      select: false,
+      id: "seventeen",
+      index: 6
+    },
+    {
+      number: 25,
+      color: "orange",
+      value: 2,
+      select: false,
+      id: "twentyFive",
+      index: 7
+    },
+    {
+      number: 27,
+      color: "red",
+      value: 2,
+      select: false,
+      id: "twentySeven",
+      index: 8
+    },
     {
       number: 63,
       color: "green",
       value: 2,
       select: false,
-      id: "greenSixtyThree"
+      id: "greenSixtyThree",
+      index: 9
     },
-    { number: 11, color: "orange", value: 2, select: false, id: "eleven" },
-    { number: 3, color: "red", value: 2, select: false, id: "three" },
-    { number: 21, color: "blue", value: 2, select: false, id: "twentyOne" },
-    { number: 81, color: "purple", value: 2, select: false, id: "eightyOne" },
-    { number: 5, color: "green", value: 2, select: false, id: "five" },
-    { number: 13, color: "green", value: 2, select: false, id: "thirteen" },
-    { number: 15, color: "blue", value: 2, select: false, id: "blueFifteen" },
-    { number: 9, color: "blue", value: 2, select: false, id: "nine" },
-    { number: 45, color: "purple", value: 2, select: false, id: "fortyFive" },
+    {
+      number: 11,
+      color: "orange",
+      value: 2,
+      select: false,
+      id: "eleven",
+      index: 10
+    },
+    {
+      number: 3,
+      color: "red",
+      value: 2,
+      select: false,
+      id: "three",
+      index: 11
+    },
+    {
+      number: 21,
+      color: "blue",
+      value: 2,
+      select: false,
+      id: "twentyOne",
+      index: 12
+    },
+    {
+      number: 81,
+      color: "purple",
+      value: 2,
+      select: false,
+      id: "eightyOne",
+      index: 13
+    },
+    {
+      number: 5,
+      color: "green",
+      value: 2,
+      select: false,
+      id: "five",
+      index: 14
+    },
+    {
+      number: 13,
+      color: "green",
+      value: 2,
+      select: false,
+      id: "thirteen",
+      index: 15
+    },
+    {
+      number: 15,
+      color: "blue",
+      value: 2,
+      select: false,
+      id: "blueFifteen",
+      index: 16
+    },
+    {
+      number: 9,
+      color: "blue",
+      value: 2,
+      select: false,
+      id: "nine",
+      index: 17
+    },
+    {
+      number: 45,
+      color: "purple",
+      value: 2,
+      select: false,
+      id: "fortyFive",
+      index: 18
+    },
     {
       number: 35,
       color: "green",
       value: 2,
       select: false,
-      id: "greenThirtyFive"
+      id: "greenThirtyFive",
+      index: 19
     }
   ];
   select: boolean;
+  computersShots: any[] = [];
   constructor(private draftService: DraftService) {}
 
   ngOnInit() {
@@ -115,9 +252,11 @@ export class GameBoardComponent implements OnInit {
     if (this.turn === false) {
       this.commentary =
         "The Game has started! You won the tip-off! You start with the ball!";
+      // this.rollDice();
     } else {
       this.commentary =
         "The Game has started! The Computer won the tip-off! The Computer starts with the ball!";
+      // this.computersTurn();
     }
     this.start = true;
     this.rollDice();
@@ -129,11 +268,14 @@ export class GameBoardComponent implements OnInit {
     } else if (this.playerScore > this.computerScore) {
       this.final = `You won! With a final score of ${this.playerScore} to ${this.computerScore}! Congrats!`;
     } else {
-      this.final = `You lost, you suck! With a final score of ${this.playerScore} to ${this.computerScore} the computer was victorious! Congrats!`;
+      this.final = `You lost, better luck next time! With a final score of ${this.playerScore} to ${this.computerScore} the computer was victorious! Congrats!`;
     }
   }
   changeTurn(): void {
     this.turn = !this.turn;
+    // if ((this.turn = true)) {
+    //   this.computersTurn();
+    // }
   }
   findShot(form): void {
     // console.log(form);
@@ -157,10 +299,11 @@ export class GameBoardComponent implements OnInit {
       this.correct = false;
       this.commentary =
         "Nice try, but your answers weren't quite right. It's the other teams ball.";
+      setTimeout(() => {
+        this.changeTurn();
+      }, 2000);
     }
-    setTimeout(() => {
-      this.changeTurn();
-    }, 2000);
+
     // this.highlightShots(
     //   this.added,
     //   this.subtracted,
@@ -242,10 +385,10 @@ export class GameBoardComponent implements OnInit {
         this.isDivisible = false;
       }
     }
-    console.log(`added = ${this.correctAdd}`);
-    console.log(`subtracted = ${this.correctSub}`);
-    console.log(`divided = ${this.correctDivide}`);
-    console.log(`multiplied= ${this.correctTimes}`);
+    // console.log(`added = ${this.correctAdd}`);
+    // console.log(`subtracted = ${this.correctSub}`);
+    // console.log(`divided = ${this.correctDivide}`);
+    // console.log(`multiplied= ${this.correctTimes}`);
     this.evenNumbers.forEach(number => {
       number.select = false;
     });
@@ -464,5 +607,88 @@ export class GameBoardComponent implements OnInit {
     let randomInt: number = Math.floor(Math.random() * stories.length);
     this.commentary = stories[randomInt];
     this.changeTurn();
+  }
+  computersTurn(): void {
+    this.rollDice();
+    setTimeout(() => {
+      this.oddNumbers.forEach(number => {
+        let openCounter = 0;
+        if (number.number === this.correctAdd) {
+          console.log(this.oddNumbers[number.index].playerName);
+          // if (number.value === 3) {
+          //   let newShot = {
+          //     name: this.oddNumbers[number.index].playerName,
+          //     per: this.oddNumbers[number.index].threepoint
+          //   };
+          //   this.computersShots.unshift(newShot);
+          // } else {
+          //   let newShot = {
+          //     name: this.oddNumbers[number.index].playerName,
+          //     per: this.oddNumbers[number.index].fieldgoal
+          //   };
+          //   this.computersShots.unshift(newShot);
+          // }
+          number.select = true;
+          openCounter++;
+        } else if (number.number === this.correctSub) {
+          console.log();
+          // if (number.value === 3) {
+          //   let newShot:any = {
+          //     name: this.oddNumbers[number.index].playerName,
+          //     per: this.oddNumbers[number.index].threepoint
+          //   };
+          //   this.computersShots.unshift(newShot);
+          // } else {
+          //   let newShot:any = {
+          //     name: this.oddNumbers[number.index].playerName,
+          //     per: this.oddNumbers[number.index].fieldgoal
+          //   };
+          //   this.computersShots.unshift(newShot);
+          // }
+          number.select = true;
+          openCounter++;
+        } else if (number.number === this.correctTimes) {
+          console.log(this.oddNumbers[number.index].playerName);
+          // if (number.value === 3) {
+          //   let newShot = {
+          //     name: this.oddNumbers[number.index].playerName,
+          //     per: this.oddNumbers[number.index].threepoint
+          //   };
+          //   this.computersShots.unshift(newShot);
+          // } else {
+          //   let newShot = {
+          //     name: this.oddNumbers[number.index].playerName,
+          //     per: this.oddNumbers[number.index].fieldgoal
+          //   };
+          //   this.computersShots.unshift(newShot);
+          // }
+          number.select = true;
+          openCounter++;
+        } else if (number.number === this.correctDivide) {
+          console.log(this.oddNumbers[number.index].playerName);
+          // if (number.value === 3) {
+          //   let newShot = {
+          //     name: this.oddNumbers[number.index].playerName,
+          //     per: this.oddNumbers[number.index].threepoint
+          //   };
+          //   this.computersShots.unshift(newShot);
+          // } else {
+          //   let newShot = {
+          //     name: this.oddNumbers[number.index].playerName,
+          //     per: this.oddNumbers[number.index].fieldgoal
+          //   };
+          //   this.computersShots.unshift(newShot);
+          // }
+          number.select = true;
+          openCounter++;
+        } else {
+          number.select = false;
+        }
+        // if (openCounter === 0) {
+        //   // this.changeTurn();
+        // }
+        // console.log(this.computersShots);
+      });
+    }, 2000);
   }
 }
