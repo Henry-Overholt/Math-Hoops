@@ -4,7 +4,11 @@ import { FormsModule } from "@angular/forms";
 import { AppComponent } from "./app.component";
 import { RouterModule, Routes } from "@angular/router";
 import { GameBoardComponent } from "./game-board/game-board.component";
-import { CountdownModule } from "ngx-countdown";
+import {
+  CountdownModule,
+  CountdownGlobalConfig,
+  CountdownConfig
+} from "ngx-countdown";
 import { HomeComponent } from "./home/home.component";
 import { DraftComponent } from "./draft/draft.component";
 import { HttpClientModule } from "@angular/common/http";
@@ -18,6 +22,9 @@ const appRoutes: Routes = [
   { path: "", redirectTo: "/home", pathMatch: "full" },
   { path: "**", component: HomeComponent }
 ];
+export function countdownConfigFactory(): CountdownConfig {
+  return {};
+}
 @NgModule({
   declarations: [
     AppComponent,
@@ -33,7 +40,9 @@ const appRoutes: Routes = [
     CountdownModule,
     RouterModule.forRoot(appRoutes)
   ],
-  providers: [],
+  providers: [
+    { provide: CountdownGlobalConfig, useFactory: countdownConfigFactory }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {}
