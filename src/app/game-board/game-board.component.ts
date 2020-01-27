@@ -6,8 +6,6 @@ import {
   CountdownConfig,
   CountdownEvent
 } from "ngx-countdown";
-import { ENGINE_METHOD_DIGESTS } from "constants";
-import { NumberSymbol } from "@angular/common";
 
 @Component({
   selector: "app-game-board",
