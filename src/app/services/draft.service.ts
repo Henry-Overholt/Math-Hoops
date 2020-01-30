@@ -615,10 +615,6 @@ export class DraftService {
 
   constructor(private http: HttpClient) {}
   //return all the players with a param of the different colors;
-  getPlayers(color: string): Observable<any> {
-    const params = new HttpParams().set("color", color);
-    return this.http.get("http://localhost:7000/players", { params });
-  }
   setTurn(turn: boolean): void {
     this.turn = turn;
   }

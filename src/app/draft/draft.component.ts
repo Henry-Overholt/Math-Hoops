@@ -30,28 +30,16 @@ export class DraftComponent implements OnInit {
   yesPurple: boolean = false;
   yesRed: boolean = false;
   showStats: boolean;
+  timer: number;
 
   constructor(private draftService: DraftService) {}
 
   ngOnInit() {
-    this.draftService.getPlayers("blue").subscribe(response => {
-      this.bluePlayers = response;
-    });
-    this.draftService.getPlayers("orange").subscribe(response => {
-      this.orangePlayers = response;
-    });
-    this.draftService.getPlayers("red").subscribe(response => {
-      this.redPlayers = response;
-      // console.log("red");
-    });
-    this.draftService.getPlayers("green").subscribe(response => {
-      this.greenPlayers = response;
-      // console.log("green");
-    });
-    this.draftService.getPlayers("purple").subscribe(response => {
-      this.purplePlayers = response;
-      // console.log("purple");
-    });
+    this.bluePlayers = this.draftService.bluePlayers;
+    this.orangePlayers = this.draftService.orangePlayers;
+    this.redPlayers = this.draftService.redPlayers;
+    this.purplePlayers = this.draftService.purplePlayers;
+    this.greenPlayers = this.draftService.greenPlayers;
   }
   computerTurn(): void {
     //runs the computer's draft choices
@@ -60,7 +48,9 @@ export class DraftComponent implements OnInit {
       setTimeout(() => {
         this.draftService.setOrangeC(this.orangePlayers[this.randomInt]);
         this.computersTeam.unshift(this.orangePlayers[this.randomInt]);
-        this.whoseTurn = `The computer drafted ${this.orangePlayers[this.randomInt].playername}! You are on the clock!`;
+        this.whoseTurn = `The computer drafted ${
+          this.orangePlayers[this.randomInt].playername
+        }! You are on the clock!`;
         this.orangePlayers.splice(this.randomInt, 1);
         this.changeTurn();
       }, 5000);
@@ -68,7 +58,9 @@ export class DraftComponent implements OnInit {
       setTimeout(() => {
         this.computersTeam.unshift(this.redPlayers[this.randomInt]);
         this.draftService.setRedC(this.redPlayers[this.randomInt]);
-        this.whoseTurn = `The computer drafted ${this.redPlayers[this.randomInt].playername}! You are on the clock!`;
+        this.whoseTurn = `The computer drafted ${
+          this.redPlayers[this.randomInt].playername
+        }! You are on the clock!`;
         this.redPlayers.splice(this.randomInt, 1);
         this.changeTurn();
       }, 5000);
@@ -76,7 +68,9 @@ export class DraftComponent implements OnInit {
       setTimeout(() => {
         this.computersTeam.unshift(this.bluePlayers[this.randomInt]);
         this.draftService.setBlueC(this.bluePlayers[this.randomInt]);
-        this.whoseTurn = `The computer drafted ${this.bluePlayers[this.randomInt].playername}! You are on the clock!`;
+        this.whoseTurn = `The computer drafted ${
+          this.bluePlayers[this.randomInt].playername
+        }! You are on the clock!`;
         this.bluePlayers.splice(this.randomInt, 1);
         this.changeTurn();
       }, 5000);
@@ -84,7 +78,9 @@ export class DraftComponent implements OnInit {
       setTimeout(() => {
         this.computersTeam.unshift(this.greenPlayers[this.randomInt]);
         this.draftService.setGreenC(this.greenPlayers[this.randomInt]);
-        this.whoseTurn = `The computer drafted ${this.greenPlayers[this.randomInt].playername}! You are on the clock!`;
+        this.whoseTurn = `The computer drafted ${
+          this.greenPlayers[this.randomInt].playername
+        }! You are on the clock!`;
         this.greenPlayers.splice(this.randomInt, 1);
         this.changeTurn();
       }, 5000);
@@ -92,17 +88,15 @@ export class DraftComponent implements OnInit {
       setTimeout(() => {
         this.computersTeam.unshift(this.purplePlayers[this.randomInt]);
         this.draftService.setPurpleC(this.purplePlayers[this.randomInt]);
-        this.whoseTurn = `The computer drafted ${this.purplePlayers[this.randomInt].playername}! You are on the clock!`;
+        this.whoseTurn = `The computer drafted ${
+          this.purplePlayers[this.randomInt].playername
+        }! You are on the clock!`;
         this.purplePlayers.splice(this.randomInt, 1);
         this.endGame();
       }, 5000);
     } else {
       this.end = true;
     }
-    // if (this.playersTeam.length >= 5 && this.computersTeam.length >= 5) {
-    //   this.end = true;
-    // }
-    // this.turn = !this.turn;
   }
   endGame(): void {
     if (this.playersTeam.length >= 5 && this.computersTeam.length >= 5) {
