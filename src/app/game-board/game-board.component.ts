@@ -234,16 +234,16 @@ export class GameBoardComponent implements OnInit {
   constructor(private draftService: DraftService) {}
 
   ngOnInit() {
-    this.redP = this.draftService.getRedP();
-    this.blueP = this.draftService.getBlueP();
-    this.orangeP = this.draftService.getOrangeP();
-    this.purpleP = this.draftService.getPurpleP();
-    this.greenP = this.draftService.getGreenP();
-    this.redC = this.draftService.getRedC();
-    this.blueC = this.draftService.getBlueC();
-    this.orangeC = this.draftService.getOrangeC();
-    this.purpleC = this.draftService.getPurpleC();
-    this.greenC = this.draftService.getGreenC();
+    this.redP = this.draftService.redP;
+    this.blueP = this.draftService.blueP;
+    this.orangeP = this.draftService.orangeP;
+    this.purpleP = this.draftService.purpleP;
+    this.greenP = this.draftService.greenP;
+    this.redC = this.draftService.redC;
+    this.blueC = this.draftService.blueC;
+    this.orangeC = this.draftService.orangeC;
+    this.purpleC = this.draftService.purpleC;
+    this.greenC = this.draftService.greenC;
     this.turn = this.draftService.passTurnDown();
   }
   startGame() {
