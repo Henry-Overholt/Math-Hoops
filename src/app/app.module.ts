@@ -13,6 +13,7 @@ import { HomeComponent } from "./home/home.component";
 import { DraftComponent } from "./draft/draft.component";
 import { HttpClientModule } from "@angular/common/http";
 import { AboutComponent } from "./about/about.component";
+import { CookieService } from "ngx-cookie-service";
 
 const appRoutes: Routes = [
   { path: "game", component: GameBoardComponent },
@@ -41,7 +42,8 @@ export function countdownConfigFactory(): CountdownConfig {
     RouterModule.forRoot(appRoutes)
   ],
   providers: [
-    { provide: CountdownGlobalConfig, useFactory: countdownConfigFactory }
+    { provide: CountdownGlobalConfig, useFactory: countdownConfigFactory },
+    CookieService
   ],
   bootstrap: [AppComponent]
 })
