@@ -116,19 +116,19 @@
     <div id="cards">
       <div *ngIf="showBlue" class="cardContainer">
         <div class="blue card" *ngFor="let player of bluePlayers; index as i">
-          <h3>{{ player.playername }}</h3>
+          <h3>{{ player.playerName }}</h3>
           <p class="number">{{ player.number }}</p>
           <p class="team">{{ player.team }}</p>
           <h4>Stats</h4>
           <div class="stats">
             <p>
-              FG % <span>{{ player.fieldgoal }}</span>
+              FG % <span>{{ player.fieldGoal }}</span>
             </p>
             <p>
-              3pt % <span>{{ player.threepoint }}</span>
+              3pt % <span>{{ player.threePoint }}</span>
             </p>
             <p>
-              FT % <span>{{ player.freethrow }}</span>
+              FT % <span>{{ player.freeThrow }}</span>
             </p>
           </div>
           <button
@@ -145,19 +145,19 @@
           class="purple card"
           *ngFor="let player of purplePlayers; index as i"
         >
-          <h3>{{ player.playername }}</h3>
+          <h3>{{ player.playerName }}</h3>
           <p class="number">{{ player.number }}</p>
           <p class="team">{{ player.team }}</p>
           <h4>Stats</h4>
           <div class="stats">
             <p>
-              FG % <span>{{ player.fieldgoal }}</span>
+              FG % <span>{{ player.fieldGoal }}</span>
             </p>
             <p>
-              3pt % <span>{{ player.threepoint }}</span>
+              3pt % <span>{{ player.threePoint }}</span>
             </p>
             <p>
-              FT % <span>{{ player.freethrow }}</span>
+              FT % <span>{{ player.freeThrow }}</span>
             </p>
           </div>
           <button
@@ -174,19 +174,19 @@
           class="orange card"
           *ngFor="let player of orangePlayers; index as i"
         >
-          <h3>{{ player.playername }}</h3>
+          <h3>{{ player.playerName }}</h3>
           <p class="number">{{ player.number }}</p>
           <p class="team">{{ player.team }}</p>
           <h4>Stats</h4>
           <div class="stats">
             <p>
-              FG % <span>{{ player.fieldgoal }}</span>
+              FG % <span>{{ player.fieldGoal }}</span>
             </p>
             <p>
-              3pt % <span>{{ player.threepoint }}</span>
+              3pt % <span>{{ player.threePoint }}</span>
             </p>
             <p>
-              FT % <span>{{ player.freethrow }}</span>
+              FT % <span>{{ player.freeThrow }}</span>
             </p>
           </div>
           <button
@@ -200,19 +200,19 @@
       </div>
       <div *ngIf="showRed" class="cardContainer">
         <div class="red card" *ngFor="let player of redPlayers; index as i">
-          <h3>{{ player.playername }}</h3>
+          <h3>{{ player.playerName }}</h3>
           <p class="number">{{ player.number }}</p>
           <p class="team">{{ player.team }}</p>
           <h4>Stats</h4>
           <div class="stats">
             <p>
-              FG % <span>{{ player.fieldgoal }}</span>
+              FG % <span>{{ player.fieldGoal }}</span>
             </p>
             <p>
-              3pt % <span>{{ player.threepoint }}</span>
+              3pt % <span>{{ player.threePoint }}</span>
             </p>
             <p>
-              FT % <span>{{ player.freethrow }}</span>
+              FT % <span>{{ player.freeThrow }}</span>
             </p>
           </div>
           <button class="draft" *ngIf="!yesRed && !turn" (click)="draftRed(i)">
@@ -222,19 +222,19 @@
       </div>
       <div *ngIf="showGreen" class="cardContainer">
         <div class="green card" *ngFor="let player of greenPlayers; index as i">
-          <h3>{{ player.playername }}</h3>
+          <h3>{{ player.playerName }}</h3>
           <p class="number">{{ player.number }}</p>
           <p class="team">{{ player.team }}</p>
           <h4>Stats</h4>
           <div class="stats">
             <p>
-              FG % <span>{{ player.fieldgoal }}</span>
+              FG % <span>{{ player.fieldGoal }}</span>
             </p>
             <p>
-              3pt % <span>{{ player.threepoint }}</span>
+              3pt % <span>{{ player.threePoint }}</span>
             </p>
             <p>
-              FT % <span>{{ player.freethrow }}</span>
+              FT % <span>{{ player.freeThrow }}</span>
             </p>
           </div>
           <button
