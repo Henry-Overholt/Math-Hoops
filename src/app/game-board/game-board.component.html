@@ -91,7 +91,7 @@
         <div class="red-dice">{{ redDice }}</div>
         <div class="blue-dice">{{ blueDice }}</div>
       </div>
-      <button (click)="rollDice()">Roll Dice!</button>
+      <!-- <button (click)="rollDice()">Roll Dice!</button> -->
     </div>
     <form #calculateForm="ngForm" (ngSubmit)="findShot(calculateForm.value)">
       <div
@@ -166,80 +166,80 @@
       </div>
     </div>
   </section>
-  <!-- <div id="cardHolder">
+  <div id="cardHolder">
     <div class="cards">
       <div class="card orange">
         <h3>
-          {{ orangeP.name }}
+          {{ orangeP.playerName }}
         </h3>
-        <p>FG% - {{ orangeP.fieldgoal }}</p>
-        <p>3pt% - {{ orangeP.threepoint }}</p>
+        <p>FG% - {{ orangeP.fieldGoal }}</p>
+        <p>3pt% - {{ orangeP.threePoint }}</p>
       </div>
       <div class="card red">
         <h3>
-          {{ redP.name }}
+          {{ redP.playerName }}
         </h3>
-        <p>FG% - {{ redP.fieldgoal }}</p>
-        <p>3pt% - {{ redP.threepoint }}</p>
+        <p>FG% - {{ redP.fieldGoal }}</p>
+        <p>3pt% - {{ redP.threePoint }}</p>
       </div>
       <div class="card blue">
         <h3>
-          {{ blueP.name }}
+          {{ blueP.playerName }}
         </h3>
-        <p>FG% - {{ blueP.fieldgoal }}</p>
-        <p>3pt% - {{ blueP.threepoint }}</p>
+        <p>FG% - {{ blueP.fieldGoal }}</p>
+        <p>3pt% - {{ blueP.threePoint }}</p>
       </div>
       <div class="card purple">
         <h3>
-          {{ purpleP.name }}
+          {{ purpleP.playerName }}
         </h3>
-        <p>FG% - {{ purpleP.fieldgoal }}</p>
-        <p>3pt% - {{ purpleP.threepoint }}</p>
+        <p>FG% - {{ purpleP.fieldGoal }}</p>
+        <p>3pt% - {{ purpleP.threePoint }}</p>
       </div>
       <div class="card green">
         <h3>
-          {{ greenP.name }}
+          {{ greenP.playerName }}
         </h3>
-        <p>FG% - {{ greenP.fieldgoal }}</p>
-        <p>3pt% - {{ greenP.threepoint }}</p>
+        <p>FG% - {{ greenP.fieldGoal }}</p>
+        <p>3pt% - {{ greenP.threePoint }}</p>
       </div>
     </div>
     <div class="cards">
       <div class="card orange">
         <h3>
-          {{ orangeC.name }}
+          {{ orangeC.playerName }}
         </h3>
-        <p>FG% - {{ orangeC.fieldgoal }}</p>
-        <p>3pt% - {{ orangeC.threepoint }}</p>
+        <p>FG% - {{ orangeC.fieldGoal }}</p>
+        <p>3pt% - {{ orangeC.threePoint }}</p>
       </div>
       <div class="card red">
         <h3>
-          {{ redC.name }}
+          {{ redC.playerName }}
         </h3>
-        <p>FG% - {{ redC.fieldgoal }}</p>
-        <p>3pt% - {{ redC.threepoint }}</p>
+        <p>FG% - {{ redC.fieldGoal }}</p>
+        <p>3pt% - {{ redC.threePoint }}</p>
       </div>
       <div class="card blue">
         <h3>
-          {{ blueC.name }}
+          {{ blueC.playerName }}
         </h3>
-        <p>FG% - {{ blueC.fieldgoal }}</p>
-        <p>3pt% - {{ blueC.threepoint }}</p>
+        <p>FG% - {{ blueC.fieldGoal }}</p>
+        <p>3pt% - {{ blueC.threePoint }}</p>
       </div>
       <div class="card purple">
         <h3>
-          {{ purpleC.name }}
+          {{ purpleC.playerName }}
         </h3>
-        <p>FG% - {{ purpleC.fieldgoal }}</p>
-        <p>3pt% - {{ purpleC.threepoint }}</p>
+        <p>FG% - {{ purpleC.fieldGoal }}</p>
+        <p>3pt% - {{ purpleC.threePoint }}</p>
       </div>
       <div class="card green">
         <h3>
-          {{ greenC.name }}
+          {{ greenC.playerName }}
         </h3>
-        <p>FG% - {{ greenC.fieldgoal }}</p>
-        <p>3pt% - {{ greenC.threepoint }}</p>
+        <p>FG% - {{ greenC.fieldGoal }}</p>
+        <p>3pt% - {{ greenC.threePoint }}</p>
       </div>
     </div>
-  </div> -->
+  </div>
 </div>
