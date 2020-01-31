@@ -271,6 +271,7 @@ export class GameBoardComponent implements OnInit {
   }
   changeTurn(): void {
     this.turn = !this.turn;
+    this.rollDice();
     // if ((this.turn = true)) {
     //   this.computersTurn();
     // }
