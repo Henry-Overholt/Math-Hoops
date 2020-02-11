@@ -132,6 +132,7 @@
           class="ball"
           src="./../../assets/basketball.ico"
           alt="basketball"
+          *ngIf="!turn"
         />
         <div id="evenHoop" class="hoop"></div>
         <div *ngFor="let number of evenNumbers; index as i">
@@ -152,6 +153,7 @@
           class="ball"
           src="./../../assets/basketball.ico"
           alt="basketball"
+          *ngIf="turn"
         />
         <div id="oddHoop" class="hoop"></div>
         <div *ngFor="let number of oddNumbers; index as i">
