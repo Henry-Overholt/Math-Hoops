@@ -6,16 +6,96 @@ import { Observable } from "rxjs";
   providedIn: "root"
 })
 export class DraftService {
-  redP: object; //player's red player
-  blueP: object; //player's blue player
-  orangeP: object; //player's orange player
-  purpleP: object; //player's purple player
-  greenP: object; //player's green player
-  redC: object; //computer's red player
-  blueC: object; //computer's blue player
-  orangeC: object; //computer's orange player
-  purpleC: object; //computer's purple player
-  greenC: object; //computer's green player
+  redP: object = {
+    playerName: "James Harden",
+    color: "red",
+    fieldGoal: 0.442,
+    threePoint: 0.368,
+    freeThrow: 0.879,
+    number: 13,
+    team: "Houston Rockets"
+  }; //player's red player
+  blueP: object = {
+    playerName: "Kevin Durant",
+    color: "blue",
+    fieldGoal: 0.521,
+    threePoint: 0.353,
+    freeThrow: 0.885,
+    number: 7,
+    team: "Brooklyn Nets"
+  }; //player's blue player
+  orangeP: object = {
+    playerName: "Alysha Clark",
+    color: "orange",
+    fieldGoal: 0.481,
+    threePoint: 0.481,
+    freeThrow: 0.818,
+    number: 32,
+    team: "Seattle Storm"
+  }; //player's orange player
+  purpleP: object = {
+    playerName: "Leilani Mitchell",
+    color: "purple",
+    fieldGoal: 0.441,
+    threePoint: 0.43,
+    freeThrow: 0.82,
+    number: 5,
+    team: "Phoenix Mercury"
+  }; //player's purple player
+  greenP: object = {
+    playerName: "Hassan Whiteside",
+    color: "green",
+    fieldGoal: 0.571,
+    threePoint: 0.125,
+    freeThrow: 0.593,
+    number: 21,
+    team: "Portland Trailblazers"
+  }; //player's green player
+  redC: object = {
+    playerName: "Chris Paul",
+    color: "red",
+    fieldGoal: 0.419,
+    threePoint: 0.358,
+    freeThrow: 0.862,
+    number: 3,
+    team: "Oklahoma City Thunder"
+  }; //computer's red player
+  blueC: object = {
+    playerName: "Karl-Anthony Towns",
+    color: "blue",
+    fieldGoal: 0.518,
+    threePoint: 0.4,
+    freeThrow: 0.836,
+    number: 35,
+    team: "Minnesota Timberwolves"
+  }; //computer's blue player
+  orangeC: object = {
+    playerName: "Jewell Loyd",
+    color: "orange",
+    fieldGoal: 0.391,
+    threePoint: 0.337,
+    freeThrow: 0.928,
+    number: 24,
+    team: "Seattle Storm"
+  }; //computer's orange player
+  purpleC: object = {
+    playerName: "Blake Griffin",
+    color: "purple",
+    fieldGoal: 0.462,
+    threePoint: 0.362,
+    freeThrow: 0.753,
+    number: 23,
+    team: "Detroit Pistons"
+  }; //computer's purple player
+  greenC: object = {
+    playerName: "Chiney Ogwumike",
+    color: "green",
+    fieldGoal: 0.494,
+    threePoint: 0.25,
+    freeThrow: 0.809,
+    number: 13,
+    team: "Los Angeles Sparks"
+  }; //computer's green player
   turn: boolean = true;
   bluePlayers: any[] = [
     {
