@@ -6,6 +6,7 @@ import {
   CountdownConfig,
   CountdownEvent
 } from "ngx-countdown";
+import { runInThisContext } from "vm";
 
 @Component({
   selector: "app-game-board",
@@ -231,6 +232,7 @@ export class GameBoardComponent implements OnInit {
   ];
   select: boolean;
   computersShots: any[] = [];
+  computersOpenShots: any[] = [];
   constructor(private draftService: DraftService) {}
 
   ngOnInit() {
@@ -254,10 +256,14 @@ export class GameBoardComponent implements OnInit {
     } else {
       this.commentary =
         "The Game has started! The Computer won the tip-off! The Computer starts with the ball!";
-      // this.computersTurn();
+      this.computersTurn();
     }
     this.start = true;
-    this.rollDice();
+    if ((this.turn = true)) {
+      this.computersTurn();
+    } else {
+      this.rollDice();
+    }
   }
   endGame(): void {
     this.end = true;
@@ -271,13 +277,15 @@ export class GameBoardComponent implements OnInit {
   }
   changeTurn(): void {
     this.turn = !this.turn;
-    this.rollDice();
-    // if ((this.turn = true)) {
-    //   this.computersTurn();
-    // }
+    if ((this.turn = true)) {
+      this.computersTurn();
+    } else {
+      this.rollDice();
+    }
+    console.log(this.turn);
   }
   findShot(form): void {
-    // console.log(form);
+    console.log(form);
     this.added = form.added;
     this.subtracted = form.subtracted;
     this.multiplied = form.multiplied;
@@ -302,13 +310,6 @@ export class GameBoardComponent implements OnInit {
         this.changeTurn();
       }, 2000);
     }
-
-    // this.highlightShots(
-    //   this.added,
-    //   this.subtracted,
-    //   this.multiplied,
-    //   this.divided
-    // );
   }
   highlightShots(
     added: number,
@@ -337,16 +338,14 @@ export class GameBoardComponent implements OnInit {
       });
     } else {
       this.oddNumbers.forEach(number => {
-        if (number.number === added) {
-          number.select = true;
-          openCounter++;
-        } else if (number.number === subtracted) {
-          number.select = true;
-          openCounter++;
-        } else if (number.number === multiplied) {
-          number.select = true;
-          openCounter++;
-        } else if (number.number === divided) {
+        if (
+          number.number === added ||
+          number.number === subtracted ||
+          number.number === multiplied ||
+          number.number === divided
+        ) {
+          // console.log(this.oddNumbers[number.index]);
+          this.computersShots.unshift(this.oddNumbers[number.index]);
           number.select = true;
           openCounter++;
         } else {
@@ -384,10 +383,6 @@ export class GameBoardComponent implements OnInit {
         this.isDivisible = false;
       }
     }
-    // console.log(`added = ${this.correctAdd}`);
-    // console.log(`subtracted = ${this.correctSub}`);
-    // console.log(`divided = ${this.correctDivide}`);
-    // console.log(`multiplied= ${this.correctTimes}`);
     this.evenNumbers.forEach(number => {
       number.select = false;
     });
@@ -488,7 +483,7 @@ export class GameBoardComponent implements OnInit {
   }
 
   takeOddShot(i: number): void {
-    let spot = this.evenNumbers[i];
+    let spot = this.oddNumbers[i];
     this.spin = Math.random() * 1;
     if (spot.color == "orange") {
       this.commentary = `${this.orangeC.name} shoots for ${spot.value}!`;
@@ -607,87 +602,115 @@ export class GameBoardComponent implements OnInit {
     this.commentary = stories[randomInt];
     this.changeTurn();
   }
+
   computersTurn(): void {
+    this.computersShots = [];
+    this.computersOpenShots = [];
+    console.log(this.computersOpenShots);
     this.rollDice();
+    this.highlightShots(
+      this.correctAdd,
+      this.correctSub,
+      this.correctTimes,
+      this.correctDivide
+    );
+
     setTimeout(() => {
-      this.oddNumbers.forEach(number => {
-        let openCounter = 0;
-        if (number.number === this.correctAdd) {
-          console.log(this.oddNumbers[number.index].playerName);
-          // if (number.value === 3) {
-          //   let newShot = {
-          //     name: this.oddNumbers[number.index].playerName,
-          //     per: this.oddNumbers[number.index].threepoint
-          //   };
-          //   this.computersShots.unshift(newShot);
-          // } else {
-          //   let newShot = {
-          //     name: this.oddNumbers[number.index].playerName,
-          //     per: this.oddNumbers[number.index].fieldgoal
-          //   };
-          //   this.computersShots.unshift(newShot);
-          // }
-          number.select = true;
-          openCounter++;
-        } else if (number.number === this.correctSub) {
-          console.log();
-          // if (number.value === 3) {
-          //   let newShot:any = {
-          //     name: this.oddNumbers[number.index].playerName,
-          //     per: this.oddNumbers[number.index].threepoint
-          //   };
-          //   this.computersShots.unshift(newShot);
-          // } else {
-          //   let newShot:any = {
-          //     name: this.oddNumbers[number.index].playerName,
-          //     per: this.oddNumbers[number.index].fieldgoal
-          //   };
-          //   this.computersShots.unshift(newShot);
-          // }
-          number.select = true;
-          openCounter++;
-        } else if (number.number === this.correctTimes) {
-          console.log(this.oddNumbers[number.index].playerName);
-          // if (number.value === 3) {
-          //   let newShot = {
-          //     name: this.oddNumbers[number.index].playerName,
-          //     per: this.oddNumbers[number.index].threepoint
-          //   };
-          //   this.computersShots.unshift(newShot);
-          // } else {
-          //   let newShot = {
-          //     name: this.oddNumbers[number.index].playerName,
-          //     per: this.oddNumbers[number.index].fieldgoal
-          //   };
-          //   this.computersShots.unshift(newShot);
-          // }
-          number.select = true;
-          openCounter++;
-        } else if (number.number === this.correctDivide) {
-          console.log(this.oddNumbers[number.index].playerName);
-          // if (number.value === 3) {
-          //   let newShot = {
-          //     name: this.oddNumbers[number.index].playerName,
-          //     per: this.oddNumbers[number.index].threepoint
-          //   };
-          //   this.computersShots.unshift(newShot);
-          // } else {
-          //   let newShot = {
-          //     name: this.oddNumbers[number.index].playerName,
-          //     per: this.oddNumbers[number.index].fieldgoal
-          //   };
-          //   this.computersShots.unshift(newShot);
-          // }
-          number.select = true;
-          openCounter++;
+      this.computersShots.forEach(number => {
+        if (number.value === 3) {
+          if (number.color === "red") {
+            let newShot = {
+              playerName: this.redC.playerName,
+              per: this.redC.threePoint,
+              index: number.index,
+              points: 3
+            };
+            this.computersOpenShots.unshift(newShot);
+          } else if (number.color === "orange") {
+            let newShot = {
+              playerName: this.orangeC.playerName,
+              per: this.orangeC.threePoint,
+              index: number.index,
+              points: 3
+            };
+            this.computersOpenShots.unshift(newShot);
+          } else if (number.color === "purple") {
+            let newShot = {
+              playerName: this.purpleC.playerName,
+              per: this.purpleC.threePoint,
+              index: number.index,
+              points: 3
+            };
+            this.computersOpenShots.unshift(newShot);
+          } else {
+            let newShot = {
+              playerName: this.blueC.playerName,
+              per: this.blueC.threePoint,
+              index: number.index,
+              points: 3
+            };
+            this.computersOpenShots.unshift(newShot);
+          }
         } else {
-          number.select = false;
+          if (number.color === "red") {
+            let newShot = {
+              playerName: this.redC.playerName,
+              per: this.redC.fieldGoal,
+              index: number.index,
+              points: 2
+            };
+            this.computersOpenShots.unshift(newShot);
+          } else if (number.color === "orange") {
+            let newShot = {
+              playerName: this.orangeC.playerName,
+              per: this.orangeC.fieldGoal,
+              index: number.index,
+              points: 2
+            };
+            this.computersOpenShots.unshift(newShot);
+          } else if (number.color === "purple") {
+            let newShot = {
+              playerName: this.purpleC.playerName,
+              per: this.purpleC.fieldGoal,
+              index: number.index,
+              points: 2
+            };
+            this.computersOpenShots.unshift(newShot);
+          } else if (number.color === "blue") {
+            let newShot = {
+              playerName: this.blueC.playerName,
+              per: this.blueC.fieldGoal,
+              index: number.index,
+              points: 2
+            };
+            this.computersOpenShots.unshift(newShot);
+          } else {
+            let newShot = {
+              playerName: this.greenC.playerName,
+              per: this.greenC.fieldGoal,
+              index: number.index,
+              points: 2
+            };
+            this.computersOpenShots.unshift(newShot);
+          }
         }
-        // if (openCounter === 0) {
-        //   // this.changeTurn();
-        // }
-        // console.log(this.computersShots);
       });
-    }, 2000);
+
+      this.computersOpenShots.sort((a, b) => {
+        return b.per - a.per;
+      });
+      console.log(this.computersOpenShots);
+      // if (this.computersOpenShots.length != ) {
+      //   this.takeComputerShot(this.computersOpenShots[0]);
+      // }
+    }, 3000);
+  }
+  takeComputerShot(player: any): void {
+    this.spin = Math.random() * 1;
+    if (this.spin >= player.per) {
+      this.makeShot(player.playerName, player.points, this.turn);
+    } else {
+      this.missShot(player.playerName);
+    }
   }
 }
