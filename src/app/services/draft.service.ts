@@ -16,7 +16,7 @@ export class DraftService {
   orangeC: object; //computer's orange player
   purpleC: object; //computer's purple player
   greenC: object; //computer's green player
-  turn: boolean = false;
+  turn: boolean = true;
   bluePlayers: any[] = [
     {
       playerName: "Kevin Durant",
