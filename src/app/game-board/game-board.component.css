@@ -76,8 +76,8 @@ header {
 }
 .ball {
   position: absolute;
-  width: 20px;
-  height: 20px;
+  width: 5%;
+  height: 5%;
 }
 
 .scoreboard {
@@ -327,8 +327,9 @@ section {
   top: 49%;
 }
 #evenBall {
-  left: 14%;
+  left: 90%;
   top: 50%;
+  z-index: 1;
 }
 #evenHoop {
   left: 14%;
@@ -355,8 +356,10 @@ section {
   right: 14%;
 }
 #oddBall {
-  right: 14%;
+  left: 10%;
   top: 50%;
+  /* transform: translateY(-50%); */
+  z-index: 1;
 }
 #seven {
   position: absolute;

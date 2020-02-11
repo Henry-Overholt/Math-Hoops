@@ -390,6 +390,7 @@ export class GameBoardComponent implements OnInit {
   }
 
   takeEvenShot(i: number): void {
+    this.shotBasketball(i);
     let spot = this.evenNumbers[i];
     this.spin = Math.random() * 1;
     if (spot.color == "orange") {
@@ -705,6 +706,8 @@ export class GameBoardComponent implements OnInit {
     });
     console.log(this.computersOpenShots);
     if (this.computersOpenShots.length >= 1) {
+      let index = this.computersOpenShots[0].index;
+      this.shotBasketball(index);
       this.takeComputerShot(this.computersOpenShots[0]);
     }
   }
@@ -716,5 +719,23 @@ export class GameBoardComponent implements OnInit {
     } else {
       this.makeShot(player.playerName, player.points, this.turn);
     }
+  }
+  shotBasketball(i: number) {
+    if (this.turn === false) {
+      let id = this.evenNumbers[i].id;
+      let spotLeft = document.getElementById(id).offsetLeft;
+      let spotTop = document.getElementById(id).offsetTop;
+      document.getElementById("evenBall").style.left = `${spotLeft}px`;
+      document.getElementById("evenBall").style.top = `${spotTop}px`;
+    } else {
+      let id = this.oddNumbers[i].id;
+      let spotLeft = document.getElementById(id).offsetLeft;
+      let spotTop = document.getElementById(id).offsetTop;
+      document.getElementById("oddBall").style.left = `${spotLeft}px`;
+      document.getElementById("oddBall").style.top = `${spotTop}px`;
+    }
+  }
+  moveBasketball(event) {
+    console.log(event);
   }
 }
