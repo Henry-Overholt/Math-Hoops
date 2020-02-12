@@ -92,14 +92,10 @@
     <div id="clockContainer">
       <p>Time Left in Round {{ computersTeam.length + 1 }} :</p>
       <div id="clock">
+        <p *ngIf="!start">1:00</p>
         <countdown
-          *ngIf="turn == true"
+          *ngIf="start == true"
           #draftClock
-          [config]="{ leftTime: 60, format: 'm:ss' }"
-        ></countdown>
-        <countdown
-          *ngIf="turn == !true"
-          #draftClockTwo
           [config]="{ leftTime: 60, format: 'm:ss' }"
         ></countdown>
       </div>

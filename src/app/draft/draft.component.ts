@@ -1,5 +1,7 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, ViewChild } from "@angular/core";
 import { DraftService } from "./../services/draft.service";
+import { CountdownComponent } from "ngx-countdown";
+// import { CookieService } from "ngx-cookie-service";
 
 @Component({
   selector: "app-draft",
@@ -7,6 +9,8 @@ import { DraftService } from "./../services/draft.service";
   styleUrls: ["./draft.component.css"]
 })
 export class DraftComponent implements OnInit {
+  @ViewChild("draftClock", { static: false })
+  private draftClock: CountdownComponent;
   turn: boolean;
   randomInt: number;
   whoseTurn: string;
@@ -32,7 +36,9 @@ export class DraftComponent implements OnInit {
   showStats: boolean;
   timer: number;
 
-  constructor(private draftService: DraftService) {}
+  constructor(
+    private draftService: DraftService // private cookieService: CookieService
+  ) {}
 
   ngOnInit() {
     this.bluePlayers = this.draftService.bluePlayers;
@@ -47,6 +53,7 @@ export class DraftComponent implements OnInit {
     if (this.computersTeam.length === 0) {
       setTimeout(() => {
         this.draftService.setOrangeC(this.orangePlayers[this.randomInt]);
+        // this.cookieService.set("orangeC", this.orangePlayers[this.randomInt]);
         this.computersTeam.unshift(this.orangePlayers[this.randomInt]);
         this.whoseTurn = `The computer drafted ${
           this.orangePlayers[this.randomInt].playername
@@ -57,6 +64,7 @@ export class DraftComponent implements OnInit {
     } else if (this.computersTeam.length === 1) {
       setTimeout(() => {
         this.computersTeam.unshift(this.redPlayers[this.randomInt]);
+        // this.cookieService.set("redC", this.redPlayers[this.randomInt]);
         this.draftService.setRedC(this.redPlayers[this.randomInt]);
         this.whoseTurn = `The computer drafted ${
           this.redPlayers[this.randomInt].playername
@@ -67,6 +75,7 @@ export class DraftComponent implements OnInit {
     } else if (this.computersTeam.length === 2) {
       setTimeout(() => {
         this.computersTeam.unshift(this.bluePlayers[this.randomInt]);
+        // this.cookieService.set("blueC", this.bluePlayers[this.randomInt]);
         this.draftService.setBlueC(this.bluePlayers[this.randomInt]);
         this.whoseTurn = `The computer drafted ${
           this.bluePlayers[this.randomInt].playername
@@ -77,6 +86,7 @@ export class DraftComponent implements OnInit {
     } else if (this.computersTeam.length === 3) {
       setTimeout(() => {
         this.computersTeam.unshift(this.greenPlayers[this.randomInt]);
+        // this.cookieService.set("greenC", this.greenPlayers[this.randomInt]);
         this.draftService.setGreenC(this.greenPlayers[this.randomInt]);
         this.whoseTurn = `The computer drafted ${
           this.greenPlayers[this.randomInt].playername
@@ -87,6 +97,7 @@ export class DraftComponent implements OnInit {
     } else if (this.computersTeam.length === 4) {
       setTimeout(() => {
         this.computersTeam.unshift(this.purplePlayers[this.randomInt]);
+        // this.cookieService.set("purpleC", this.purplePlayers[this.randomInt]);
         this.draftService.setPurpleC(this.purplePlayers[this.randomInt]);
         this.whoseTurn = `The computer drafted ${
           this.purplePlayers[this.randomInt].playername
@@ -120,6 +131,7 @@ export class DraftComponent implements OnInit {
     this.draftService.setTurn(!this.turn);
   }
   changeTurn(): void {
+    this.draftClock.restart();
     this.turn = !this.turn;
     console.log(this.turn);
   }
@@ -163,6 +175,7 @@ export class DraftComponent implements OnInit {
       this.yesBlue = true;
       this.endGame();
       this.playersTeam.unshift(this.bluePlayers[i]);
+      // this.cookieService.set("blueP", this.bluePlayers[this.randomInt]);
       this.whoseTurn = `You drafted ${this.bluePlayers[i].playername}! The computer is on the clock!`;
       this.draftService.setBlueP(this.bluePlayers[i]);
       this.bluePlayers.splice(i, 1);
@@ -174,6 +187,7 @@ export class DraftComponent implements OnInit {
       this.yesGreen = true;
       this.endGame();
       this.playersTeam.unshift(this.greenPlayers[i]);
+      // this.cookieService.set("greenP", this.greenPlayers[this.randomInt]);
       this.whoseTurn = `You drafted ${this.greenPlayers[i].playername}! The computer is on the clock!`;
       this.draftService.setGreenP(this.greenPlayers[i]);
       this.greenPlayers.splice(i, 1);
@@ -185,6 +199,7 @@ export class DraftComponent implements OnInit {
       this.yesRed = true;
       this.endGame();
       this.playersTeam.unshift(this.redPlayers[i]);
+      // this.cookieService.set("redP", this.redPlayers[this.randomInt]);
       this.whoseTurn = `You drafted ${this.redPlayers[i].playername}! The computer is on the clock!`;
       this.draftService.setRedP(this.redPlayers[i]);
       this.redPlayers.splice(i, 1);
@@ -196,6 +211,7 @@ export class DraftComponent implements OnInit {
       this.endGame();
       this.yesOrange = true;
       this.playersTeam.unshift(this.orangePlayers[i]);
+      // this.cookieService.set("orangeP", this.orangePlayers[this.randomInt]);
       this.whoseTurn = `You drafted ${this.orangePlayers[i].playername}! The computer is on the clock!`;
       this.draftService.setOrangeP(this.orangePlayers[i]);
       this.orangePlayers.splice(i, 1);
@@ -207,6 +223,7 @@ export class DraftComponent implements OnInit {
       this.yesPurple = true;
       this.endGame();
       this.playersTeam.unshift(this.purplePlayers[i]);
+      // this.cookieService.set("purpleP", this.purplePlayers[this.randomInt]);
       this.whoseTurn = `You drafted ${this.purplePlayers[i].playername}! The computer is on the clock!`;
       this.draftService.setPurpleP(this.purplePlayers[i]);
       this.purplePlayers.splice(i, 1);

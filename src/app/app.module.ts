@@ -41,10 +41,7 @@ export function countdownConfigFactory(): CountdownConfig {
     CountdownModule,
     RouterModule.forRoot(appRoutes)
   ],
-  providers: [
-    { provide: CountdownGlobalConfig, useFactory: countdownConfigFactory },
-    CookieService
-  ],
+  providers: [CookieService],
   bootstrap: [AppComponent]
 })
 export class AppModule {}
