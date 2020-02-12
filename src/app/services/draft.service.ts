@@ -7,16 +7,96 @@ import { Observable } from "rxjs";
   providedIn: "root"
 })
 export class DraftService {
-  redP: object; //player's red player
-  blueP: object; //player's blue player
-  orangeP: object; //player's orange player
-  purpleP: object; //player's purple player
-  greenP: object; //player's green player
-  redC: object; //computer's red player
-  blueC: object; //computer's blue player
-  orangeC: object; //computer's orange player
-  purpleC: object; //computer's purple player
-  greenC: object; //computer's green player
+  redP: object = {
+    playerName: "J.J. Reddick",
+    color: "red",
+    fieldGoal: 0.448,
+    threePoint: 0.416,
+    freeThrow: 0.891,
+    number: 17,
+    team: "New Orleans Pelicans"
+  }; //player's red player
+  blueP: object = {
+    playerName: "Tobias Harris",
+    color: "blue",
+    fieldGoal: 0.469,
+    threePoint: 0.326,
+    freeThrow: 0.841,
+    number: 33,
+    team: "Philadelphia 76ers"
+  }; //player's blue player
+  orangeP: object = {
+    playerName: "Ben Simmons",
+    color: "orange",
+    fieldGoal: 0.58,
+    threePoint: 0.4,
+    freeThrow: 0.582,
+    number: 25,
+    team: "Philadelphia 76ers"
+  }; //player's orange player
+  purpleP: object = {
+    playerName: "Jimmy Butler",
+    color: "purple",
+    fieldGoal: 0.461,
+    threePoint: 0.338,
+    freeThrow: 0.868,
+    number: 23,
+    team: "Miami Heat"
+  }; //player's purple player
+  greenP: object = {
+    playerName: "Joel Embiid",
+    color: "green",
+    fieldGoal: 0.484,
+    threePoint: 0.3,
+    freeThrow: 0.804,
+    number: 21,
+    team: "Philadelphia 76ers"
+  }; //player's green player
+  redC: object = {
+    playerName: "Klay Thompson",
+    color: "red",
+    fieldGoal: 0.467,
+    threePoint: 0.402,
+    freeThrow: 0.816,
+    number: 11,
+    team: "Golden State Warriors"
+  }; //computer's red player
+  blueC: object = {
+    playerName: "Kevin Durant",
+    color: "blue",
+    fieldGoal: 0.521,
+    threePoint: 0.353,
+    freeThrow: 0.885,
+    number: 7,
+    team: "Brooklyn Nets"
+  }; //computer's blue player
+  orangeC: object = {
+    playerName: "Stephen Curry",
+    color: "orange",
+    fieldGoal: 0.472,
+    threePoint: 0.437,
+    freeThrow: 0.916,
+    number: 30,
+    team: "Golden State Warriors"
+  }; //computer's orange player
+  purpleC: object = {
+    playerName: "Draymond Green",
+    color: "purple",
+    fieldGoal: 0.435,
+    threePoint: 0.32,
+    freeThrow: 0.709,
+    number: 23,
+    team: "Golden State Warriors"
+  }; //computer's purple player
+  greenC: object = {
+    playerName: "DeMarcus Cousins",
+    color: "green",
+    fieldGoal: 0.48,
+    threePoint: 0.274,
+    freeThrow: 0.551,
+    number: 0,
+    team: "Los Angeles Lakers"
+  }; //computer's green player
   turn: boolean = false;
   bluePlayers: any[] = [
     {
@@ -175,13 +255,13 @@ export class DraftService {
       team: "Cleveland Cavaliers"
     },
     {
-      playerName: "Klay Thompson",
+      playerName: "Russell Westbrook",
       color: "orange",
-      fieldGoal: 0.467,
-      threePoint: 0.402,
-      freeThrow: 0.816,
-      number: 11,
-      team: "Golden State Warriors"
+      fieldGoal: 0.428,
+      threePoint: 0.29,
+      freeThrow: 0.656,
+      number: 0,
+      team: "Houston Rockets"
     },
     {
       playerName: "Lonzo Ball",
@@ -404,6 +484,15 @@ export class DraftService {
       team: "Philadelphia 76ers"
     },
     {
+      playerName: "J.J. Reddick",
+      color: "red",
+      fieldGoal: 0.448,
+      threePoint: 0.416,
+      freeThrow: 0.891,
+      number: 17,
+      team: "New Orleans Pelicans"
+    },
+    {
       playerName: "Kyrie Irving",
       color: "red",
       fieldGoal: 0.487,
@@ -440,13 +529,13 @@ export class DraftService {
       team: "Washington Wizards"
     },
     {
-      playerName: "Russell Westbrook",
+      playerName: "Klay Thompson",
       color: "red",
-      fieldGoal: 0.428,
-      threePoint: 0.29,
-      freeThrow: 0.656,
-      number: 0,
-      team: "Houston Rockets"
+      fieldGoal: 0.467,
+      threePoint: 0.402,
+      freeThrow: 0.816,
+      number: 11,
+      team: "Golden State Warriors"
     },
     {
       playerName: "DeMar DeRozan",
@@ -611,6 +700,15 @@ export class DraftService {
       freeThrow: 0.821,
       number: 42,
       team: "Philadelphia 76ers"
+    },
+    {
+      playerName: "Draymond Green",
+      color: "purple",
+      fieldGoal: 0.435,
+      threePoint: 0.32,
+      freeThrow: 0.709,
+      number: 23,
+      team: "Golden State Warriors"
     }
   ];
 
