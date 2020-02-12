@@ -523,7 +523,7 @@ ol {
   border: solid blue;
 }
 .incorrect {
-  opacity: 0.7;
+  opacity: 0.5;
   pointer-events: none;
   box-shadow: 0px 0px 0px 0px;
 }
