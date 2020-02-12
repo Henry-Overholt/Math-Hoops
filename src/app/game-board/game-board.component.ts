@@ -272,13 +272,20 @@ export class GameBoardComponent implements OnInit {
     }
   }
   changeTurn(): void {
-    this.turn = !this.turn;
-    if (this.turn === true) {
-      this.computersTurn();
-    } else {
-      this.rollDice();
-    }
-    console.log(this.turn);
+    let commentary = this.commentary;
+    setTimeout(() => {
+      document.getElementById("oddHoop").style.background = "none";
+      document.getElementById("evenHoop").style.background = "none";
+      this.turn = !this.turn;
+      if (this.turn === true) {
+        this.commentary = `${commentary} The computer has the ball!`;
+        this.computersTurn();
+      } else {
+        this.commentary = `${commentary} You have the ball!`;
+        this.rollDice();
+      }
+      // console.log(this.turn);
+    }, 1000);
   }
   findShot(form): void {
     console.log(form);
@@ -353,7 +360,7 @@ export class GameBoardComponent implements OnInit {
       this.openShot = false;
       setTimeout(() => {
         this.changeTurn();
-      }, 1000);
+      }, 2000);
     } else {
       this.openShot = true;
     }
@@ -409,7 +416,7 @@ export class GameBoardComponent implements OnInit {
             this.missShot(this.orangeP.playerName);
           }
         }
-      }, 1000);
+      }, 1500);
     } else if (spot.color == "blue") {
       this.commentary = `${this.blueP.playerName} shoots for ${spot.value}!`;
       setTimeout(() => {
@@ -426,24 +433,24 @@ export class GameBoardComponent implements OnInit {
             this.missShot(this.blueP.playerName);
           }
         }
-      }, 1000);
+      }, 1500);
     } else if (spot.color == "green") {
-      this.commentary = `${this.greenP.playerName} shoots for ${spot.value}!`;
+      this.commentary = `${this.redP.playerName} shoots for ${spot.value}!`;
       setTimeout(() => {
         if (spot.value === 3) {
-          if (this.spin <= this.greenP.threePoint) {
-            this.makeShot(this.greenP.playerName, spot.value, this.turn);
+          if (this.spin <= this.redP.threePoint) {
+            this.makeShot(this.redP.playerName, spot.value, this.turn);
           } else {
-            this.missShot(this.greenP.playerName);
+            this.missShot(this.redP.playerName);
           }
         } else {
-          if (this.spin <= this.greenP.fieldGoal) {
-            this.makeShot(this.greenP.playerName, spot.value, this.turn);
+          if (this.spin <= this.redP.fieldGoal) {
+            this.makeShot(this.redP.playerName, spot.value, this.turn);
           } else {
-            this.missShot(this.greenP.playerName);
+            this.missShot(this.redP.playerName);
           }
         }
-      }, 1000);
+      }, 1500);
     } else if (spot.color == "purple") {
       this.commentary = `${this.purpleP.playerName} shoots for ${spot.value}!`;
       setTimeout(() => {
@@ -460,24 +467,24 @@ export class GameBoardComponent implements OnInit {
             this.missShot(this.purpleP.playerName);
           }
         }
-      }, 1000);
+      }, 1500);
     } else {
-      this.commentary = `${this.redP.playerName} shoots for ${spot.value}!`;
+      this.commentary = `${this.greenP.playerName} shoots for ${spot.value}!`;
       setTimeout(() => {
         if (spot.value === 3) {
-          if (this.spin <= this.redP.threePoint) {
-            this.makeShot(this.redP.playerName, spot.value, this.turn);
+          if (this.spin <= this.greenP.threePoint) {
+            this.makeShot(this.greenP.playerName, spot.value, this.turn);
           } else {
-            this.missShot(this.redP.playerName);
+            this.missShot(this.greenP.playerName);
           }
         } else {
-          if (this.spin <= this.redP.fieldGoal) {
-            this.makeShot(this.redP.playerName, spot.value, this.turn);
+          if (this.spin <= this.greenP.fieldGoal) {
+            this.makeShot(this.greenP.playerName, spot.value, this.turn);
           } else {
-            this.missShot(this.redP.playerName);
+            this.missShot(this.greenP.playerName);
           }
         }
-      }, 1000);
+      }, 1500);
     }
   }
   //function for the numbers on the odd side of the board
@@ -584,9 +591,11 @@ export class GameBoardComponent implements OnInit {
     if (turn === true) {
       this.commentary = stories[randomInt];
       this.computerScore += points;
+      document.getElementById("oddHoop").style.background = "green";
     } else {
       this.commentary = stories[randomInt];
       this.playerScore += points;
+      document.getElementById("evenHoop").style.background = "green";
     }
     this.changeTurn();
   }
@@ -700,21 +709,25 @@ export class GameBoardComponent implements OnInit {
     }
   }
   sortOpenShots() {
-    console.log(this.computersOpenShots);
+    // console.log(this.computersOpenShots);
     this.computersOpenShots.sort((a, b) => {
       return b.per - a.per;
     });
-    console.log(this.computersOpenShots);
+    // console.log(this.computersOpenShots);
     if (this.computersOpenShots.length >= 1) {
       let index = this.computersOpenShots[0].index;
       this.shotBasketball(index);
-      this.takeComputerShot(this.computersOpenShots[0]);
+      setTimeout(() => {
+        this.takeComputerShot(this.computersOpenShots[0]);
+      }, 1000);
     }
   }
   takeComputerShot(player: any): void {
-    console.log(player.index);
+    // console.log(player.index);
     this.spin = Math.random() * 1;
-    if (this.spin > player.per) {
+
+    if (this.spin <= player.per) {
+      document.getElementById("oddHoop").style.background = "red";
       this.missShot(player.playerName);
     } else {
       this.makeShot(player.playerName, player.points, this.turn);
@@ -735,7 +748,5 @@ export class GameBoardComponent implements OnInit {
       document.getElementById("oddBall").style.top = `${spotTop}px`;
     }
   }
-  moveBasketball(event) {
-    console.log(event);
-  }
+  moveBasketball() {}
 }
