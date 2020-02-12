@@ -12,6 +12,8 @@ import { CountdownComponent } from "ngx-countdown";
 export class GameBoardComponent implements OnInit {
   @ViewChild("gameClock", { static: false })
   private gameClock: CountdownComponent;
+  @ViewChild("playerShotClock", { static: false })
+  private playerShotClock: CountdownComponent;
   spin: number;
   turn: boolean = true;
   start: boolean = false;
@@ -261,7 +263,7 @@ export class GameBoardComponent implements OnInit {
   }
   endGame(): void {
     this.end = true;
-    if ((this.playerScore = this.computerScore)) {
+    if (this.playerScore === this.computerScore) {
       this.final = `You tied ${this.playerScore} to ${this.computerScore}.  Some say it's like kissing your sibling.`;
     } else if (this.playerScore > this.computerScore) {
       this.final = `You won! With a final score of ${this.playerScore} to ${this.computerScore}! Congrats!`;
@@ -272,16 +274,15 @@ export class GameBoardComponent implements OnInit {
   changeTurn(): void {
     // this.gameClock.restart();
     if (this.gameClock.i.value > 0) {
-      let commentary = this.commentary;
       setTimeout(() => {
         document.getElementById("oddHoop").style.background = "none";
         document.getElementById("evenHoop").style.background = "none";
         this.turn = !this.turn;
         if (this.turn === true) {
-          this.commentary = `${commentary} The computer has the ball!`;
+          this.commentary = `The computer has the ball!`;
           this.computersTurn();
         } else {
-          this.commentary = `${commentary} You have the ball!`;
+          this.commentary = `You have the ball!`;
           this.rollDice();
         }
         // console.log(this.turn);
@@ -359,7 +360,7 @@ export class GameBoardComponent implements OnInit {
       });
     }
     if (openCounter === 0) {
-      this.commentary = "Turnover! The ball goes back down the court!";
+      this.commentary = "Turnover!";
       this.openShot = false;
       setTimeout(() => {
         this.changeTurn();
@@ -405,184 +406,190 @@ export class GameBoardComponent implements OnInit {
     this.shotBasketball(i);
     let spot = this.evenNumbers[i];
     this.spin = Math.random() * 1;
-    if (spot.color == "orange") {
-      this.commentary = `${this.orangeP.playerName} shoots for ${spot.value}!`;
-      setTimeout(() => {
-        if (spot.value === 3) {
-          if (this.spin <= this.orangeP.threePoint) {
-            this.makeShot(this.orangeP.playerName, spot.value, this.turn);
+    if (this.playerShotClock.i.value > 0) {
+      if (spot.color == "orange") {
+        this.commentary = `${this.orangeP.playerName} shoots for ${spot.value}!`;
+        setTimeout(() => {
+          if (spot.value === 3) {
+            if (this.spin <= this.orangeP.threePoint) {
+              this.makeShot(this.orangeP.playerName, spot.value, this.turn);
+            } else {
+              document.getElementById("evenHoop").style.background = "red";
+              this.missShot(this.orangeP.playerName);
+            }
           } else {
-            this.missShot(this.orangeP.playerName);
+            if (this.spin <= this.orangeP.fieldGoal) {
+              this.makeShot(this.orangeP.playerName, spot.value, this.turn);
+            } else {
+              document.getElementById("evenHoop").style.background = "red";
+              this.missShot(this.orangeP.playerName);
+            }
           }
-        } else {
-          if (this.spin <= this.orangeP.fieldGoal) {
-            this.makeShot(this.orangeP.playerName, spot.value, this.turn);
+        }, 1500);
+      } else if (spot.color == "blue") {
+        this.commentary = `${this.blueP.playerName} shoots for ${spot.value}!`;
+        setTimeout(() => {
+          if (spot.value === 3) {
+            if (this.spin <= this.blueP.threePoint) {
+              this.makeShot(this.blueP.playerName, spot.value, this.turn);
+            } else {
+              document.getElementById("evenHoop").style.background = "red";
+              this.missShot(this.blueP.playerName);
+            }
           } else {
-            this.missShot(this.orangeP.playerName);
+            if (this.spin <= this.blueP.fieldGoal) {
+              this.makeShot(this.blueP.playerName, spot.value, this.turn);
+            } else {
+              document.getElementById("evenHoop").style.background = "red";
+              this.missShot(this.blueP.playerName);
+            }
           }
-        }
-      }, 1500);
-    } else if (spot.color == "blue") {
-      this.commentary = `${this.blueP.playerName} shoots for ${spot.value}!`;
-      setTimeout(() => {
-        if (spot.value === 3) {
-          if (this.spin <= this.blueP.threePoint) {
-            this.makeShot(this.blueP.playerName, spot.value, this.turn);
+        }, 1500);
+      } else if (spot.color == "red") {
+        this.commentary = `${this.redP.playerName} shoots for ${spot.value}!`;
+        setTimeout(() => {
+          if (spot.value === 3) {
+            if (this.spin <= this.redP.threePoint) {
+              this.makeShot(this.redP.playerName, spot.value, this.turn);
+            } else {
+              document.getElementById("evenHoop").style.background = "red";
+              this.missShot(this.redP.playerName);
+            }
           } else {
-            this.missShot(this.blueP.playerName);
+            if (this.spin <= this.redP.fieldGoal) {
+              this.makeShot(this.redP.playerName, spot.value, this.turn);
+            } else {
+              document.getElementById("evenHoop").style.background = "red";
+              this.missShot(this.redP.playerName);
+            }
           }
-        } else {
-          if (this.spin <= this.blueP.fieldGoal) {
-            this.makeShot(this.blueP.playerName, spot.value, this.turn);
+        }, 1500);
+      } else if (spot.color == "purple") {
+        this.commentary = `${this.purpleP.playerName} shoots for ${spot.value}!`;
+        setTimeout(() => {
+          if (spot.value === 3) {
+            if (this.spin <= this.purpleP.threePoint) {
+              this.makeShot(this.purpleP.playerName, spot.value, this.turn);
+            } else {
+              document.getElementById("evenHoop").style.background = "red";
+              this.missShot(this.purpleP.playerName);
+            }
           } else {
-            this.missShot(this.blueP.playerName);
+            if (this.spin <= this.purpleP.fieldGoal) {
+              this.makeShot(this.purpleP.playerName, spot.value, this.turn);
+            } else {
+              document.getElementById("evenHoop").style.background = "red";
+              this.missShot(this.purpleP.playerName);
+            }
           }
-        }
-      }, 1500);
-    } else if (spot.color == "green") {
-      this.commentary = `${this.redP.playerName} shoots for ${spot.value}!`;
-      setTimeout(() => {
-        if (spot.value === 3) {
-          if (this.spin <= this.redP.threePoint) {
-            this.makeShot(this.redP.playerName, spot.value, this.turn);
-          } else {
-            this.missShot(this.redP.playerName);
-          }
-        } else {
-          if (this.spin <= this.redP.fieldGoal) {
-            this.makeShot(this.redP.playerName, spot.value, this.turn);
-          } else {
-            this.missShot(this.redP.playerName);
-          }
-        }
-      }, 1500);
-    } else if (spot.color == "purple") {
-      this.commentary = `${this.purpleP.playerName} shoots for ${spot.value}!`;
-      setTimeout(() => {
-        if (spot.value === 3) {
-          if (this.spin <= this.purpleP.threePoint) {
-            this.makeShot(this.purpleP.playerName, spot.value, this.turn);
-          } else {
-            this.missShot(this.purpleP.playerName);
-          }
-        } else {
-          if (this.spin <= this.purpleP.fieldGoal) {
-            this.makeShot(this.purpleP.playerName, spot.value, this.turn);
-          } else {
-            this.missShot(this.purpleP.playerName);
-          }
-        }
-      }, 1500);
-    } else {
-      this.commentary = `${this.greenP.playerName} shoots for ${spot.value}!`;
-      setTimeout(() => {
-        if (spot.value === 3) {
-          if (this.spin <= this.greenP.threePoint) {
-            this.makeShot(this.greenP.playerName, spot.value, this.turn);
-          } else {
-            this.missShot(this.greenP.playerName);
-          }
-        } else {
+        }, 1500);
+      } else {
+        this.commentary = `${this.greenP.playerName} shoots for ${spot.value}!`;
+        setTimeout(() => {
           if (this.spin <= this.greenP.fieldGoal) {
             this.makeShot(this.greenP.playerName, spot.value, this.turn);
           } else {
+            document.getElementById("evenHoop").style.background = "red";
             this.missShot(this.greenP.playerName);
           }
-        }
-      }, 1500);
+        }, 1500);
+      }
+    } else {
+      this.commentary = "SHOT CLOCK VIOLATION!";
+      this.changeTurn();
     }
   }
   //function for the numbers on the odd side of the board
-  takeOddShot(i: number): void {
-    let spot = this.oddNumbers[i];
-    this.spin = Math.random() * 1;
-    if (spot.color == "orange") {
-      this.commentary = `${this.orangeC.playerName} shoots for ${spot.value}!`;
-      setTimeout(() => {
-        if (spot.value === 3) {
-          if (this.orangeC.threepoint <= this.spin) {
-            this.makeShot(this.orangeC.playerName, spot.value, this.turn);
-          } else {
-            this.missShot(this.orangeC.playerName);
-          }
-        } else {
-          if (this.orangeC.fieldgoal <= this.spin) {
-            this.makeShot(this.orangeC.playerName, spot.value, this.turn);
-          } else {
-            this.missShot(this.orangeC.playerName);
-          }
-        }
-      }, 1000);
-    } else if (spot.color == "blue") {
-      this.commentary = `${this.blueC.playerName} shoots for ${spot.value}!`;
-      setTimeout(() => {
-        if (spot.value === 3) {
-          if (this.blueC.threepoint <= this.spin) {
-            this.makeShot(this.blueC.playerName, spot.value, this.turn);
-          } else {
-            this.missShot(this.blueC.playerName);
-          }
-        } else {
-          if (this.blueC.fieldgoal <= this.spin) {
-            this.makeShot(this.blueC.playerName, spot.value, this.turn);
-          } else {
-            this.missShot(this.blueC.playerName);
-          }
-        }
-      }, 1000);
-    } else if (spot.color == "green") {
-      this.commentary = `${this.greenC.playerName} shoots for ${spot.value}!`;
-      setTimeout(() => {
-        if (spot.value === 3) {
-          if (this.greenC.threepoint <= this.spin) {
-            this.makeShot(this.greenC.playerName, spot.value, this.turn);
-          } else {
-            this.missShot(this.greenC.playerName);
-          }
-        } else {
-          if (this.greenC.fieldgoal <= this.spin) {
-            this.makeShot(this.greenC.playerName, spot.value, this.turn);
-          } else {
-            this.missShot(this.greenC.playerName);
-          }
-        }
-      }, 1000);
-    } else if (spot.color == "purple") {
-      this.commentary = `${this.purpleC.playerName} shoots for ${spot.value}!`;
-      setTimeout(() => {
-        if (spot.value === 3) {
-          if (this.purpleC.threepoint <= this.spin) {
-            this.makeShot(this.purpleC.playerName, spot.value, this.turn);
-          } else {
-            this.missShot(this.purpleC.playerName);
-          }
-        } else {
-          if (this.purpleC.fieldgoal <= this.spin) {
-            this.makeShot(this.purpleC.playerName, spot.value, this.turn);
-          } else {
-            this.missShot(this.purpleC.playerName);
-          }
-        }
-      }, 1000);
-    } else {
-      this.commentary = `${this.redC.playerName} shoots for ${spot.value}!`;
-      setTimeout(() => {
-        if (spot.value === 3) {
-          if (this.redC.threepoint <= this.spin) {
-            this.makeShot(this.redC.playerName, spot.value, this.turn);
-          } else {
-            this.missShot(this.redC.playerName);
-          }
-        } else {
-          if (this.redC.fieldgoal <= this.spin) {
-            this.makeShot(this.redC.playerName, spot.value, this.turn);
-          } else {
-            this.missShot(this.redC.playerName);
-          }
-        }
-      }, 1000);
-    }
-  }
+  // takeOddShot(i: number): void {
+  //   let spot = this.oddNumbers[i];
+  //   this.spin = Math.random() * 1;
+  //   if (spot.color == "orange") {
+  //     this.commentary = `${this.orangeC.playerName} shoots for ${spot.value}!`;
+  //     setTimeout(() => {
+  //       if (spot.value === 3) {
+  //         if (this.orangeC.threepoint <= this.spin) {
+  //           this.makeShot(this.orangeC.playerName, spot.value, this.turn);
+  //         } else {
+  //           this.missShot(this.orangeC.playerName);
+  //         }
+  //       } else {
+  //         if (this.orangeC.fieldgoal <= this.spin) {
+  //           this.makeShot(this.orangeC.playerName, spot.value, this.turn);
+  //         } else {
+  //           this.missShot(this.orangeC.playerName);
+  //         }
+  //       }
+  //     }, 1000);
+  //   } else if (spot.color == "blue") {
+  //     this.commentary = `${this.blueC.playerName} shoots for ${spot.value}!`;
+  //     setTimeout(() => {
+  //       if (spot.value === 3) {
+  //         if (this.blueC.threepoint <= this.spin) {
+  //           this.makeShot(this.blueC.playerName, spot.value, this.turn);
+  //         } else {
+  //           this.missShot(this.blueC.playerName);
+  //         }
+  //       } else {
+  //         if (this.blueC.fieldgoal <= this.spin) {
+  //           this.makeShot(this.blueC.playerName, spot.value, this.turn);
+  //         } else {
+  //           this.missShot(this.blueC.playerName);
+  //         }
+  //       }
+  //     }, 1000);
+  //   } else if (spot.color == "green") {
+  //     this.commentary = `${this.greenC.playerName} shoots for ${spot.value}!`;
+  //     setTimeout(() => {
+  //       if (spot.value === 3) {
+  //         if (this.greenC.threepoint <= this.spin) {
+  //           this.makeShot(this.greenC.playerName, spot.value, this.turn);
+  //         } else {
+  //           this.missShot(this.greenC.playerName);
+  //         }
+  //       } else {
+  //         if (this.greenC.fieldgoal <= this.spin) {
+  //           this.makeShot(this.greenC.playerName, spot.value, this.turn);
+  //         } else {
+  //           this.missShot(this.greenC.playerName);
+  //         }
+  //       }
+  //     }, 1000);
+  //   } else if (spot.color == "purple") {
+  //     this.commentary = `${this.purpleC.playerName} shoots for ${spot.value}!`;
+  //     setTimeout(() => {
+  //       if (spot.value === 3) {
+  //         if (this.purpleC.threepoint <= this.spin) {
+  //           this.makeShot(this.purpleC.playerName, spot.value, this.turn);
+  //         } else {
+  //           this.missShot(this.purpleC.playerName);
+  //         }
+  //       } else {
+  //         if (this.purpleC.fieldgoal <= this.spin) {
+  //           this.makeShot(this.purpleC.playerName, spot.value, this.turn);
+  //         } else {
+  //           this.missShot(this.purpleC.playerName);
+  //         }
+  //       }
+  //     }, 1000);
+  //   } else {
+  //     this.commentary = `${this.redC.playerName} shoots for ${spot.value}!`;
+  //     setTimeout(() => {
+  //       if (spot.value === 3) {
+  //         if (this.redC.threepoint <= this.spin) {
+  //           this.makeShot(this.redC.playerName, spot.value, this.turn);
+  //         } else {
+  //           this.missShot(this.redC.playerName);
+  //         }
+  //       } else {
+  //         if (this.redC.fieldgoal <= this.spin) {
+  //           this.makeShot(this.redC.playerName, spot.value, this.turn);
+  //         } else {
+  //           this.missShot(this.redC.playerName);
+  //         }
+  //       }
+  //     }, 1000);
+  //   }
+  // }
   //function for if the shooting percentage is equal to or lower than the random spin, updates score, then send to the changeTurn function
   makeShot(name: string, points: number, turn: boolean) {
     let stories: string[] = [

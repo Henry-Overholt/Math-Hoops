@@ -5,7 +5,7 @@
         <p *ngIf="!start">:30</p>
         <countdown
           *ngIf="turn == false && start == true && end == false"
-          #shotClock
+          #playerShotClock
           [config]="{ leftTime: 30, format: ':ss' }"
         ></countdown>
       </div>
