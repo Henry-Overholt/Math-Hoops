@@ -1,11 +1,8 @@
 import { Component, OnInit, ViewChild } from "@angular/core";
 import { NgForm } from "@angular/forms";
 import { DraftService } from "./../services/draft.service";
-import {
-  CountdownComponent,
-  CountdownConfig,
-  CountdownEvent
-} from "ngx-countdown";
+import { CountdownComponent } from "ngx-countdown";
+// import { CookieService } from "ngx-cookie-service";
 
 @Component({
   selector: "app-game-board",
@@ -233,7 +230,9 @@ export class GameBoardComponent implements OnInit {
   computersShots: any[] = [];
   computersOpenShots: any[] = [];
   openShot: boolean;
-  constructor(private draftService: DraftService) {}
+  constructor(
+    private draftService: DraftService // private cookieService: CookieService
+  ) {}
 
   ngOnInit() {
     this.redP = this.draftService.redP;
@@ -384,12 +383,14 @@ export class GameBoardComponent implements OnInit {
         this.correctDivide = this.redDice / this.blueDice;
       } else {
         this.isDivisible = false;
+        this.correctDivide = undefined;
       }
     } else {
       if (this.blueDice % this.redDice === 0) {
         this.correctDivide = this.blueDice / this.redDice;
       } else {
         this.isDivisible = false;
+        this.correctDivide = undefined;
       }
     }
     this.evenNumbers.forEach(number => {
