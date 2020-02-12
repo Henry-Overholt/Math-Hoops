@@ -2,6 +2,7 @@
   <header>
     <div id="scoreboard">
       <div class="shotClock">
+        <p *ngIf="!start">:30</p>
         <countdown
           *ngIf="turn == false && start == true && end == false"
           #shotClock
@@ -15,10 +16,11 @@
         </div>
       </div>
       <div class="gameClock">
+        <p *ngIf="!start">15:00</p>
         <countdown
           #gameClock
           *ngIf="start"
-          [config]="{ leftTime: 900, format: 'm:ss' }"
+          [config]="{ leftTime: 900, format: 'm:ss', demand: false }"
         ></countdown>
       </div>
       <div class="scoreboard">
@@ -28,6 +30,7 @@
         </div>
       </div>
       <div class="shotClock">
+        <p *ngIf="!start">:30</p>
         <countdown
           *ngIf="turn == true && start == true && end == false"
           #shotClock

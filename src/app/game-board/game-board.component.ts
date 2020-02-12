@@ -6,7 +6,6 @@ import {
   CountdownConfig,
   CountdownEvent
 } from "ngx-countdown";
-import { runInThisContext } from "vm";
 
 @Component({
   selector: "app-game-board",
@@ -15,7 +14,7 @@ import { runInThisContext } from "vm";
 })
 export class GameBoardComponent implements OnInit {
   @ViewChild("gameClock", { static: false })
-  private counter: CountdownComponent;
+  private gameClock: CountdownComponent;
   spin: number;
   turn: boolean = true;
   start: boolean = false;
@@ -249,7 +248,7 @@ export class GameBoardComponent implements OnInit {
     this.greenC = this.draftService.greenC;
     this.turn = this.draftService.passTurnDown();
   }
-  startGame() {
+  startGame(): void {
     if (this.turn === false) {
       this.commentary =
         "The Game has started! You won the tip-off! You start with the ball!";
@@ -272,23 +271,28 @@ export class GameBoardComponent implements OnInit {
     }
   }
   changeTurn(): void {
-    let commentary = this.commentary;
-    setTimeout(() => {
-      document.getElementById("oddHoop").style.background = "none";
-      document.getElementById("evenHoop").style.background = "none";
-      this.turn = !this.turn;
-      if (this.turn === true) {
-        this.commentary = `${commentary} The computer has the ball!`;
-        this.computersTurn();
-      } else {
-        this.commentary = `${commentary} You have the ball!`;
-        this.rollDice();
-      }
-      // console.log(this.turn);
-    }, 1000);
+    // this.gameClock.restart();
+    if (this.gameClock.i.value > 0) {
+      let commentary = this.commentary;
+      setTimeout(() => {
+        document.getElementById("oddHoop").style.background = "none";
+        document.getElementById("evenHoop").style.background = "none";
+        this.turn = !this.turn;
+        if (this.turn === true) {
+          this.commentary = `${commentary} The computer has the ball!`;
+          this.computersTurn();
+        } else {
+          this.commentary = `${commentary} You have the ball!`;
+          this.rollDice();
+        }
+        // console.log(this.turn);
+      }, 1000);
+    } else {
+      this.endGame();
+    }
   }
   findShot(form): void {
-    console.log(form);
+    // console.log(form);
     this.added = form.added;
     this.subtracted = form.subtracted;
     this.multiplied = form.multiplied;
