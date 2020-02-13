@@ -39,7 +39,10 @@
       </div>
     </div>
     <div id="commentary">
-      <p>{{ commentary }}</p>
+      <p id="lastCommentary">{{ commentaryArray[1] }}</p>
+      <p id="newCommentary">
+        {{ commentaryArray[0] }}
+      </p>
     </div>
   </header>
   <div class="gameDirections" *ngIf="!start">

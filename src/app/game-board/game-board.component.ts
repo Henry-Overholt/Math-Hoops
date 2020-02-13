@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild } from "@angular/core";
 import { NgForm } from "@angular/forms";
 import { DraftService } from "./../services/draft.service";
 import { CountdownComponent } from "ngx-countdown";
+import { TouchSequence } from "selenium-webdriver";
 // import { CookieService } from "ngx-cookie-service";
 
 @Component({
@@ -15,14 +16,15 @@ export class GameBoardComponent implements OnInit {
   @ViewChild("playerShotClock", { static: false })
   private playerShotClock: CountdownComponent;
   spin: number;
-  turn: boolean = false;
+  turn: boolean = true;
   start: boolean = false;
   end: boolean = false;
   redDice: number;
   blueDice: number;
   playerScore: number = 0;
   computerScore: number = 0;
-  commentary: string = "The Game is about to begin!";
+  commentaryArray: any[] = ["The Game is about to begin!"];
+  commentary: string;
   redP: any; //player's red player
   blueP: any; //player's blue player
   orangeP: any; //player's orange player
@@ -253,10 +255,12 @@ export class GameBoardComponent implements OnInit {
     if (this.turn === false) {
       this.commentary =
         "The Game has started! You won the tip-off! You start with the ball!";
+      this.commentaryArray.unshift(this.commentary);
       this.rollDice();
     } else {
       this.commentary =
         "The Game has started! The Computer won the tip-off! The Computer starts with the ball!";
+      this.commentaryArray.unshift(this.commentary);
       this.computersTurn();
     }
     this.start = true;
@@ -280,9 +284,11 @@ export class GameBoardComponent implements OnInit {
         this.turn = !this.turn;
         if (this.turn === true) {
           this.commentary = `The computer has the ball!`;
+          this.commentaryArray.unshift(this.commentary);
           this.computersTurn();
         } else {
           this.commentary = `You have the ball!`;
+          this.commentaryArray.unshift(this.commentary);
           this.rollDice();
         }
         // console.log(this.turn);
@@ -313,6 +319,7 @@ export class GameBoardComponent implements OnInit {
       this.correct = false;
       this.commentary =
         "Nice try, but your answers weren't quite right. It's the other teams ball.";
+      this.commentaryArray.unshift(this.commentary);
       setTimeout(() => {
         this.changeTurn();
       }, 2000);
@@ -361,6 +368,7 @@ export class GameBoardComponent implements OnInit {
     }
     if (openCounter === 0) {
       this.commentary = "Turnover!";
+      this.commentaryArray.unshift(this.commentary);
       this.openShot = false;
       setTimeout(() => {
         this.changeTurn();
@@ -496,6 +504,7 @@ export class GameBoardComponent implements OnInit {
       }
     } else {
       this.commentary = "SHOT CLOCK VIOLATION!";
+      this.commentaryArray.unshift(this.commentary);
       this.changeTurn();
     }
   }
@@ -602,6 +611,7 @@ export class GameBoardComponent implements OnInit {
     let randomInt: number = Math.floor(Math.random() * stories.length);
     if (turn === true) {
       this.commentary = stories[randomInt];
+      this.commentaryArray.unshift(this.commentary);
       this.computerScore += points;
       document.getElementById("oddHoop").style.background = "green";
     } else {
@@ -621,6 +631,7 @@ export class GameBoardComponent implements OnInit {
     ];
     let randomInt: number = Math.floor(Math.random() * stories.length);
     this.commentary = stories[randomInt];
+    this.commentaryArray.unshift(this.commentary);
     this.changeTurn();
   }
 
@@ -737,13 +748,14 @@ export class GameBoardComponent implements OnInit {
   takeComputerShot(player: any): void {
     // console.log(player.index);
     this.spin = Math.random() * 1;
-
-    if (this.spin <= player.per) {
-      document.getElementById("oddHoop").style.background = "red";
-      this.missShot(player.playerName);
-    } else {
-      this.makeShot(player.playerName, player.points, this.turn);
-    }
+    setTimeout(() => {
+      if (this.spin <= player.per) {
+        document.getElementById("oddHoop").style.background = "red";
+        this.missShot(player.playerName);
+      } else {
+        this.makeShot(player.playerName, player.points, this.turn);
+      }
+    }, 1700);
   }
   shotBasketball(i: number) {
     if (this.turn === false) {
@@ -752,13 +764,29 @@ export class GameBoardComponent implements OnInit {
       let spotTop = document.getElementById(id).offsetTop;
       document.getElementById("evenBall").style.left = `${spotLeft}px`;
       document.getElementById("evenBall").style.top = `${spotTop}px`;
+      setTimeout(() => {
+        this.moveBasketball();
+      }, 500);
     } else {
       let id = this.oddNumbers[i].id;
       let spotLeft = document.getElementById(id).offsetLeft;
       let spotTop = document.getElementById(id).offsetTop;
       document.getElementById("oddBall").style.left = `${spotLeft}px`;
       document.getElementById("oddBall").style.top = `${spotTop}px`;
+      setTimeout(() => {
+        this.moveBasketball();
+      }, 500);
     }
   }
-  moveBasketball() {}
+  moveBasketball() {
+    if (this.turn === false) {
+      document.getElementById("evenBall").style.left = `14%`;
+      document.getElementById("evenBall").style.top = `49%`;
+      document.getElementById("evenBall").style.transition = "2s";
+    } else {
+      document.getElementById("oddBall").style.left = `81%`;
+      document.getElementById("oddBall").style.top = `49%`;
+      document.getElementById("oddBall").style.transition = "2s";
+    }
+  }
 }
