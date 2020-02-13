@@ -59,7 +59,7 @@ header {
   transform: translateX(-50%);
   background: black;
   width: 90%;
-  height: 100px;
+  height: 90px;
   color: white;
   border-radius: 30px;
 }
@@ -183,9 +183,20 @@ button:hover {
   font-size: 20px;
   margin-top: 5px;
   width: 100%;
+  height: 70px;
+  margin-bottom: 10px;
   display: flex;
+  flex-direction: column;
+  align-items: center;
   justify-content: center;
+  /* border: 1px solid white; */
   color: white;
+  z-index: 1;
+  transition: 1s;
+}
+#lastCommentary {
+  font-size: 15px;
+  color: blue;
 }
 section {
   justify-content: space-between;
@@ -320,7 +331,7 @@ section {
 .hoop {
   width: 5%;
   height: 5%;
-  border: 2px solid rgb(255, 167, 3);
+  border: 2px solid orange;
   position: absolute;
   border-radius: 100%;
   top: 49%;

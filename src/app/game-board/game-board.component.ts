@@ -23,7 +23,8 @@ export class GameBoardComponent implements OnInit {
   blueDice: number;
   playerScore: number = 0;
   computerScore: number = 0;
-  commentary: string = "The Game is about to begin!";
+  commentaryArray: any[] = ["The Game is about to begin!"];
+  commentary: string;
   redP: any; //player's red player
   blueP: any; //player's blue player
   orangeP: any; //player's orange player
@@ -254,10 +255,12 @@ export class GameBoardComponent implements OnInit {
     if (this.turn === false) {
       this.commentary =
         "The Game has started! You won the tip-off! You start with the ball!";
+      this.commentaryArray.unshift(this.commentary);
       this.rollDice();
     } else {
       this.commentary =
         "The Game has started! The Computer won the tip-off! The Computer starts with the ball!";
+      this.commentaryArray.unshift(this.commentary);
       this.computersTurn();
     }
     this.start = true;
@@ -281,9 +284,11 @@ export class GameBoardComponent implements OnInit {
         this.turn = !this.turn;
         if (this.turn === true) {
           this.commentary = `The computer has the ball!`;
+          this.commentaryArray.unshift(this.commentary);
           this.computersTurn();
         } else {
           this.commentary = `You have the ball!`;
+          this.commentaryArray.unshift(this.commentary);
           this.rollDice();
         }
         // console.log(this.turn);
@@ -314,6 +319,7 @@ export class GameBoardComponent implements OnInit {
       this.correct = false;
       this.commentary =
         "Nice try, but your answers weren't quite right. It's the other teams ball.";
+      this.commentaryArray.unshift(this.commentary);
       setTimeout(() => {
         this.changeTurn();
       }, 2000);
@@ -362,6 +368,7 @@ export class GameBoardComponent implements OnInit {
     }
     if (openCounter === 0) {
       this.commentary = "Turnover!";
+      this.commentaryArray.unshift(this.commentary);
       this.openShot = false;
       setTimeout(() => {
         this.changeTurn();
@@ -497,6 +504,7 @@ export class GameBoardComponent implements OnInit {
       }
     } else {
       this.commentary = "SHOT CLOCK VIOLATION!";
+      this.commentaryArray.unshift(this.commentary);
       this.changeTurn();
     }
   }
@@ -603,6 +611,7 @@ export class GameBoardComponent implements OnInit {
     let randomInt: number = Math.floor(Math.random() * stories.length);
     if (turn === true) {
       this.commentary = stories[randomInt];
+      this.commentaryArray.unshift(this.commentary);
       this.computerScore += points;
       document.getElementById("oddHoop").style.background = "green";
     } else {
@@ -622,6 +631,7 @@ export class GameBoardComponent implements OnInit {
     ];
     let randomInt: number = Math.floor(Math.random() * stories.length);
     this.commentary = stories[randomInt];
+    this.commentaryArray.unshift(this.commentary);
     this.changeTurn();
   }
 
@@ -738,9 +748,6 @@ export class GameBoardComponent implements OnInit {
   takeComputerShot(player: any): void {
     // console.log(player.index);
     this.spin = Math.random() * 1;
-    // document.getElementById("oddBall").style.left = `81%`;
-    // document.getElementById("oddBall").style.top = `49%`;
-    // document.getElementById("oddBall").style.transition = "2s";
     setTimeout(() => {
       if (this.spin <= player.per) {
         document.getElementById("oddHoop").style.background = "red";
