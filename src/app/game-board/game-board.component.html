@@ -67,10 +67,24 @@
     </ol>
     <button (click)="startGame()">Start Game</button>
   </div>
-  <div class="gameDirections" *ngIf="end">
-    <h1>The game has ended and ...</h1>
-    <h3>{{ final }}</h3>
-    <button><a routerLink="/home">Start a new game!</a></button>
+  <div class="gameDirections" id="gameOver" *ngIf="end">
+    <h1>The game has ended.</h1>
+    <div id="finalScore">
+      <div id="score">
+        <div class="finalScore">
+          <p>Player 1</p>
+          <p>{{ playerScore }}</p>
+        </div>
+        <div class="finalScore">
+          <p>Computer</p>
+          <p>{{ computerScore }}</p>
+        </div>
+      </div>
+      <p id="ft">FT</p>
+    </div>
+    <h3 id="finalCommentary">{{ final }}</h3>
+    <button><a routerLink="/draft">Start a new game!</a></button>
+    <button><a routerLink="/home">Back to Home</a></button>
   </div>
 
   <section>
