@@ -15,7 +15,7 @@ export class GameBoardComponent implements OnInit {
   @ViewChild("playerShotClock", { static: false })
   private playerShotClock: CountdownComponent;
   spin: number;
-  turn: boolean = true;
+  turn: boolean = false;
   start: boolean = false;
   end: boolean = false;
   redDice: number;
