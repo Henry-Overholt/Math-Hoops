@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild } from "@angular/core";
 import { NgForm } from "@angular/forms";
 import { DraftService } from "./../services/draft.service";
 import { CountdownComponent } from "ngx-countdown";
+import { TouchSequence } from "selenium-webdriver";
 // import { CookieService } from "ngx-cookie-service";
 
 @Component({
@@ -15,7 +16,7 @@ export class GameBoardComponent implements OnInit {
   @ViewChild("playerShotClock", { static: false })
   private playerShotClock: CountdownComponent;
   spin: number;
-  turn: boolean = false;
+  turn: boolean = true;
   start: boolean = false;
   end: boolean = false;
   redDice: number;
@@ -737,13 +738,17 @@ export class GameBoardComponent implements OnInit {
   takeComputerShot(player: any): void {
     // console.log(player.index);
     this.spin = Math.random() * 1;
-
-    if (this.spin <= player.per) {
-      document.getElementById("oddHoop").style.background = "red";
-      this.missShot(player.playerName);
-    } else {
-      this.makeShot(player.playerName, player.points, this.turn);
-    }
+    // document.getElementById("oddBall").style.left = `81%`;
+    // document.getElementById("oddBall").style.top = `49%`;
+    // document.getElementById("oddBall").style.transition = "2s";
+    setTimeout(() => {
+      if (this.spin <= player.per) {
+        document.getElementById("oddHoop").style.background = "red";
+        this.missShot(player.playerName);
+      } else {
+        this.makeShot(player.playerName, player.points, this.turn);
+      }
+    }, 1700);
   }
   shotBasketball(i: number) {
     if (this.turn === false) {
@@ -752,13 +757,29 @@ export class GameBoardComponent implements OnInit {
       let spotTop = document.getElementById(id).offsetTop;
       document.getElementById("evenBall").style.left = `${spotLeft}px`;
       document.getElementById("evenBall").style.top = `${spotTop}px`;
+      setTimeout(() => {
+        this.moveBasketball();
+      }, 500);
     } else {
       let id = this.oddNumbers[i].id;
       let spotLeft = document.getElementById(id).offsetLeft;
       let spotTop = document.getElementById(id).offsetTop;
       document.getElementById("oddBall").style.left = `${spotLeft}px`;
       document.getElementById("oddBall").style.top = `${spotTop}px`;
+      setTimeout(() => {
+        this.moveBasketball();
+      }, 500);
     }
   }
-  moveBasketball() {}
+  moveBasketball() {
+    if (this.turn === false) {
+      document.getElementById("evenBall").style.left = `14%`;
+      document.getElementById("evenBall").style.top = `49%`;
+      document.getElementById("evenBall").style.transition = "2s";
+    } else {
+      document.getElementById("oddBall").style.left = `81%`;
+      document.getElementById("oddBall").style.top = `49%`;
+      document.getElementById("oddBall").style.transition = "2s";
+    }
+  }
 }
