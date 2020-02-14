@@ -292,7 +292,6 @@ export class GameBoardComponent implements OnInit {
           this.commentaryArray.unshift(this.commentary);
           this.rollDice();
         }
-        // console.log(this.turn);
       }, 1000);
     } else {
       this.endGame();
@@ -382,7 +381,6 @@ export class GameBoardComponent implements OnInit {
   //
   rollDice(): void {
     this.correct = undefined;
-    document.querySelector("form").reset();
     this.redDice = Math.floor(Math.random() * 10);
     this.blueDice = Math.floor(Math.random() * 10);
     this.correctAdd = this.redDice + this.blueDice;

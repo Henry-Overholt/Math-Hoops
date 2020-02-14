@@ -145,9 +145,10 @@ section {
 #start {
   margin-top: 20px;
   margin-bottom: 20px;
-  width: 40%;
+  width: 100%;
   display: flex;
   justify-content: center;
+  flex-direction: column;
   align-items: center;
   position: relative;
   left: 50%;
@@ -155,8 +156,12 @@ section {
 }
 
 #commentary {
-  font-size: 20px;
+  font-size: 25px;
   padding: 10px;
+}
+#lastCommentary {
+  font-size: 18px;
+  color: blue;
 }
 #flipButton {
   margin: 0;
