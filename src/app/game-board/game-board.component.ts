@@ -265,6 +265,7 @@ export class GameBoardComponent implements OnInit {
     }
     this.start = true;
   }
+  //
   endGame(): void {
     this.end = true;
     if (this.playerScore === this.computerScore) {
@@ -275,8 +276,8 @@ export class GameBoardComponent implements OnInit {
       this.final = `You lost, better luck next time! With a final score of ${this.playerScore} to ${this.computerScore} the computer was victorious! Congrats!`;
     }
   }
+  //
   changeTurn(): void {
-    // this.gameClock.restart();
     if (this.gameClock.i.value > 0) {
       setTimeout(() => {
         document.getElementById("oddHoop").style.background = "none";
@@ -297,8 +298,8 @@ export class GameBoardComponent implements OnInit {
       this.endGame();
     }
   }
+  //
   findShot(form): void {
-    // console.log(form);
     this.added = form.added;
     this.subtracted = form.subtracted;
     this.multiplied = form.multiplied;
@@ -325,6 +326,7 @@ export class GameBoardComponent implements OnInit {
       }, 2000);
     }
   }
+  //
   highlightShots(
     added: number,
     subtracted: number,
@@ -377,7 +379,7 @@ export class GameBoardComponent implements OnInit {
       this.openShot = true;
     }
   }
-
+  //
   rollDice(): void {
     this.correct = undefined;
     document.querySelector("form").reset();
@@ -409,103 +411,90 @@ export class GameBoardComponent implements OnInit {
       numbers.select = false;
     });
   }
-
+  //
   takeEvenShot(i: number): void {
-    this.shotBasketball(i);
     let spot = this.evenNumbers[i];
-    this.spin = Math.random() * 1;
     if (this.playerShotClock.i.value > 0) {
       if (spot.color == "orange") {
-        this.commentary = `${this.orangeP.playerName} shoots for ${spot.value}!`;
-        this.commentaryArray.unshift(this.commentary);
-        setTimeout(() => {
-          if (spot.value === 3) {
-            if (this.spin <= this.orangeP.threePoint) {
-              this.makeShot(this.orangeP.playerName, spot.value, this.turn);
-            } else {
-              document.getElementById("evenHoop").style.background = "red";
-              this.missShot(this.orangeP.playerName);
-            }
-          } else {
-            if (this.spin <= this.orangeP.fieldGoal) {
-              this.makeShot(this.orangeP.playerName, spot.value, this.turn);
-            } else {
-              document.getElementById("evenHoop").style.background = "red";
-              this.missShot(this.orangeP.playerName);
-            }
-          }
-        }, 1500);
+        if (spot.value === 3) {
+          let shooter = {
+            playerName: this.orangeP.playerName,
+            per: this.orangeP.fieldGoal,
+            index: i,
+            points: 3
+          };
+          this.takeShot(shooter);
+        } else {
+          let shooter = {
+            playerName: this.orangeP.playerName,
+            per: this.orangeP.fieldGoal,
+            index: i,
+            points: 2
+          };
+          this.takeShot(shooter);
+        }
       } else if (spot.color == "blue") {
-        this.commentary = `${this.blueP.playerName} shoots for ${spot.value}!`;
-        this.commentaryArray.unshift(this.commentary);
-        setTimeout(() => {
-          if (spot.value === 3) {
-            if (this.spin <= this.blueP.threePoint) {
-              this.makeShot(this.blueP.playerName, spot.value, this.turn);
-            } else {
-              document.getElementById("evenHoop").style.background = "red";
-              this.missShot(this.blueP.playerName);
-            }
-          } else {
-            if (this.spin <= this.blueP.fieldGoal) {
-              this.makeShot(this.blueP.playerName, spot.value, this.turn);
-            } else {
-              document.getElementById("evenHoop").style.background = "red";
-              this.missShot(this.blueP.playerName);
-            }
-          }
-        }, 1500);
+        if (spot.value === 3) {
+          let shooter = {
+            playerName: this.blueP.playerName,
+            per: this.blueP.fieldGoal,
+            index: i,
+            points: 3
+          };
+          this.takeShot(shooter);
+        } else {
+          let shooter = {
+            playerName: this.blueP.playerName,
+            per: this.blueP.fieldGoal,
+            index: i,
+            points: 2
+          };
+          this.takeShot(shooter);
+        }
       } else if (spot.color == "red") {
-        this.commentary = `${this.redP.playerName} shoots for ${spot.value}!`;
-        this.commentaryArray.unshift(this.commentary);
-        setTimeout(() => {
-          if (spot.value === 3) {
-            if (this.spin <= this.redP.threePoint) {
-              this.makeShot(this.redP.playerName, spot.value, this.turn);
-            } else {
-              document.getElementById("evenHoop").style.background = "red";
-              this.missShot(this.redP.playerName);
-            }
-          } else {
-            if (this.spin <= this.redP.fieldGoal) {
-              this.makeShot(this.redP.playerName, spot.value, this.turn);
-            } else {
-              document.getElementById("evenHoop").style.background = "red";
-              this.missShot(this.redP.playerName);
-            }
-          }
-        }, 1500);
+        if (spot.value === 3) {
+          let shooter = {
+            playerName: this.redP.playerName,
+            per: this.redP.fieldGoal,
+            index: i,
+            points: 3
+          };
+          this.takeShot(shooter);
+        } else {
+          let shooter = {
+            playerName: this.redP.playerName,
+            per: this.redP.fieldGoal,
+            index: i,
+            points: 2
+          };
+          this.takeShot(shooter);
+        }
       } else if (spot.color == "purple") {
-        this.commentary = `${this.purpleP.playerName} shoots for ${spot.value}!`;
-        this.commentaryArray.unshift(this.commentary);
-        setTimeout(() => {
-          if (spot.value === 3) {
-            if (this.spin <= this.purpleP.threePoint) {
-              this.makeShot(this.purpleP.playerName, spot.value, this.turn);
-            } else {
-              document.getElementById("evenHoop").style.background = "red";
-              this.missShot(this.purpleP.playerName);
-            }
-          } else {
-            if (this.spin <= this.purpleP.fieldGoal) {
-              this.makeShot(this.purpleP.playerName, spot.value, this.turn);
-            } else {
-              document.getElementById("evenHoop").style.background = "red";
-              this.missShot(this.purpleP.playerName);
-            }
-          }
-        }, 1500);
+        if (spot.value === 3) {
+          let shooter = {
+            playerName: this.purpleP.playerName,
+            per: this.purpleP.fieldGoal,
+            index: i,
+            points: 3
+          };
+          this.takeShot(shooter);
+        } else {
+          let shooter = {
+            playerName: this.purpleP.playerName,
+            per: this.purpleP.fieldGoal,
+            index: i,
+            points: 2
+          };
+          this.takeShot(shooter);
+        }
       } else {
-        this.commentary = `${this.greenP.playerName} shoots for ${spot.value}!`;
-        this.commentaryArray.unshift(this.commentary);
-        setTimeout(() => {
-          if (this.spin <= this.greenP.fieldGoal) {
-            this.makeShot(this.greenP.playerName, spot.value, this.turn);
-          } else {
-            document.getElementById("evenHoop").style.background = "red";
-            this.missShot(this.greenP.playerName);
-          }
-        }, 1500);
+        let shooter = {
+          playerName: this.greenP.playerName,
+          per: this.greenP.fieldGoal,
+          index: i,
+          points: 2
+        };
+        this.takeShot(shooter);
       }
     } else {
       this.commentary = "SHOT CLOCK VIOLATION!";
@@ -513,47 +502,10 @@ export class GameBoardComponent implements OnInit {
       this.changeTurn();
     }
   }
-
-  //function for if the shooting percentage is equal to or lower than the random spin, updates score, then send to the changeTurn function
-  makeShot(name: string, points: number, turn: boolean) {
-    let stories: string[] = [
-      `What a basket by ${name}! That's #SCTop10!`,
-      `${name} makes the deep ${points}! I didn't think he was going to make that!`,
-      `${name} hits the ${points}, and crowd goes wild!`,
-      `${name} gets a couple a lucky bounces before it falls for ${points}!`,
-      `His ankles are going to be sore tomorrow after that move by ${name} to get the clean look for ${points}!`
-    ];
-    let randomInt: number = Math.floor(Math.random() * stories.length);
-    if (turn === true) {
-      this.commentary = stories[randomInt];
-      this.commentaryArray.unshift(this.commentary);
-      this.computerScore += points;
-      document.getElementById("oddHoop").style.background = "green";
-    } else {
-      this.commentary = stories[randomInt];
-      this.playerScore += points;
-      document.getElementById("evenHoop").style.background = "green";
-    }
-    this.changeTurn();
-  }
-  missShot(name: string) {
-    let stories: string[] = [
-      `That was a terrible miss by ${name}! Just truly terrible!`,
-      `${name} with the miss! You can hear the crowd chanting "Air-Ball, Air-Ball"! Not a nice place to play!`,
-      `${name} with the miss, and the ball is going the other way!`,
-      `Really tough miss there for ${name}, unlucky.`,
-      `Strong defense there to prevent the shot from ${name}`
-    ];
-    let randomInt: number = Math.floor(Math.random() * stories.length);
-    this.commentary = stories[randomInt];
-    this.commentaryArray.unshift(this.commentary);
-    this.changeTurn();
-  }
-
+  //
   computersTurn(): void {
     this.computersShots = [];
     this.computersOpenShots = [];
-    // console.log(this.computersOpenShots);
     this.rollDice();
     this.highlightShots(
       this.correctAdd,
@@ -646,34 +598,37 @@ export class GameBoardComponent implements OnInit {
       }, 5000);
     }
   }
+  //
   sortOpenShots() {
-    // console.log(this.computersOpenShots);
     this.computersOpenShots.sort((a, b) => {
       return b.per - a.per;
     });
-    this.commentary = `${this.computersOpenShots[0].playerName} shots for ${this.computersOpenShots[0].points}`;
-    this.commentaryArray.unshift(this.commentary);
-    // console.log(this.computersOpenShots);
     if (this.computersOpenShots.length >= 1) {
       let index = this.computersOpenShots[0].index;
-      this.shotBasketball(index);
       setTimeout(() => {
-        this.takeComputerShot(this.computersOpenShots[0]);
+        this.takeShot(this.computersOpenShots[0]);
       }, 1000);
     }
   }
-  takeComputerShot(player: any): void {
-    // console.log(player.index);
-    this.spin = Math.random() * 1;
-    setTimeout(() => {
-      if (this.spin <= player.per) {
-        document.getElementById("oddHoop").style.background = "red";
-        this.missShot(player.playerName);
-      } else {
-        this.makeShot(player.playerName, player.points, this.turn);
-      }
-    }, 1700);
+  //
+  takeShot(player: any): void {
+    if (this.gameClock.i.value === 0) {
+      this.endGame();
+    } else {
+      this.commentary = `${player.playerName} shoots for ${player.points}!`;
+      this.commentaryArray.unshift(this.commentary);
+      this.spin = Math.random() * 1;
+      this.shotBasketball(player.index);
+      setTimeout(() => {
+        if (this.spin <= player.per) {
+          this.makeBasketball(player);
+        } else {
+          this.doinkBasketball(player);
+        }
+      }, 1700);
+    }
   }
+  //
   shotBasketball(i: number) {
     if (this.turn === false) {
       let id = this.evenNumbers[i].id;
@@ -681,29 +636,98 @@ export class GameBoardComponent implements OnInit {
       let spotTop = document.getElementById(id).offsetTop;
       document.getElementById("evenBall").style.left = `${spotLeft}px`;
       document.getElementById("evenBall").style.top = `${spotTop}px`;
-      setTimeout(() => {
-        this.moveBasketball();
-      }, 500);
+      document.getElementById("evenBall").style.transition = ".5s";
     } else {
       let id = this.oddNumbers[i].id;
       let spotLeft = document.getElementById(id).offsetLeft;
       let spotTop = document.getElementById(id).offsetTop;
       document.getElementById("oddBall").style.left = `${spotLeft}px`;
       document.getElementById("oddBall").style.top = `${spotTop}px`;
-      setTimeout(() => {
-        this.moveBasketball();
-      }, 500);
+      document.getElementById("oddBall").style.transition = ".5s";
     }
   }
-  moveBasketball() {
+  //
+  makeBasketball(player: any): void {
     if (this.turn === false) {
       document.getElementById("evenBall").style.left = `14%`;
-      document.getElementById("evenBall").style.top = `49%`;
-      document.getElementById("evenBall").style.transition = "2s";
+      document.getElementById("evenBall").style.top = `49.5%`;
+      document.getElementById("evenBall").style.transition = "1s";
     } else {
       document.getElementById("oddBall").style.left = `81%`;
-      document.getElementById("oddBall").style.top = `49%`;
-      document.getElementById("oddBall").style.transition = "2s";
+      document.getElementById("oddBall").style.top = `49.5%`;
+      document.getElementById("oddBall").style.transition = "1s";
     }
+    setTimeout(() => {
+      this.makeShot(player.playerName, player.points, this.turn);
+    }, 1000);
+  }
+  //
+  doinkBasketball(player: any): void {
+    if (this.turn === false) {
+      document.getElementById("evenBall").style.left = `16%`;
+      document.getElementById("evenBall").style.top = `50%`;
+      document.getElementById("evenBall").style.transition = "1s";
+    } else {
+      document.getElementById("oddBall").style.left = `79%`;
+      document.getElementById("oddBall").style.top = `50%`;
+      document.getElementById("oddBall").style.transition = "1s";
+    }
+    setTimeout(() => {
+      let randomLeft = Math.floor(Math.random() * (81 - 14) + 14);
+      let randomTop = Math.floor(Math.random() * (75 - 25) + 14);
+      if (this.turn === false) {
+        document.getElementById("evenBall").style.left = `${randomLeft}%`;
+        document.getElementById("evenBall").style.top = `${randomTop}%`;
+        document.getElementById("evenBall").style.transition = "1s";
+      } else {
+        document.getElementById("oddBall").style.left = `${randomLeft}%`;
+        document.getElementById("oddBall").style.top = `${randomTop}%`;
+        document.getElementById("oddBall").style.transition = "1s";
+      }
+    }, 1000);
+    setTimeout(() => {
+      this.missShot(player.playerName);
+    }, 1000);
+  }
+  //function for if the shooting percentage is equal to or lower than the random spin, updates score, then send to the changeTurn function
+  makeShot(name: string, points: number, turn: boolean) {
+    let stories: string[] = [
+      `What a basket by ${name}! That's #SCTop10!`,
+      `${name} makes the deep ${points}! I didn't think he was going to make that!`,
+      `${name} hits the ${points}, and crowd goes wild!`,
+      `${name} gets a couple a lucky bounces before it falls for ${points}!`,
+      `His ankles are going to be sore tomorrow after that move by ${name} to get the clean look for ${points}!`
+    ];
+    let randomInt: number = Math.floor(Math.random() * stories.length);
+    if (turn === true) {
+      this.commentary = stories[randomInt];
+      this.commentaryArray.unshift(this.commentary);
+      this.computerScore += points;
+      document.getElementById("oddHoop").style.background = "green";
+    } else {
+      this.commentary = stories[randomInt];
+      this.playerScore += points;
+      document.getElementById("evenHoop").style.background = "green";
+    }
+    this.changeTurn();
+  }
+  //
+  missShot(name: string) {
+    let stories: string[] = [
+      `That was a terrible miss by ${name}! Not a good shot!`,
+      `${name} with the miss! You can hear the crowd chanting "Air-Ball, Air-Ball"! Not a nice place to play!`,
+      `${name} with the miss, and the ball is going the other way!`,
+      `Really tough miss there for ${name}, unlucky.`,
+      `Strong defense there to prevent the shot from ${name}`
+    ];
+    let randomInt: number = Math.floor(Math.random() * stories.length);
+    this.commentary = stories[randomInt];
+    this.commentaryArray.unshift(this.commentary);
+    if (this.turn === true) {
+      document.getElementById("oddHoop").style.background = "red";
+    } else {
+      document.getElementById("evenHoop").style.background = "red";
+    }
+    this.changeTurn();
   }
 }
