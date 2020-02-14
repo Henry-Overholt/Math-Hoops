@@ -417,6 +417,7 @@ export class GameBoardComponent implements OnInit {
     if (this.playerShotClock.i.value > 0) {
       if (spot.color == "orange") {
         this.commentary = `${this.orangeP.playerName} shoots for ${spot.value}!`;
+        this.commentaryArray.unshift(this.commentary);
         setTimeout(() => {
           if (spot.value === 3) {
             if (this.spin <= this.orangeP.threePoint) {
@@ -436,6 +437,7 @@ export class GameBoardComponent implements OnInit {
         }, 1500);
       } else if (spot.color == "blue") {
         this.commentary = `${this.blueP.playerName} shoots for ${spot.value}!`;
+        this.commentaryArray.unshift(this.commentary);
         setTimeout(() => {
           if (spot.value === 3) {
             if (this.spin <= this.blueP.threePoint) {
@@ -455,6 +457,7 @@ export class GameBoardComponent implements OnInit {
         }, 1500);
       } else if (spot.color == "red") {
         this.commentary = `${this.redP.playerName} shoots for ${spot.value}!`;
+        this.commentaryArray.unshift(this.commentary);
         setTimeout(() => {
           if (spot.value === 3) {
             if (this.spin <= this.redP.threePoint) {
@@ -474,6 +477,7 @@ export class GameBoardComponent implements OnInit {
         }, 1500);
       } else if (spot.color == "purple") {
         this.commentary = `${this.purpleP.playerName} shoots for ${spot.value}!`;
+        this.commentaryArray.unshift(this.commentary);
         setTimeout(() => {
           if (spot.value === 3) {
             if (this.spin <= this.purpleP.threePoint) {
@@ -493,6 +497,7 @@ export class GameBoardComponent implements OnInit {
         }, 1500);
       } else {
         this.commentary = `${this.greenP.playerName} shoots for ${spot.value}!`;
+        this.commentaryArray.unshift(this.commentary);
         setTimeout(() => {
           if (this.spin <= this.greenP.fieldGoal) {
             this.makeShot(this.greenP.playerName, spot.value, this.turn);
@@ -508,97 +513,7 @@ export class GameBoardComponent implements OnInit {
       this.changeTurn();
     }
   }
-  //function for the numbers on the odd side of the board
-  // takeOddShot(i: number): void {
-  //   let spot = this.oddNumbers[i];
-  //   this.spin = Math.random() * 1;
-  //   if (spot.color == "orange") {
-  //     this.commentary = `${this.orangeC.playerName} shoots for ${spot.value}!`;
-  //     setTimeout(() => {
-  //       if (spot.value === 3) {
-  //         if (this.orangeC.threepoint <= this.spin) {
-  //           this.makeShot(this.orangeC.playerName, spot.value, this.turn);
-  //         } else {
-  //           this.missShot(this.orangeC.playerName);
-  //         }
-  //       } else {
-  //         if (this.orangeC.fieldgoal <= this.spin) {
-  //           this.makeShot(this.orangeC.playerName, spot.value, this.turn);
-  //         } else {
-  //           this.missShot(this.orangeC.playerName);
-  //         }
-  //       }
-  //     }, 1000);
-  //   } else if (spot.color == "blue") {
-  //     this.commentary = `${this.blueC.playerName} shoots for ${spot.value}!`;
-  //     setTimeout(() => {
-  //       if (spot.value === 3) {
-  //         if (this.blueC.threepoint <= this.spin) {
-  //           this.makeShot(this.blueC.playerName, spot.value, this.turn);
-  //         } else {
-  //           this.missShot(this.blueC.playerName);
-  //         }
-  //       } else {
-  //         if (this.blueC.fieldgoal <= this.spin) {
-  //           this.makeShot(this.blueC.playerName, spot.value, this.turn);
-  //         } else {
-  //           this.missShot(this.blueC.playerName);
-  //         }
-  //       }
-  //     }, 1000);
-  //   } else if (spot.color == "green") {
-  //     this.commentary = `${this.greenC.playerName} shoots for ${spot.value}!`;
-  //     setTimeout(() => {
-  //       if (spot.value === 3) {
-  //         if (this.greenC.threepoint <= this.spin) {
-  //           this.makeShot(this.greenC.playerName, spot.value, this.turn);
-  //         } else {
-  //           this.missShot(this.greenC.playerName);
-  //         }
-  //       } else {
-  //         if (this.greenC.fieldgoal <= this.spin) {
-  //           this.makeShot(this.greenC.playerName, spot.value, this.turn);
-  //         } else {
-  //           this.missShot(this.greenC.playerName);
-  //         }
-  //       }
-  //     }, 1000);
-  //   } else if (spot.color == "purple") {
-  //     this.commentary = `${this.purpleC.playerName} shoots for ${spot.value}!`;
-  //     setTimeout(() => {
-  //       if (spot.value === 3) {
-  //         if (this.purpleC.threepoint <= this.spin) {
-  //           this.makeShot(this.purpleC.playerName, spot.value, this.turn);
-  //         } else {
-  //           this.missShot(this.purpleC.playerName);
-  //         }
-  //       } else {
-  //         if (this.purpleC.fieldgoal <= this.spin) {
-  //           this.makeShot(this.purpleC.playerName, spot.value, this.turn);
-  //         } else {
-  //           this.missShot(this.purpleC.playerName);
-  //         }
-  //       }
-  //     }, 1000);
-  //   } else {
-  //     this.commentary = `${this.redC.playerName} shoots for ${spot.value}!`;
-  //     setTimeout(() => {
-  //       if (spot.value === 3) {
-  //         if (this.redC.threepoint <= this.spin) {
-  //           this.makeShot(this.redC.playerName, spot.value, this.turn);
-  //         } else {
-  //           this.missShot(this.redC.playerName);
-  //         }
-  //       } else {
-  //         if (this.redC.fieldgoal <= this.spin) {
-  //           this.makeShot(this.redC.playerName, spot.value, this.turn);
-  //         } else {
-  //           this.missShot(this.redC.playerName);
-  //         }
-  //       }
-  //     }, 1000);
-  //   }
-  // }
+
   //function for if the shooting percentage is equal to or lower than the random spin, updates score, then send to the changeTurn function
   makeShot(name: string, points: number, turn: boolean) {
     let stories: string[] = [
@@ -736,6 +651,8 @@ export class GameBoardComponent implements OnInit {
     this.computersOpenShots.sort((a, b) => {
       return b.per - a.per;
     });
+    this.commentary = `${this.computersOpenShots[0].playerName} shots for ${this.computersOpenShots[0].points}`;
+    this.commentaryArray.unshift(this.commentary);
     // console.log(this.computersOpenShots);
     if (this.computersOpenShots.length >= 1) {
       let index = this.computersOpenShots[0].index;
