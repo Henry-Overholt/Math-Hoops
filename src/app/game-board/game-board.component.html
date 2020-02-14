@@ -181,7 +181,6 @@
             [ngClass]="number.select == true ? 'correct' : 'incorrect'"
             class="gamePiece {{ number.color }}"
             id="{{ number.id }}"
-            (click)="takeOddShot(i)"
           >
             {{ number.number }}
           </div>
