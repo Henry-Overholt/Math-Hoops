@@ -281,6 +281,8 @@ export class GameBoardComponent implements OnInit {
     if (this.gameClock.i.value > 0) {
       setTimeout(() => {
         document.getElementById("oddHoop").style.background = "none";
+        document.getElementById("oddHoop").style.zIndex = "0";
+        document.getElementById("evenHoop").style.zIndex = "0";
         document.getElementById("evenHoop").style.background = "none";
         this.turn = !this.turn;
         if (this.turn === true) {
@@ -292,7 +294,6 @@ export class GameBoardComponent implements OnInit {
           this.commentaryArray.unshift(this.commentary);
           this.rollDice();
         }
-        // console.log(this.turn);
       }, 1000);
     } else {
       this.endGame();
@@ -382,7 +383,6 @@ export class GameBoardComponent implements OnInit {
   //
   rollDice(): void {
     this.correct = undefined;
-    document.querySelector("form").reset();
     this.redDice = Math.floor(Math.random() * 10);
     this.blueDice = Math.floor(Math.random() * 10);
     this.correctAdd = this.redDice + this.blueDice;
@@ -652,10 +652,12 @@ export class GameBoardComponent implements OnInit {
       document.getElementById("evenBall").style.left = `14%`;
       document.getElementById("evenBall").style.top = `49.5%`;
       document.getElementById("evenBall").style.transition = "1s";
+      document.getElementById("evenBall").style.transform = "rotate(720deg)";
     } else {
       document.getElementById("oddBall").style.left = `81%`;
       document.getElementById("oddBall").style.top = `49.5%`;
       document.getElementById("oddBall").style.transition = "1s";
+      document.getElementById("oddBall").style.transform = "rotate(-720deg)";
     }
     setTimeout(() => {
       this.makeShot(player.playerName, player.points, this.turn);
@@ -664,13 +666,15 @@ export class GameBoardComponent implements OnInit {
   //
   doinkBasketball(player: any): void {
     if (this.turn === false) {
-      document.getElementById("evenBall").style.left = `16%`;
-      document.getElementById("evenBall").style.top = `50%`;
+      document.getElementById("evenBall").style.left = `17%`;
+      document.getElementById("evenBall").style.top = `49%`;
       document.getElementById("evenBall").style.transition = "1s";
+      document.getElementById("evenBall").style.transform = "rotate(720deg)";
     } else {
-      document.getElementById("oddBall").style.left = `79%`;
-      document.getElementById("oddBall").style.top = `50%`;
+      document.getElementById("oddBall").style.left = `78%`;
+      document.getElementById("oddBall").style.top = `49%`;
       document.getElementById("oddBall").style.transition = "1s";
+      document.getElementById("oddBall").style.transform = "rotate(-720deg)";
     }
     setTimeout(() => {
       let randomLeft = Math.floor(Math.random() * (81 - 14) + 14);
@@ -679,10 +683,12 @@ export class GameBoardComponent implements OnInit {
         document.getElementById("evenBall").style.left = `${randomLeft}%`;
         document.getElementById("evenBall").style.top = `${randomTop}%`;
         document.getElementById("evenBall").style.transition = "1s";
+        document.getElementById("evenBall").style.transform = "rotate(361deg)";
       } else {
         document.getElementById("oddBall").style.left = `${randomLeft}%`;
         document.getElementById("oddBall").style.top = `${randomTop}%`;
         document.getElementById("oddBall").style.transition = "1s";
+        document.getElementById("oddBall").style.transform = "rotate(-361deg)";
       }
     }, 1000);
     setTimeout(() => {
@@ -704,10 +710,12 @@ export class GameBoardComponent implements OnInit {
       this.commentaryArray.unshift(this.commentary);
       this.computerScore += points;
       document.getElementById("oddHoop").style.background = "green";
+      document.getElementById("oddHoop").style.zIndex = "1";
     } else {
       this.commentary = stories[randomInt];
       this.playerScore += points;
       document.getElementById("evenHoop").style.background = "green";
+      document.getElementById("evenHoop").style.zIndex = "1";
     }
     this.changeTurn();
   }

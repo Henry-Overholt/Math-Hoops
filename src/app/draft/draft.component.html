@@ -30,7 +30,8 @@
     <button id="flipButton" *ngIf="!start" class="coin" (click)="flipCoin()">
       Flip for First Pick
     </button>
-    <p id="commentary" *ngIf="start">{{ whoseTurn }}</p>
+    <p id="lastCommentary">{{ commentary[1] }}</p>
+    <p id="commentary" *ngIf="start">{{ commentary[0] }}</p>
   </div>
   <div id="rosters" class="roster">
     <div id="player">

@@ -97,7 +97,7 @@ export class DraftService {
     number: 0,
     team: "Los Angeles Lakers"
   }; //computer's green player
-  turn: boolean = false;
+  turn: boolean = true;
   bluePlayers: any[] = [
     {
       playerName: "Kevin Durant",
