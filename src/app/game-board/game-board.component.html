@@ -16,11 +16,11 @@
         </div>
       </div>
       <div class="gameClock">
-        <p *ngIf="!start">15:00</p>
+        <p *ngIf="!start">12:00</p>
         <countdown
           #gameClock
           *ngIf="start"
-          [config]="{ leftTime: 900, format: 'm:ss', demand: false }"
+          [config]="{ leftTime: 720, format: 'm:ss', demand: false }"
         ></countdown>
       </div>
       <div class="scoreboard">
@@ -50,22 +50,33 @@
     <ol>
       <li>
         When you hit <em>Start Game</em> the game clock will start as well as
-        your play clock. The game lasts 15 minutes, and you have 30 seconds per
-        turn.
+        your play clock. The game lasts <em>12 minutes</em>, and you have
+        <em>30 seconds</em> per turn.
       </li>
       <li>
-        During your turn, you roll the dice. Then with the two numbers, you add
-        them, subtract them (always the bigger number first), you multiply them,
-        and you divide them if they are even.
+        At the beginning of your turn, the
+        <em>dice will roll automatically</em>. Then with the two numbers, you
+        <em>ADD</em> them, <em>SUBTRACT</em> them (always the bigger number
+        first), you <em>MULTIPLY</em> them, and you <em>DIVIDE</em> them if they
+        are evenly divisible.
       </li>
       <li>
-        Once you submit the answers, you look at where you on your side of the
-        board you can shoot from. Meaning what "even" or "odd" numbers you
+        Once you <EM>submit the answers</EM>, you look at where on your side of
+        the board you can shoot from. Meaning what <EM>EVEN</EM> numbers you
         calculated are available to shot from.
       </li>
       <li>
-        Select your shot and see if your player of that color made the shot or
-        not!
+        <em>Click the spot </em> that you want to shoot from, that's is
+        highlighted. The player that is the same color as the spot you selected
+        will shoot the ball. Their statistics will determine if the shot goes in
+        or not. For example if your player's field goal percentage is 0.450,
+        that means for every 10 shots, your player should make 4.5 of them.
+      </li>
+      <li id="loseTurn">
+        If you do your math correctly, but there are no available shots, your
+        turn ends. If you don't get your math correct, it will be a turnover,
+        and your turn will end. If you don't take a shot before your play clock
+        expires, then the other team gets the ball.
       </li>
     </ol>
     <button (click)="startGame()">Start Game</button>

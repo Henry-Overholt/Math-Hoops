@@ -586,3 +586,9 @@ a {
   padding: 10px;
   font-size: 20px;
 }
+em {
+  color: blue;
+}
+#loseTurn {
+  color: red;
+}
