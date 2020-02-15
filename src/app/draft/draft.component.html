@@ -27,9 +27,15 @@
     </ol>
   </div>
   <div id="start">
-    <button id="flipButton" *ngIf="!start" class="coin" (click)="flipCoin()">
-      Flip for First Pick
-    </button>
+    <div id="buttons" *ngIf="!start">
+      <button id="flipButton" class="coin" (click)="flipCoin()">
+        Flip for First Pick
+      </button>
+      <p id="or">OR</p>
+      <button id="quickStart" class="coin" (click)="quickStart()">
+        Quick Play
+      </button>
+    </div>
     <p id="lastCommentary">{{ commentary[1] }}</p>
     <p id="commentary" *ngIf="start">{{ commentary[0] }}</p>
   </div>
