@@ -247,4 +247,7 @@ export class DraftComponent implements OnInit {
       this.computerTurn();
     }
   }
+  quickStart(): void {
+    console.log("quick start");
+  }
 }
