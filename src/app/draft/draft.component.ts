@@ -249,5 +249,6 @@ export class DraftComponent implements OnInit {
   }
   quickStart(): void {
     console.log("quick start");
+    this.endGame();
   }
 }
