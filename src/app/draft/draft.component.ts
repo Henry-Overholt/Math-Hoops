@@ -42,6 +42,7 @@ export class DraftComponent implements OnInit {
   ) {}
 
   ngOnInit() {
+    //gets copies of the different array's of players from the service.
     this.bluePlayers = this.draftService.bluePlayers;
     this.orangePlayers = this.draftService.orangePlayers;
     this.redPlayers = this.draftService.redPlayers;
