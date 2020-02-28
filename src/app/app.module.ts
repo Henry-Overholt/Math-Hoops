@@ -12,15 +12,11 @@ import {
 import { HomeComponent } from "./home/home.component";
 import { DraftComponent } from "./draft/draft.component";
 import { HttpClientModule } from "@angular/common/http";
-import { AboutComponent } from "./about/about.component";
 import { CookieService } from "ngx-cookie-service";
 
 const appRoutes: Routes = [
   { path: "game", component: GameBoardComponent },
   { path: "draft", component: DraftComponent },
-  { path: "home", component: HomeComponent },
-  { path: "about", component: AboutComponent },
-  { path: "", redirectTo: "/home", pathMatch: "full" },
   { path: "**", component: HomeComponent }
 ];
 export function countdownConfigFactory(): CountdownConfig {
@@ -31,8 +27,7 @@ export function countdownConfigFactory(): CountdownConfig {
     AppComponent,
     GameBoardComponent,
     HomeComponent,
-    DraftComponent,
-    AboutComponent
+    DraftComponent
   ],
   imports: [
     BrowserModule,

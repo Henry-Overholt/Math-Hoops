@@ -10,6 +10,7 @@ main {
 }
 #main {
   width: 50%;
+  height: 90%;
 }
 div {
   background: rgba(187, 187, 187, 0.445);
@@ -20,41 +21,36 @@ div {
   align-items: center;
 }
 img {
-  width: 300px;
-  height: 300px;
+  width: 40%;
+  height: 40%;
 }
 h1 {
   color: white;
+  width: 100%;
+  align-self: center;
 }
 a {
   text-decoration: none;
   color: white;
 }
-#buttons {
-  display: flex;
-  flex-direction: row;
-  background: none;
-}
 button {
   margin-top: 10px;
-  width: 200px;
+  width: 75%;
   height: 50px;
   font-size: 25px;
   border-radius: 10px;
   margin: 5px;
-  margin-top: 0px;
   background: blue;
   color: white;
 }
 #start {
   background: orange;
-  width: 290px;
   height: 75px;
   font-size: 40px;
-  margin-bottom: 0px;
+  margin-bottom: 5px;
 }
 p {
   color: white;
-  width: 75%;
+  width: 90%;
   margin: 15px;
 }
