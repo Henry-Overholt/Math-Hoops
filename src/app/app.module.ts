@@ -13,6 +13,7 @@ import { HomeComponent } from "./home/home.component";
 import { DraftComponent } from "./draft/draft.component";
 import { HttpClientModule } from "@angular/common/http";
 import { CookieService } from "ngx-cookie-service";
+import { ScreenSizeComponent } from './screen-size/screen-size.component';
 
 const appRoutes: Routes = [
   { path: "game", component: GameBoardComponent },
@@ -27,7 +28,8 @@ export function countdownConfigFactory(): CountdownConfig {
     AppComponent,
     GameBoardComponent,
     HomeComponent,
-    DraftComponent
+    DraftComponent,
+    ScreenSizeComponent
   ],
   imports: [
     BrowserModule,
