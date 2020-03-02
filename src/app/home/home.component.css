@@ -1,56 +1,70 @@
-main {
-  background: url("./../../assets/home.jpg");
-  background-repeat: no-repeat;
-  background-size: cover;
+#screen {
+  width: 100vw;
   height: 100vh;
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  z-index: 1;
+  background: white;
 }
-#main {
-  width: 50%;
-  height: 90%;
+main {
+  display: none;
 }
-div {
-  background: rgba(187, 187, 187, 0.445);
-  padding: 25px;
-  border-radius: 20px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-img {
-  width: 40%;
-  height: 40%;
-}
-h1 {
-  color: white;
-  width: 100%;
-  align-self: center;
-}
-a {
-  text-decoration: none;
-  color: white;
-}
-button {
-  margin-top: 10px;
-  width: 75%;
-  height: 50px;
-  font-size: 25px;
-  border-radius: 10px;
-  margin: 5px;
-  background: blue;
-  color: white;
-}
-#start {
-  background: orange;
-  height: 75px;
-  font-size: 40px;
-  margin-bottom: 5px;
-}
-p {
-  color: white;
-  width: 90%;
-  margin: 15px;
+@media screen and (min-width: 766px) {
+  #screen {
+    display: none;
+  }
+  main {
+    background: url("./../../assets/home.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  #main {
+    width: 50%;
+    height: 90%;
+  }
+  div {
+    background: rgba(187, 187, 187, 0.445);
+    padding: 25px;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  img {
+    width: 40%;
+    height: 40%;
+  }
+  h1 {
+    color: white;
+    width: 100%;
+    align-self: center;
+  }
+  a {
+    text-decoration: none;
+    color: white;
+  }
+  button {
+    margin-top: 10px;
+    width: 75%;
+    height: 50px;
+    font-size: 25px;
+    border-radius: 10px;
+    margin: 5px;
+    background: blue;
+    color: white;
+  }
+  #start {
+    background: orange;
+    height: 75px;
+    font-size: 40px;
+    margin-bottom: 5px;
+  }
+  p {
+    color: white;
+    width: 90%;
+    margin: 15px;
+  }
 }

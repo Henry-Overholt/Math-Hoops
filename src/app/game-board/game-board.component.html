@@ -1,3 +1,4 @@
+<app-screen-size id='screen'></app-screen-size>
 <div id="whole">
   <header>
     <div id="scoreboard">
@@ -10,7 +11,7 @@
         ></countdown>
       </div>
       <div class="scoreboard">
-        <h3 [ngClass]="{ turn: turn === false }">Player 1</h3>
+        <h3 [ngClass]="{ turn: turn === false }">Player</h3>
         <div class="score">
           <h2>{{ playerScore }}</h2>
         </div>
@@ -45,7 +46,7 @@
       </p>
     </div>
   </header>
-  
+
   <div class="gameDirections" *ngIf="!start">
     <h1>How to play...</h1>
     <ol>
@@ -206,35 +207,35 @@
   <div id="cardHolder">
     <div class="cards">
       <div class="card orange">
-        <h3>
+        <h3 class="playerName">
           {{ orangeP.playerName }}
         </h3>
         <p>FG% - {{ orangeP.fieldGoal }}</p>
         <p>3pt% - {{ orangeP.threePoint }}</p>
       </div>
       <div class="card red">
-        <h3>
+        <h3 class="playerName">
           {{ redP.playerName }}
         </h3>
         <p>FG% - {{ redP.fieldGoal }}</p>
         <p>3pt% - {{ redP.threePoint }}</p>
       </div>
       <div class="card blue">
-        <h3>
+        <h3 class="playerName">
           {{ blueP.playerName }}
         </h3>
         <p>FG% - {{ blueP.fieldGoal }}</p>
         <p>3pt% - {{ blueP.threePoint }}</p>
       </div>
       <div class="card purple">
-        <h3>
+        <h3 class="playerName">
           {{ purpleP.playerName }}
         </h3>
         <p>FG% - {{ purpleP.fieldGoal }}</p>
         <p>3pt% - {{ purpleP.threePoint }}</p>
       </div>
       <div class="card green">
-        <h3>
+        <h3 class="playerName">
           {{ greenP.playerName }}
         </h3>
         <p>FG% - {{ greenP.fieldGoal }}</p>
@@ -243,35 +244,35 @@
     </div>
     <div class="cards">
       <div class="card orange">
-        <h3>
+        <h3 class="playerName">
           {{ orangeC.playerName }}
         </h3>
         <p>FG% - {{ orangeC.fieldGoal }}</p>
         <p>3pt% - {{ orangeC.threePoint }}</p>
       </div>
       <div class="card red">
-        <h3>
+        <h3 class="playerName">
           {{ redC.playerName }}
         </h3>
         <p>FG% - {{ redC.fieldGoal }}</p>
         <p>3pt% - {{ redC.threePoint }}</p>
       </div>
       <div class="card blue">
-        <h3>
+        <h3 class="playerName">
           {{ blueC.playerName }}
         </h3>
         <p>FG% - {{ blueC.fieldGoal }}</p>
         <p>3pt% - {{ blueC.threePoint }}</p>
       </div>
       <div class="card purple">
-        <h3>
+        <h3 class="playerName">
           {{ purpleC.playerName }}
         </h3>
         <p>FG% - {{ purpleC.fieldGoal }}</p>
         <p>3pt% - {{ purpleC.threePoint }}</p>
       </div>
       <div class="card green">
-        <h3>
+        <h3 class="playerName">
           {{ greenC.playerName }}
         </h3>
         <p>FG% - {{ greenC.fieldGoal }}</p>
