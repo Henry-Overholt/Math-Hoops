@@ -222,6 +222,7 @@ section {
   }
   .stats {
     display: flex;
+    align-self: center;
   }
   h3 {
     font-size: 30px;
@@ -244,7 +245,6 @@ section {
     width: 60%;
     height: 500px;
     background: linear-gradient(black, #04184a);
-
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
@@ -279,5 +279,31 @@ section {
     display: flex;
     align-items: center;
     justify-content: space-between;
+  }
+}
+@media screen and (min-width: 1200px) {
+  button {
+    width: 100px;
+    height: 50px;
+    font-size: 15px;
+  }
+  .coin {
+    font-size: 20px;
+  }
+  .card {
+    width: 20%;
+    height: 300px;
+    font-size: 20px;
+  }
+  .stats {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+  }
+  span {
+    padding-left: 10px;
+  }
+  ol {
+    font-size: 20px;
   }
 }
