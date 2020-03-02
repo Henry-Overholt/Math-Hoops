@@ -206,7 +206,6 @@
     margin-top: 5px;
     width: 100%;
     height: 70px;
-    margin-bottom: 10px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -226,11 +225,9 @@
     width: 100%;
     height: 80%;
     background: linear-gradient(black, #04184a);
-    /* border: 1px solid red; */
     position: relative;
   }
   #gameboard {
-    /* border: 1px solid green; */
     width: 100%;
     height: 100%;
     background-image: url("../../assets/gameboard.jpeg");
@@ -493,8 +490,7 @@
     display: flex;
     justify-content: space-evenly;
     width: 100%;
-    margin-top: 5px;
-    padding-top: 5px;
+    margin-bottom: 5px;
   }
   .cards {
     display: flex;
@@ -719,6 +715,7 @@
     font-size: 20px;
     width: 100%;
     height: 70px;
+    margin-bottom: 10px;
   }
   #lastCommentary {
     font-size: 15px;
@@ -732,9 +729,6 @@
   }
 
   #cardHolder {
-    display: flex;
-    justify-content: space-evenly;
-    width: 100%;
     margin-top: 5px;
     padding-top: 5px;
     padding-bottom: 5px;
@@ -743,7 +737,6 @@
   .card {
     width: 18%;
     height: 175px;
-    border-radius: 10px;
     font-size: 20px;
   }
   .gameDirections {
