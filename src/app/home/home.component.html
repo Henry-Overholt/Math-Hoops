@@ -1,24 +1,56 @@
 <app-screen-size id="screen"></app-screen-size>
 <main>
   <div id="main">
-    <img src="./../../assets/math-hoops logo.png" alt="Math Hoops Logo" />
-    <h1>Welcome to Math Hoops <em>the Computer Game!</em></h1>
-    <p>
-      Math Hoops is a fast-paced math game, designed to teach students
-      probability, as well as quick decisions. They will practice their quick
-      mental math skills with single digit, adding, subtract, multiplying, and
-      division. Players use real life statistics of their favorite WNBA and NBA
-      players, to see if they can beat the computer!
-    </p>
-    <button id="start"><a routerLink="/draft">Start a Game!</a></button>
-    <p>
-      I did not create Math Hoops or own Math Hoops, this is my free version of
-      the board game that I developed for a laptop or desktop computer. To learn
-      more about Math Hoops and what Learn Fresh is doing with this incredibly
-      fun program is all about, click the button below.
-    </p>
-    <button class="normal">
-      <a href="http://nbamathhoops.org/">nbamathhoops.org</a>
-    </button>
+    <div id="welcome">
+      <img src="./../../assets/math-hoops logo.png" alt="Math Hoops Logo" />
+      <h1>Welcome to Math Hoops <em>the Computer Game!</em></h1>
+
+      <p>
+        Math Hoops is a fast-paced math game, designed to teach you probability,
+        as well as quick decisions. You will practice quick mental math skills
+        with single digit adding, subtract, multiplying, and division. You will
+        use real life statistics of their favorite WNBA and NBA players, to see
+        if YOU can beat the computer!
+      </p>
+      <button id="quickPlay" routerLink="/game">Quick Play</button>
+      <button id="start">
+        <a routerLink="/draft">Draft a Team</a>
+      </button>
+
+      <!-- <button id="historic" routerLink="/teams">Historic Teams</button> -->
+    </div>
+    <div id="rightContainer">
+      <div id="fieldGoal" class="stats">
+        <h3>Top 5 Field Goal %</h3>
+        <div id="players" *ngFor="let player of topFiveFieldPlayers">
+          <div class="{{ player.color }} player">
+            <p>{{ player.playerName }}</p>
+            <p>{{ player.fieldGoal }}%</p>
+          </div>
+        </div>
+      </div>
+      <div id="threePoint" class="stats">
+        <h3>Top 5 Three Point %</h3>
+        <div id="players" *ngFor="let player of topFiveThreePointPlayers">
+          <div class="{{ player.color }} player">
+            <p>{{ player.playerName }}</p>
+            <p>{{ player.threePoint }}%</p>
+          </div>
+        </div>
+      </div>
+
+      <div id="moreInfo">
+        <h3>About Math Hoops</h3>
+        <p>
+          I did not create Math Hoops or own Math Hoops, this is my free version
+          of the board game that I developed for a laptop or desktop computer.
+          To learn more about Math Hoops and what Learn Fresh is doing with this
+          incredibly fun program is all about, click the button below.
+        </p>
+        <button class="normal">
+          <a (click)="goToLink('http://nbamathhoops.org/')">nbamathhoops.org</a>
+        </button>
+      </div>
+    </div>
   </div>
 </main>

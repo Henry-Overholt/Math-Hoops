@@ -12,59 +12,140 @@ main {
     display: none;
   }
   main {
-    background: url("./../../assets/home.jpg");
-    background-repeat: no-repeat;
-    background-size: cover;
-    height: 100vh;
-    width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
+    background: url("./../../assets/home.jpg");
+    background-repeat: none;
+    background-size: cover;
+    background-position: center;
+    width: 100vw;
+    height: 100vh;
+  }
+  #welcome {
+    color: white;
+    width: 45%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    height: 80%;
   }
   #main {
-    width: 50%;
-    height: 90%;
+    display: flex;
+    width: 100vw;
+    justify-content: space-evenly;
+    align-items: center;
   }
-  div {
-    background: rgba(187, 187, 187, 0.445);
-    padding: 25px;
-    border-radius: 20px;
+  #rightContainer {
+    width: 45%;
+    height: 90vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+  }
+  #welcomeTitle {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    width: 90%;
+    font-size: 15px;
+    text-align: center;
+    padding: 10px;
+  }
+  img {
+    width: 175px;
+  }
+  button {
+    border: 1px solid white;
+  }
+  h1 {
+    text-align: center;
+  }
+  h3 {
+    color: white;
+    padding: 3px;
+    border-bottom: 3px solid white;
+  }
+  #players {
     display: flex;
     flex-direction: column;
     align-items: center;
   }
-  img {
-    width: 40%;
-    height: 40%;
-  }
-  h1 {
-    color: white;
+  .stats {
     width: 100%;
-    align-self: center;
+    border: 3px solid white;
+    border-radius: 5px;
   }
-  a {
-    text-decoration: none;
+  .player {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 80%;
+    padding: 3px;
+    border-width: 2px;
+    margin: 1px;
+    border-radius: 5px;
+    text-align: center;
     color: white;
+  }
+  .red {
+    background: red;
+    border-color: solid red;
+  }
+  .orange {
+    background: orange;
+    border-color: solid orange;
+  }
+  .blue {
+    background: rgb(0, 195, 255);
+    border-color: solid rgb(0, 195, 255);
+  }
+  .purple {
+    background: purple;
+    border-color: solid purple;
+  }
+  .green {
+    background: green;
+    border-color: solid green;
+  }
+  #moreInfo {
+    color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+  }
+  #moreInfo h3 {
+    text-align: center;
+    font-size: 25px;
+    border: 3px solid blue;
+    border-radius: 5px;
+  }
+  #moreInfo p {
+    background: rgba(122, 121, 121, 0.445);
+    padding: 5px;
+    border-radius: 10px;
+    margin-top: 5px;
   }
   button {
-    margin-top: 10px;
-    width: 75%;
-    height: 50px;
-    font-size: 25px;
-    border-radius: 10px;
-    margin: 5px;
+    width: 50%;
     background: blue;
+    padding: 8px;
+    border: 1px solid blue;
+    margin: 3px;
+    border-radius: 15px;
     color: white;
+    font-size: 20px;
+  }
+  a {
+    color: white;
+    text-decoration: none;
   }
   #start {
+    border: 1px solid orange;
     background: orange;
-    height: 75px;
-    font-size: 40px;
-    margin-bottom: 5px;
-  }
-  p {
-    color: white;
-    width: 90%;
-    margin: 15px;
   }
 }
