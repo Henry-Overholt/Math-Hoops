@@ -5,7 +5,7 @@
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.1.1.
 
 ## About
-Math Hoops was and is origanally a board game for students. I used this game to build a lunch study program for middle schoolers while with City Year, to practice their math facts, and learn about statistics and probability using NBA and WNBA player statistics. 
+Math Hoops was and is originally a board game for students. I used this game to build a lunch study program for middle schoolers while with City Year, to practice their math facts, and learn about statistics and probability using NBA and WNBA player statistics. 
 
 ## Screenshots
  ![Math Hoops Game Home Screen](mathHoopsImages/mathHoopsHome.png)
