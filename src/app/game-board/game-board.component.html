@@ -162,13 +162,18 @@
     <div id="gameboard">
       <div id="evenContainer">
         <p id="evenTitle">EVEN</p>
-        <img
+        <!-- <img
           id="evenBall"
           class="ball"
           src="./../../assets/newBasketball.jpeg"
           alt="basketball"
           *ngIf="!turn"
-        />
+        /> -->
+        <i
+          class="fas fa-basketball-ball iconBall"
+          id="evenBall"
+          *ngIf="!turn"
+        ></i>
         <div id="evenHoop" class="hoop"></div>
         <div *ngFor="let number of evenNumbers; index as i">
           <div
@@ -183,13 +188,18 @@
       </div>
       <div id="oddContainer">
         <p id="oddTitle">ODD</p>
-        <img
+        <!-- <img
           id="oddBall"
           class="ball"
           src="./../../assets/newBasketball.jpeg"
           alt="basketball"
           *ngIf="turn"
-        />
+        /> -->
+        <i
+          class="fas fa-basketball-ball iconBall"
+          id="oddBall"
+          *ngIf="turn"
+        ></i>
         <div id="oddHoop" class="hoop"></div>
         <div *ngFor="let number of oddNumbers; index as i">
           <div
