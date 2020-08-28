@@ -100,7 +100,14 @@
     border-radius: 100%;
     z-index: 1;
   }
-
+  .iconBall {
+    position: absolute;
+    font-size: 25px;
+    color: #e47041;
+    background: #161616;
+    border-radius: 100%;
+    z-index: 0;
+  }
   .scoreboard {
     display: flex;
     align-items: center;
